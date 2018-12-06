@@ -1,5 +1,5 @@
 #include "mainwindow.h"
-#include"Gameobject.h"
+#include"gameobject.h"
 #include "game.h"
 #include <QApplication>
 #include <QHBoxLayout>
