@@ -2,7 +2,7 @@
 #define MAINWINDOW_H
 #include <QMouseEvent>
 #include <QMainWindow>
-#include"Gameobject.h"
+#include"gameobject.h"
 #include "map.h"
 class Gameobject;
 namespace Ui {
