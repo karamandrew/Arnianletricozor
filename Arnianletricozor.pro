@@ -27,7 +27,7 @@ CONFIG += c++11
 SOURCES += \
         main.cpp \
         mainwindow.cpp \
-    Gameobject.cpp \
+    gameobject.cpp \
     game.cpp \
     map.cpp \
     terrain.cpp \
