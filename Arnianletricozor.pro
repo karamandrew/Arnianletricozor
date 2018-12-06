@@ -37,7 +37,7 @@ SOURCES += \
     unite.cpp \
     infantry.cpp \
     recon.cpp \
-    bazooka.cpp \
+    mech.cpp \
     antiair.cpp \
     tank.cpp \
     mdtank.cpp \
