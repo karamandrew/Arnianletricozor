@@ -1,5 +1,5 @@
 #include <QPainter>
-#include "Gameobject.h"
+#include "gameobject.h"
 
 
 Gameobject::Gameobject(int x, int y, int type): m_posX(x), m_posY(y), m_type(type), focused(false)
