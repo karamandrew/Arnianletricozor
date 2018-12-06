@@ -53,7 +53,7 @@ SOURCES += \
 
 HEADERS += \
         mainwindow.h \
-    Gameobject.h \
+    gameobject.h \
     game.h \
     map.h \
     terrain.h \
@@ -63,7 +63,7 @@ HEADERS += \
     unite.h \
     infantry.h \
     recon.h \
-    bazooka.h \
+    mech.h \
     antiair.h \
     tank.h \
     mdtank.h \
