@@ -1,7 +1,7 @@
 #ifndef MAP_H
 #define MAP_H
 #include <QWidget>
-#include"Gameobject.h"
+#include"gameobject.h"
 class Map : public QWidget{
     Q_OBJECT
 public:
