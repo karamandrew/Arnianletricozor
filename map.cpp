@@ -14,9 +14,9 @@ void Map::paintEvent(QPaintEvent *event)
 {
     Game& game=Game::Instance();
     QPainter painter(this);
-    for(int i=0 ;i<11;i++){
+    for(int i=0 ;i<22;i++){
         int m=i+7;
-        for (int j=0; j <11 ;j++){
+        for (int j=0; j <22 ;j++){
            int t = j+2;
            QPixmap picture((mapObject[j][i].getDirectory()).c_str()); //c_str permet de régler un probleme de string pour qpixmap
            QPixmap picture2((game.getgameobject(i,j).getDirectory()).c_str());
@@ -41,7 +41,8 @@ void Map::mousePressEvent(QMouseEvent *m)
 void Map::setgameobject()
 {   Game& game=Game::Instance();
 
-    int bitse[18][22] = {{104,102,102,102,102,102,108,3,1,2,18,15,15,34,1,1,1,2,30,30,3},
+    int bitse[22][22] =
+ {{104,102,102,102,102,102,108,3,1,2,18,15,15,34,1,1,1,2,30,30,33},
 {101,34,1,1,1,2,1,18,15,15,34,1,1,3,1,3,1,1,1,3,30},
 {101,2,1,3,2,18,15,35,1,1,1,3,1,1,1,1,125,15,19,1,2},
 {109,2,34,15,15,34,1,1,2,2,2,2,2,3,1,123,23,1,21,19,1},
@@ -60,12 +61,51 @@ void Map::setgameobject()
 {33,29,29,2,1,1,1,34,15,15,20,2,1,3,110,102,102,102,102,102,106}};
 
 
-    for(int i=0; i<11; i++){
-        for(int j=0; j<11; j++){
+    for(int i=0; i<22; i++){
+        for(int j=0; j<22; j++){
             switch(bitse[i][j]){
                 case(1): mapObject[i][j]= *new Plain(i,j, bitse[i][j]); break;
                 case(2): mapObject[i][j]= *new Plain(i,j, bitse[i][j]); break;
                 case(3): mapObject[i][j]= *new Plain(i,j, bitse[i][j]); break;
+                case(4): mapObject[i][j]= *new Plain(i,j, bitse[i][j]); break;
+                case(5): mapObject[i][j]= *new Plain(i,j, bitse[i][j]); break;
+                case(7): mapObject[i][j]= *new Plain(i,j, bitse[i][j]); break;
+                case(8): mapObject[i][j]= *new Plain(i,j, bitse[i][j]); break;
+                case(9): mapObject[i][j]= *new Plain(i,j, bitse[i][j]); break;
+                case(10): mapObject[i][j]= *new Plain(i,j, bitse[i][j]); break;
+                case(15): mapObject[i][j]= *new Plain(i,j, bitse[i][j]); break;
+                case(16): mapObject[i][j]= *new Plain(i,j, bitse[i][j]); break;
+                case(18): mapObject[i][j]= *new Plain(i,j, bitse[i][j]); break;
+                case(19): mapObject[i][j]= *new Plain(i,j, bitse[i][j]); break;
+                case(20): mapObject[i][j]= *new Plain(i,j, bitse[i][j]); break;
+                case(21): mapObject[i][j]= *new Plain(i,j, bitse[i][j]); break;
+                case(22): mapObject[i][j]= *new Plain(i,j, bitse[i][j]); break;
+                case(23): mapObject[i][j]= *new Plain(i,j, bitse[i][j]); break;
+                case(24): mapObject[i][j]= *new Plain(i,j, bitse[i][j]); break;
+                case(25): mapObject[i][j]= *new Plain(i,j, bitse[i][j]); break;
+                case(26): mapObject[i][j]= *new Plain(i,j, bitse[i][j]); break;
+                case(29): mapObject[i][j]= *new Plain(i,j, bitse[i][j]); break;
+                case(30): mapObject[i][j]= *new Plain(i,j, bitse[i][j]); break;
+                case(33): mapObject[i][j]= *new Plain(i,j, bitse[i][j]); break;
+                case(34): mapObject[i][j]= *new Plain(i,j, bitse[i][j]); break;
+                case(35): mapObject[i][j]= *new Plain(i,j, bitse[i][j]); break;
+                case(36): mapObject[i][j]= *new Plain(i,j, bitse[i][j]); break;
+                case(92): mapObject[i][j]= *new Plain(i,j, bitse[i][j]); break;
+                case(95): mapObject[i][j]= *new Plain(i,j, bitse[i][j]); break;
+                case(101): mapObject[i][j]= *new Plain(i,j, bitse[i][j]); break;
+                case(102): mapObject[i][j]= *new Plain(i,j, bitse[i][j]); break;
+                case(104): mapObject[i][j]= *new Plain(i,j, bitse[i][j]); break;
+                case(106): mapObject[i][j]= *new Plain(i,j, bitse[i][j]); break;
+                case(107): mapObject[i][j]= *new Plain(i,j, bitse[i][j]); break;
+                case(108): mapObject[i][j]= *new Plain(i,j, bitse[i][j]); break;
+                case(109): mapObject[i][j]= *new Plain(i,j, bitse[i][j]); break;
+                case(110): mapObject[i][j]= *new Plain(i,j, bitse[i][j]); break;
+                case(123): mapObject[i][j]= *new Plain(i,j, bitse[i][j]); break;
+                case(125): mapObject[i][j]= *new Plain(i,j, bitse[i][j]); break;
+
+
+
+
             }
 
         }

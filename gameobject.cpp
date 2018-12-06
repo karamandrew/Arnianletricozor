@@ -5,15 +5,16 @@
 Gameobject::Gameobject(int x, int y, int type): m_posX(x), m_posY(y), m_type(type), focused(false)
 {
     switch(type){
-    case(1): m_directory=":/Res/Terrains/sea.gif"; break;
-    case(2): m_directory=":/Res/Terrains/plain.gif"; break;
-    case(3): m_directory=":/Res/Terrains/mountain.gif"; break;
-    // case(7): m_directory=":/Res/Units/geinfantry.gif"; break;
+    case(1): m_directory=":/Res/Terrains/plain.gif"; break;
+    case(2): m_directory=":/Res/Terrains/mountain.gif"; break;
+    case(3): m_directory=":/Res/Terrains/wood.gif"; break;
+    case(4): m_directory=":/Res/Terrains/hriver.gif"; break;
+    case(5): m_directory=":/Res/Terrains/vriver.gif"; break;
     case(7): m_directory=":/Res/Terrains/esriver.gif"; break;
     case(8): m_directory=":/Res/Terrains/swriver.gif"; break;
     case(9): m_directory=":/Res/Terrains/wnriver.gif"; break;
-    case(10): m_directory=":/Res/Terrains/enriver.gif"; break;
-    case(15): m_directory=":/Res/Terrains/nesriver.gif"; break;
+    case(10): m_directory=":/Res/Terrains/neriver.gif"; break;
+    case(15): m_directory=":/Res/Terrains/hroad.gif"; break;
     case(16): m_directory=":/Res/Terrains/vroad.gif"; break;
     case(18): m_directory=":/Res/Terrains/esroad.gif"; break;
     case(19): m_directory=":/Res/Terrains/swroad.gif"; break;
@@ -30,19 +31,21 @@ Gameobject::Gameobject(int x, int y, int type): m_posX(x), m_posY(y), m_type(typ
     case(34): m_directory=":/Res/Terrains/neutralcity.gif"; break;
     case(35): m_directory=":/Res/Terrains/neutralbase.gif"; break;
     case(36): m_directory=":/Res/Terrains/neutralairport.gif"; break;
-        /*
-    case(92): m_directory=":/Res/Terrains/blackholebase.gif"; break;
-    case(95): m_directory=":/Res/Terrains/blackholehq.gif"; break;
-    case(3): m_directory=":/Res/Terrains/mountain.gif"; break;
-    case(3): m_directory=":/Res/Terrains/mountain.gif"; break;
-    case(3): m_directory=":/Res/Terrains/mountain.gif"; break;
-    case(3): m_directory=":/Res/Terrains/mountain.gif"; break;
-    case(3): m_directory=":/Res/Terrains/mountain.gif"; break;
-    case(3): m_directory=":/Res/Terrains/mountain.gif"; break;
-    case(3): m_directory=":/Res/Terrains/mountain.gif"; break;
-    case(3): m_directory=":/Res/Terrains/mountain.gif"; break;
-    case(3): m_directory=":/Res/Terrains/mountain.gif"; break;
-        */
+    case(92): m_directory=":/Res/Terrains/neutralbase.gif"; break;//temp
+    case(95): m_directory=":/Res/Terrains/neutralcity.gif"; break;//temp
+    case(101): m_directory=":/Res/Terrains/vpipe.gif"; break;
+    case(102): m_directory=":/Res/Terrains/hpipe.gif"; break;
+    case(104): m_directory=":/Res/Terrains/espipe.gif"; break;
+    case(106): m_directory=":/Res/Terrains/wnpipe.gif"; break;
+    case(107): m_directory=":/Res/Terrains/npipeend.gif"; break;
+    case(108): m_directory=":/Res/Terrains/epipeend.gif"; break;
+    case(109): m_directory=":/Res/Terrains/spipeend.gif"; break;
+    case(110): m_directory=":/Res/Terrains/wpipeend.gif"; break;
+    case(123): m_directory=":/Res/Terrains/neutralbase.gif"; break;
+    case(125):m_directory=":/Res/Terrains/neutralcity.gif"; break;
+
+    case(200): m_directory=":/Res/Units/geinfantry.gif"; break; // Unit
+
     default: std::cout << "Type inconnu"; break;
     }
 }

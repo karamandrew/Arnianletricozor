@@ -12,7 +12,7 @@ public:
     void redraw();
     Gameobject getmapObject(int i, int j);
 private:
-    Gameobject mapObject[11][11];
+    Gameobject mapObject[22][22];
 
 };
 #endif // MAP_H

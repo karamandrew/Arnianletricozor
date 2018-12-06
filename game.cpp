@@ -61,7 +61,7 @@ void Game::move(QMouseEvent *e)
     }
 }
 
-/*void Game::move(QMouseEvent *e)
+void Game::move(QMouseEvent *e)
 {
 
     if(units[getplaceunit(Xfoc, Yfoc)].getFocused()){
@@ -103,13 +103,14 @@ void Game::move(QMouseEvent *e)
        }
     }
 }
-*/
+
+
 
 void Game::start(MainWindow &wind)
 {
     window = &wind ;
-    Infantry inf(5,0,7,true);
-    Infantry inf2(6,0,7,false);
+    Infantry inf(5,0,200,true); //Affiche les éléments 102 en pos (0,5) et (0,6)
+    Infantry inf2(6,0,200,false);
     units.push_back(inf);
     units.push_back(inf2);
     gameobject[5][0]= inf;
@@ -117,7 +118,9 @@ void Game::start(MainWindow &wind)
     window->redraw();
 }
 
-/*int Game::getplaceunit(int x, int y)
+
+
+int Game::getplaceunit(int x, int y)
 {
     for (int i=0; i<((int)units.size()); i++){
         if (units[i].getPosX()==x && units[i].getPosY()==y){
@@ -126,7 +129,7 @@ void Game::start(MainWindow &wind)
     }
     return NULL;
 }
-*/
+
 
 Gameobject Game::getgameobject(int x, int y)
 {
