@@ -5,7 +5,7 @@
 class Plain : public Terrain
 {
 public:
-    Plain(int x, int y, int type);
+    Plain(int x, int y);
 };
 
 #endif // PLAIN_H

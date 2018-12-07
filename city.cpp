@@ -2,7 +2,7 @@
 
 
 
-Ville::Ville(int x, int y, int type, bool team):Building(x,y,type,team)
+Ville::Ville(int x, int y, int Id, bool team):Building(x,y,Id,team)
 {
 
 }

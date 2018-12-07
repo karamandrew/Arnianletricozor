@@ -1,6 +1,6 @@
 #include "terrain.h"
 
-Terrain::Terrain(int x, int y, int type, int pointmouv) : Gameobject (x, y, type)
+Terrain::Terrain(int x, int y, int Id, int pointmouv) : Gameobject (x, y, Id)
 {
     m_pointmouv=pointmouv;
 }

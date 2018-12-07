@@ -5,7 +5,7 @@
 class Mountain : public Terrain
 {
 public:
-    Mountain(int x, int y, int type);
+    Mountain(int x, int y);
     int getPointmouv(Unite u);
 };
 

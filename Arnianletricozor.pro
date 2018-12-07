@@ -49,7 +49,14 @@ SOURCES += \
     building.cpp \
     airport.cpp \
     base.cpp \
-    city.cpp
+    city.cpp \
+    wood.cpp \
+    river.cpp \
+    road.cpp \
+    bridge.cpp \
+    shoal.cpp \
+    reef.cpp \
+    pipe.cpp
 
 HEADERS += \
         mainwindow.h \
@@ -75,7 +82,14 @@ HEADERS += \
     building.h \
     airport.h \
     base.h \
-    city.h
+    city.h \
+    wood.h \
+    river.h \
+    road.h \
+    bridge.h \
+    shoal.h \
+    reef.h \
+    pipe.h
 
 FORMS += \
         mainwindow.ui

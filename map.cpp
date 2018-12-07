@@ -4,7 +4,20 @@
 #include <iostream>
 #include <QMouseEvent>
 #include "plain.h"
+#include "mountain.h"
 #include "gameobject.h"
+#include "wood.h"
+#include "river.h"
+#include "road.h"
+#include "bridge.h"
+#include "shoal.h"
+#include "reef.h"
+#include "pipe.h"
+#include "lake.h"
+#include "city.h"
+#include "base.h"
+#include "airport.h"
+
 Map::Map(QWidget *parent ) : QWidget(parent)
 {
 
@@ -39,14 +52,14 @@ void Map::mousePressEvent(QMouseEvent *m)
 
 
 void Map::setgameobject()
-{   Game& game=Game::Instance();
+{   // Game& game=Game::Instance();
 
     int bitse[22][22] =
  {{104,102,102,102,102,102,108,3,1,2,18,15,15,34,1,1,1,2,30,30,33},
 {101,34,1,1,1,2,1,18,15,15,34,1,1,3,1,3,1,1,1,3,30},
-{101,2,1,3,2,18,15,35,1,1,1,3,1,1,1,1,125,15,19,1,2},
-{109,2,34,15,15,34,1,1,2,2,2,2,2,3,1,123,23,1,21,19,1},
-{4,4,8,3,1,1,1,2,2,2,2,34,2,1,34,25,123,1,3,21,34},
+{101,2,1,3,2,18,15,35,1,1,1,3,1,1,1,1,43,15,19,1,2},
+{109,2,34,15,15,34,1,1,2,2,2,2,2,3,1,44,23,1,21,19,1},
+{4,4,8,3,1,1,1,2,2,2,2,34,2,1,34,25,44,1,3,21,34},
 {2,34,5,1,1,1,2,2,34,2,2,2,2,3,1,16,1,1,1,1,3},
 {3,1,26,1,3,2,2,1,16,3,2,2,34,1,3,16,34,1,3,2,7},
 {1,18,26,1,1,2,34,3,16,1,1,3,1,1,18,20,1,1,7,4,9},
@@ -54,9 +67,9 @@ void Map::setgameobject()
 {7,4,9,1,1,18,20,1,1,3,1,1,16,3,34,2,1,1,26,20,1},
 {9,2,3,1,34,16,3,1,34,2,2,3,16,1,2,2,3,1,26,1,3},
 {3,1,1,1,1,16,1,3,2,2,2,2,34,2,2,1,1,1,5,34,2},
-{34,19,3,1,92,23,34,1,2,34,2,2,2,2,1,1,1,3,10,4,4},
-{1,21,19,1,25,92,1,3,2,2,2,2,2,1,1,34,15,15,34,2,107},
-{2,1,21,15,95,1,1,1,1,3,1,1,1,35,15,20,2,3,1,2,101},
+{34,19,3,1,39,23,34,1,2,34,2,2,2,2,1,1,1,3,10,4,4},
+{1,21,19,1,25,39,1,3,2,2,2,2,2,1,1,34,15,15,34,2,107},
+{2,1,21,15,38,1,1,1,1,3,1,1,1,35,15,20,2,3,1,2,101},
 {29,3,1,1,1,3,1,3,1,1,34,15,15,20,1,2,1,1,1,34,101},
 {33,29,29,2,1,1,1,34,15,15,20,2,1,3,110,102,102,102,102,102,106}};
 
@@ -64,50 +77,38 @@ void Map::setgameobject()
     for(int i=0; i<22; i++){
         for(int j=0; j<22; j++){
             switch(bitse[i][j]){
-                case(1): mapObject[i][j]= *new Plain(i,j, bitse[i][j]); break;
-                case(2): mapObject[i][j]= *new Plain(i,j, bitse[i][j]); break;
-                case(3): mapObject[i][j]= *new Plain(i,j, bitse[i][j]); break;
-                case(4): mapObject[i][j]= *new Plain(i,j, bitse[i][j]); break;
-                case(5): mapObject[i][j]= *new Plain(i,j, bitse[i][j]); break;
-                case(7): mapObject[i][j]= *new Plain(i,j, bitse[i][j]); break;
-                case(8): mapObject[i][j]= *new Plain(i,j, bitse[i][j]); break;
-                case(9): mapObject[i][j]= *new Plain(i,j, bitse[i][j]); break;
-                case(10): mapObject[i][j]= *new Plain(i,j, bitse[i][j]); break;
-                case(15): mapObject[i][j]= *new Plain(i,j, bitse[i][j]); break;
-                case(16): mapObject[i][j]= *new Plain(i,j, bitse[i][j]); break;
-                case(18): mapObject[i][j]= *new Plain(i,j, bitse[i][j]); break;
-                case(19): mapObject[i][j]= *new Plain(i,j, bitse[i][j]); break;
-                case(20): mapObject[i][j]= *new Plain(i,j, bitse[i][j]); break;
-                case(21): mapObject[i][j]= *new Plain(i,j, bitse[i][j]); break;
-                case(22): mapObject[i][j]= *new Plain(i,j, bitse[i][j]); break;
-                case(23): mapObject[i][j]= *new Plain(i,j, bitse[i][j]); break;
-                case(24): mapObject[i][j]= *new Plain(i,j, bitse[i][j]); break;
-                case(25): mapObject[i][j]= *new Plain(i,j, bitse[i][j]); break;
-                case(26): mapObject[i][j]= *new Plain(i,j, bitse[i][j]); break;
-                case(29): mapObject[i][j]= *new Plain(i,j, bitse[i][j]); break;
-                case(30): mapObject[i][j]= *new Plain(i,j, bitse[i][j]); break;
-                case(33): mapObject[i][j]= *new Plain(i,j, bitse[i][j]); break;
-                case(34): mapObject[i][j]= *new Plain(i,j, bitse[i][j]); break;
-                case(35): mapObject[i][j]= *new Plain(i,j, bitse[i][j]); break;
-                case(36): mapObject[i][j]= *new Plain(i,j, bitse[i][j]); break;
-                case(92): mapObject[i][j]= *new Plain(i,j, bitse[i][j]); break;
-                case(95): mapObject[i][j]= *new Plain(i,j, bitse[i][j]); break;
-                case(101): mapObject[i][j]= *new Plain(i,j, bitse[i][j]); break;
-                case(102): mapObject[i][j]= *new Plain(i,j, bitse[i][j]); break;
-                case(104): mapObject[i][j]= *new Plain(i,j, bitse[i][j]); break;
-                case(106): mapObject[i][j]= *new Plain(i,j, bitse[i][j]); break;
-                case(107): mapObject[i][j]= *new Plain(i,j, bitse[i][j]); break;
-                case(108): mapObject[i][j]= *new Plain(i,j, bitse[i][j]); break;
-                case(109): mapObject[i][j]= *new Plain(i,j, bitse[i][j]); break;
-                case(110): mapObject[i][j]= *new Plain(i,j, bitse[i][j]); break;
-                case(123): mapObject[i][j]= *new Plain(i,j, bitse[i][j]); break;
-                case(125): mapObject[i][j]= *new Plain(i,j, bitse[i][j]); break;
+
+            // Terrains
+
+                case 1 :            mapObject[i][j]= *new Plain(i,j); break;
+                case 2 :            mapObject[i][j]= *new Mountain(i,j); break;
+                case 3 :            mapObject[i][j]= *new Wood(i,j); break;
+                case 4 ... 14 :     mapObject[i][j]= *new River(i,j, bitse[i][j]); break;
+                case 15 ... 25 :    mapObject[i][j]= *new Road(i,j, bitse[i][j]); break;
+                case 26 ... 27 :    mapObject[i][j]= *new Bridge(i,j, bitse[i][j]); break;
+                case 28 :           mapObject[i][j]= *new Lake(i,j, bitse[i][j]); break;
+                case 29 ... 32 :    mapObject[i][j]= *new Shoal(i,j, bitse[i][j]); break;
+                case 33 :           mapObject[i][j]= *new Reef(i,j); break;
+                case 101 ... 110 :  mapObject[i][j]= *new Pipe(i,j, bitse[i][j]); break;
 
 
+             // Buildings
 
+                // City
+                case 34 : mapObject[i][j]= *new Ville(i,j, bitse[i][j], 0); break; //Neutral
+                case 38 : mapObject[i][j]= *new Ville(i,j, bitse[i][j], 0); break; // Blue
+                case 43 : mapObject[i][j]= *new Ville(i,j, bitse[i][j], 0); break; // Orange
+                // Base
+                case 35 : mapObject[i][j]= *new Base(i,j, bitse[i][j], 0); break; //Neutral
+                case 39 : mapObject[i][j]= *new Base(i,j, bitse[i][j], 0); break; // Blue
+                case 44 : mapObject[i][j]= *new Base(i,j, bitse[i][j], 0); break; // Orange
+                // Airport
+                case 36 : mapObject[i][j]= *new Airport(i,j, bitse[i][j], 0); break; //Neutral
+                case 40 : mapObject[i][j]= *new Airport(i,j, bitse[i][j], 0); break; // Blue
+                case 45 : mapObject[i][j]= *new Airport(i,j, bitse[i][j], 0); break;  // Orange
 
             }
-
+;
         }
     }
 }

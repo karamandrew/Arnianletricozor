@@ -5,7 +5,7 @@
 class Lake : public Terrain
 {
 public:
-    Lake(int x, int y, int type);
+    Lake(int x, int y, int Id);
 };
 
 #endif // LAKE_H

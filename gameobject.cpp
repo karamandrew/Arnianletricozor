@@ -31,8 +31,12 @@ Gameobject::Gameobject(int x, int y, int type): m_posX(x), m_posY(y), m_type(typ
     case(34): m_directory=":/Res/Terrains/neutralcity.gif"; break;
     case(35): m_directory=":/Res/Terrains/neutralbase.gif"; break;
     case(36): m_directory=":/Res/Terrains/neutralairport.gif"; break;
-    case(92): m_directory=":/Res/Terrains/neutralbase.gif"; break;//temp
-    case(95): m_directory=":/Res/Terrains/neutralcity.gif"; break;//temp
+    case(38): m_directory=":/Res/Terrains/orangestarcity.gif"; break;
+    case(39): m_directory=":/Res/Terrains/orangestarbase.gif";break;
+    case(40): m_directory=":/Res/Terrains/orangestarairport.gif";break;
+    case(43): m_directory=":/Res/Terrains/bluemooncity.gif";break;
+    case(44): m_directory=":/Res/Terrains/bluemoonbase.gif";break;
+    case(45): m_directory=":/Res/Terrains/bluemoonairport.gif";break;
     case(101): m_directory=":/Res/Terrains/vpipe.gif"; break;
     case(102): m_directory=":/Res/Terrains/hpipe.gif"; break;
     case(104): m_directory=":/Res/Terrains/espipe.gif"; break;
@@ -41,8 +45,7 @@ Gameobject::Gameobject(int x, int y, int type): m_posX(x), m_posY(y), m_type(typ
     case(108): m_directory=":/Res/Terrains/epipeend.gif"; break;
     case(109): m_directory=":/Res/Terrains/spipeend.gif"; break;
     case(110): m_directory=":/Res/Terrains/wpipeend.gif"; break;
-    case(123): m_directory=":/Res/Terrains/neutralbase.gif"; break;
-    case(125):m_directory=":/Res/Terrains/neutralcity.gif"; break;
+
 
     case(200): m_directory=":/Res/Units/geinfantry.gif"; break; // Unit
 

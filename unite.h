@@ -5,8 +5,9 @@
 class Unite : public Gameobject
 {
 public:
-    Unite(int x, int y, int type, bool team, int prix, int pointaction, char deplacementype);
+    Unite(int x, int y, int Id, bool team, int prix, int pointaction, char deplacementype);
     int getPointaction();
+    char getTypeMovement();
 private:
     int m_pointaction;
     int m_vie=10;

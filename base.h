@@ -6,7 +6,7 @@
 class Base : public Building
 {
 public:
-    Base(int x, int y, int type, bool team);
+    Base(int x, int y, int Id, bool team);
 };
 
 #endif // BASE_H

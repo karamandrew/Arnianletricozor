@@ -1,7 +1,7 @@
 #include "airport.h"
 
 
-Airport::Airport(int x, int y, int type, bool team): Building(x,y,type,team)
+Airport::Airport(int x, int y, int Id, bool team): Building(x,y,Id,team)
 {
 
 }

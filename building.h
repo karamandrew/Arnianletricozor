@@ -7,7 +7,7 @@ class Building : public Gameobject
 {
 
 public:
-    Building(int x, int y, int type, bool team);
+    Building(int x, int y, int Id, bool team);
 
 private:
     int m_ptCapture=20;

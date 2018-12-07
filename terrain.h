@@ -9,7 +9,7 @@ using namespace std;
 class Terrain : public Gameobject
 {
 public:
-    Terrain(int x, int y, int type, int pointmouv);
+    Terrain(int x, int y, int Id, int pointmouv);
     int getPointmouv(Unite);
 private:
     int m_pointmouv;

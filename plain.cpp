@@ -1,4 +1,4 @@
 #include "plain.h"
 
-Plain::Plain(int x, int y, int type) : Terrain( x, y, type, 1){
+Plain::Plain(int x, int y) : Terrain( x, y, 1, 1){
 }
