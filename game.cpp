@@ -22,6 +22,12 @@ void Game::move(QMouseEvent *e)
 
         int indexUnitFoc = getIndexUnit(Xfoc,Yfoc);
 
+        // void calculatePosAccessible(Xfoc, Yfoc, indexUnitFoc)
+        // void showAccessible
+        // if ( gameobject(m,t).isAccessible ) {
+                // setPos
+
+
 
         if (isAccessible(Xfoc, Yfoc, indexUnitFoc, m, t)){
 
@@ -85,7 +91,7 @@ bool Game::isAccessible(int currentX, int currentY, int indexUnit, int newPosX, 
          int potentialMP = unite[indexUnit].getMP();
          int terrainID = window->getMapObject(newPosX,newPosy).getId();
 
-
+         //bool Game::isReachable(currentX, currentY)
 
          //currentX+1, currentX -1 , currentY + 1, currentY -1
 
