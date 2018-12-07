@@ -18,6 +18,7 @@
 #include "base.h"
 #include "airport.h"
 
+
 Map::Map(QWidget *parent ) : QWidget(parent)
 {
 
@@ -33,8 +34,13 @@ void Map::paintEvent(QPaintEvent *event)
            int t = j+2;
            QPixmap pictureMap((mapObject[j][i].getDirectory()).c_str()); //c_str permet de régler un probleme de string pour qpixmap
            painter.drawPixmap(m*40,t*40,40,40,pictureMap);
-           QPixmap pictureUnits((game.getgameobject(i,j).getDirectory()).c_str());
-           painter.drawPixmap(m*40,t*40,40,40,pictureUnits);
+
+           if ( game.getIndexUnit(i,j) != 444 ){
+               //QPixmap pictureUnits((game.getgameobject(i,j).getDirectory()).c_str());
+               QPixmap pictureUnits((game.getUnite(i,j).getDirectory().c_str()));
+               painter.drawPixmap(m*40,t*40,40,40,pictureUnits);
+           }
+
         }
 
     }

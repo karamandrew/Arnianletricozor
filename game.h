@@ -12,12 +12,13 @@ public:
     int getIndexUnit(int x, int y);
     int getMalusMove(char moveType, int terrainID);
     Gameobject getgameobject(int x,int y);
+    Gameobject getUnite(int x, int y);
 private:
     Game();
     static Game gInstance;
     MainWindow *window;
     vector<Unite> unite;            // !! 
-    Gameobject gameobject[21][21];
+    //Gameobject gameobject[21][21];
     int Xfoc=0;
     int Yfoc=0;
 
