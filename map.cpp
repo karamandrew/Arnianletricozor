@@ -126,7 +126,7 @@ void Map::redraw()
 
 Gameobject Map::getmapObject(int i, int j)
 {
-    return mapObject[i][j];
+    return mapObject[j][i]; // INVERSE CAR TABLEAU INVERSE
 };
 
 

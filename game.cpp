@@ -18,16 +18,24 @@ void Game::move(QMouseEvent *e)
     float x=floorf(e->x()/40); float y=floorf(e->y()/40);
     int m= (int)x-7; int t= (int)y-2;
 
-    if (unite[getIndexUnit(Xfoc,Yfoc)].getFocused()){
-
-        char MovType = unite[getIndexUnit(m,t)].getTypeMovement();
-        int MP = unite[getIndexUnit(m,t)].getMP();
-        int terrainID = window->getMapObject(m,t).getId();
+    if (unite[getIndexUnit(Xfoc,Yfoc)].getFocused()){  // Unité selectionné
 
         int indexUnitFoc = getIndexUnit(Xfoc,Yfoc);
+
+
+        if (isAccessible(Xfoc, Yfoc, indexUnitFoc, m, t)){
+
         unite[indexUnitFoc].setPosX(m); unite[indexUnitFoc].setPosY(t);
         unite[indexUnitFoc].setFocused(false);
         window->redraw();
+
+    }
+
+
+
+
+
+
     }
 
     else if ( getIndexUnit(m,t) != 444) {
@@ -70,6 +78,23 @@ int Game::getIndexUnit(int x, int y)
     }
     return 444;
 }
+
+bool Game::isAccessible(int currentX, int currentY, int indexUnit, int newPosX, int newPosy){
+
+         char MovType = unite[indexUnit].getTypeMovement();
+         int potentialMP = unite[indexUnit].getMP();
+         int terrainID = window->getMapObject(newPosX,newPosy).getId();
+
+
+
+         //currentX+1, currentX -1 , currentY + 1, currentY -1
+
+                if (potentialMP >= 0){
+                return true;
+    }
+
+    }
+
 
 int Game::getMalusMove(char moveType, int terrainID){
     if (moveType == 'f'){
