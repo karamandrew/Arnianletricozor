@@ -22,7 +22,7 @@ MainWindow::~MainWindow()
 
 void MainWindow::redraw()
 {
-    map->setgameobject();
+    map->setmapobject();
 
     map->redraw();
 }

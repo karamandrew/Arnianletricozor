@@ -51,7 +51,7 @@ void Map::mousePressEvent(QMouseEvent *m)
 }
 
 
-void Map::setgameobject()
+void Map::setmapobject()
 {   // Game& game=Game::Instance();
 
     int bitse[22][22] =
@@ -96,16 +96,16 @@ void Map::setgameobject()
 
                 // City
                 case 34 : mapObject[i][j]= *new Ville(i,j, bitse[i][j], 0); break; //Neutral
-                case 38 : mapObject[i][j]= *new Ville(i,j, bitse[i][j], 0); break; // Blue
-                case 43 : mapObject[i][j]= *new Ville(i,j, bitse[i][j], 0); break; // Orange
+                case 38 : mapObject[i][j]= *new Ville(i,j, bitse[i][j], 0); break; // Orange
+                case 43 : mapObject[i][j]= *new Ville(i,j, bitse[i][j], 0); break; // Blue
                 // Base
                 case 35 : mapObject[i][j]= *new Base(i,j, bitse[i][j], 0); break; //Neutral
-                case 39 : mapObject[i][j]= *new Base(i,j, bitse[i][j], 0); break; // Blue
-                case 44 : mapObject[i][j]= *new Base(i,j, bitse[i][j], 0); break; // Orange
+                case 39 : mapObject[i][j]= *new Base(i,j, bitse[i][j], 0); break; // Orange
+                case 44 : mapObject[i][j]= *new Base(i,j, bitse[i][j], 0); break; // Blue
                 // Airport
                 case 36 : mapObject[i][j]= *new Airport(i,j, bitse[i][j], 0); break; //Neutral
-                case 40 : mapObject[i][j]= *new Airport(i,j, bitse[i][j], 0); break; // Blue
-                case 45 : mapObject[i][j]= *new Airport(i,j, bitse[i][j], 0); break;  // Orange
+                case 40 : mapObject[i][j]= *new Airport(i,j, bitse[i][j], 0); break; // Orange
+                case 45 : mapObject[i][j]= *new Airport(i,j, bitse[i][j], 0); break;  // Blue
 
             }
 ;

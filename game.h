@@ -10,6 +10,7 @@ public:
     void move(QMouseEvent *e);
     void start(MainWindow &wind);
     int getIndexUnit(int x, int y);
+    int getMalusMove(char moveType, int terrainID);
     Gameobject getgameobject(int x,int y);
 private:
     Game();
@@ -19,5 +20,7 @@ private:
     Gameobject gameobject[21][21];
     int Xfoc=0;
     int Yfoc=0;
+
+
 };
 #endif // GAME_H

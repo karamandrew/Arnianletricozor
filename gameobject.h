@@ -9,7 +9,7 @@ using namespace std;
 class Gameobject
 {
 public:
-    Gameobject(int initX,int initY,int type) ;
+    Gameobject(int initX,int initY,int ID) ;
     Gameobject() ;
     int getPosX() const;
     void setPosX(int value);
@@ -23,7 +23,7 @@ public:
 private:
     int m_posX;
     int m_posY;
-    int m_type;
+    int m_ID;
     string m_directory;
     bool focused;
     QPixmap picture();

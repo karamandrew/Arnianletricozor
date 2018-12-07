@@ -2,9 +2,9 @@
 #include "gameobject.h"
 
 
-Gameobject::Gameobject(int x, int y, int type): m_posX(x), m_posY(y), m_type(type), focused(false)
+Gameobject::Gameobject(int x, int y, int ID): m_posX(x), m_posY(y), m_ID(ID), focused(false)
 {
-    switch(type){
+    switch(m_ID){
     case(1): m_directory=":/Res/Terrains/plain.gif"; break;
     case(2): m_directory=":/Res/Terrains/mountain.gif"; break;
     case(3): m_directory=":/Res/Terrains/wood.gif"; break;
@@ -49,7 +49,7 @@ Gameobject::Gameobject(int x, int y, int type): m_posX(x), m_posY(y), m_type(typ
 
     case(200): m_directory=":/Res/Units/geinfantry.gif"; break; // Unit
 
-    default: std::cout << "Type inconnu"; break;
+    default: std::cout << "Type inconnu, ID : "<< m_ID <<  std::endl; break;
     }
 }
 Gameobject::Gameobject()
@@ -77,7 +77,7 @@ void Gameobject::setPosY(int value)
 
 int Gameobject::getId() const
 {
-    return m_type;
+    return m_ID;
 }
 
 bool Gameobject::getFocused() const

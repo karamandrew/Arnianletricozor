@@ -8,7 +8,7 @@ public:
     explicit Map(QWidget *parent = 0) ;
     void paintEvent(QPaintEvent *event);
     void mousePressEvent(QMouseEvent *e);
-    void setgameobject();
+    void setmapobject();
     void redraw();
     Gameobject getmapObject(int i, int j);
 private:
