@@ -27,14 +27,14 @@ void Map::paintEvent(QPaintEvent *event)
 {
     Game& game=Game::Instance();
     QPainter painter(this);
-    for(int i=0 ;i<22;i++){
+    for(int i=0 ;i<21;i++){
         int m=i+7;
-        for (int j=0; j <22 ;j++){
+        for (int j=0; j <17 ;j++){
            int t = j+2;
-           QPixmap picture((mapObject[j][i].getDirectory()).c_str()); //c_str permet de régler un probleme de string pour qpixmap
-           QPixmap picture2((game.getgameobject(i,j).getDirectory()).c_str());
-        painter.drawPixmap(m*40,t*40,40,40,picture);
-        painter.drawPixmap(m*40,t*40,40,40,picture2);
+           QPixmap pictureMap((mapObject[j][i].getDirectory()).c_str()); //c_str permet de régler un probleme de string pour qpixmap
+           painter.drawPixmap(m*40,t*40,40,40,pictureMap);
+           QPixmap pictureUnits((game.getgameobject(i,j).getDirectory()).c_str());
+           painter.drawPixmap(m*40,t*40,40,40,pictureUnits);
         }
 
     }
@@ -54,7 +54,7 @@ void Map::mousePressEvent(QMouseEvent *m)
 void Map::setmapobject()
 {   // Game& game=Game::Instance();
 
-    int bitse[22][22] =
+    int bitse[17][21] =
  {{104,102,102,102,102,102,108,3,1,2,18,15,15,34,1,1,1,2,30,30,33},
 {101,34,1,1,1,2,1,18,15,15,34,1,1,3,1,3,1,1,1,3,30},
 {101,2,1,3,2,18,15,35,1,1,1,3,1,1,1,1,43,15,19,1,2},
@@ -74,8 +74,8 @@ void Map::setmapobject()
 {33,29,29,2,1,1,1,34,15,15,20,2,1,3,110,102,102,102,102,102,106}};
 
 
-    for(int i=0; i<22; i++){
-        for(int j=0; j<22; j++){
+    for(int i=0; i<17; i++){
+        for(int j=0; j<21; j++){
             switch(bitse[i][j]){
 
             // Terrains
