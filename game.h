@@ -11,8 +11,8 @@ public:
     void start(MainWindow &wind);
     int getIndexUnit(int x, int y);
     int getMalusMove(char moveType, int terrainID);
-    Gameobject getgameobject(int x,int y);
-    Gameobject getUnite(int x, int y);
+
+    Unite getUnite(int x, int y);
     void calculatePosAccessible(int Xfoc, int Yfoc, int indexUnit);
 private:
     Game();
