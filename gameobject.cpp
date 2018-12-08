@@ -2,7 +2,7 @@
 #include "gameobject.h"
 
 
-Gameobject::Gameobject(int x, int y, int ID): m_posX(x), m_posY(y), m_ID(ID), focused(false)
+Gameobject::Gameobject(int x, int y, int ID): m_posX(x), m_posY(y), m_ID(ID), focused(false), m_accessible(true)
 {
     switch(m_ID){
     case(1): m_directory=":/Res/Terrains/plain.gif"; break;
@@ -70,6 +70,11 @@ int Gameobject::getPosY() const
     return m_posY;
 }
 
+void Gameobject::setPosX(int value)
+{
+    m_posX = value;
+}
+
 void Gameobject::setPosY(int value)
 {
     m_posY = value;
@@ -90,10 +95,15 @@ void Gameobject::setFocused(bool value)
     focused = value;
 }
 
-void Gameobject::setPosX(int value)
-{
-    m_posX = value;
+bool Gameobject::isAccessible() const {
+    return m_accessible;
 }
+
+void Gameobject::setAccessible(bool value){
+    m_accessible = value;
+}
+
+
 
 
 

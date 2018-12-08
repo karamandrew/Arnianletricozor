@@ -13,13 +13,12 @@ public:
     int getMalusMove(char moveType, int terrainID);
     Gameobject getgameobject(int x,int y);
     Gameobject getUnite(int x, int y);
-    bool isAccessible(int Xfoc, int Yfoc, int indexUnit, int newPosX, int newPosY);
+    void calculatePosAccessible(int Xfoc, int Yfoc, int indexUnit);
 private:
     Game();
     static Game gInstance;
     MainWindow *window;
-    vector<Unite> unite;            // !! 
-    //Gameobject gameobject[21][21];
+    vector<Unite> unite;
     int Xfoc=0;
     int Yfoc=0;
 

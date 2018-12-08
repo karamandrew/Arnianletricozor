@@ -18,6 +18,8 @@ public:
     int getId() const;
     bool getFocused() const;
     void setFocused(bool value);
+    bool isAccessible() const;
+    void setAccessible(bool value);
     string getDirectory() const;
 
 private:
@@ -28,5 +30,6 @@ private:
     bool focused;
     QPixmap picture();
     int m_direction;
+    bool m_accessible;
 };
 #endif // Gameobject_H
