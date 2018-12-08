@@ -13,7 +13,7 @@ public:
     Gameobject& getmapObject(int i, int j);
     ~Map();
 private:
-    Gameobject  *mapObject[17][21];
+    Gameobject  *mapObject[21][17];
 
 };
 #endif // MAP_H

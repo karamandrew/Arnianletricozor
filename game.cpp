@@ -17,6 +17,10 @@ void Game::move(QMouseEvent *e)
     float x=floorf(e->x()/40); float y=floorf(e->y()/40);
     int m= (int)x-7; int t= (int)y-2;
 
+    std::cout << "Terrain Id : " << window->getMapObject(m,t).getId() << std::endl;
+    std::cout << "Pos m : " << m << "getPosX " << window->getMapObject(m,t).getPosX() << std::endl;
+    std::cout << "Pos t : " << t << "getPosY " << window->getMapObject(m,t).getPosY() << std::endl;
+
     if (unite[getIndexUnit(Xfoc,Yfoc)].getFocused()){  // Unité selectionné
 
         int indexUnitFoc = getIndexUnit(Xfoc,Yfoc);
