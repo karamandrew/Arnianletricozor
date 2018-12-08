@@ -10,9 +10,10 @@ public:
     void mousePressEvent(QMouseEvent *e);
     void setmapobject();
     void redraw();
-    Gameobject getmapObject(int i, int j);
+    Gameobject& getmapObject(int i, int j);
+    ~Map();
 private:
-    Gameobject mapObject[17][21];
+    Gameobject  *mapObject[17][21];
 
 };
 #endif // MAP_H

@@ -2,7 +2,7 @@
 #include "gameobject.h"
 
 
-Gameobject::Gameobject(int x, int y, int ID): m_posX(x), m_posY(y), m_ID(ID), focused(false), m_accessible(true)
+Gameobject::Gameobject(int x, int y, int ID): m_posX(x), m_posY(y), m_ID(ID), focused(false), m_accessible(false)
 {
     switch(m_ID){
     case(1): m_directory=":/Res/Terrains/plain.gif"; break;

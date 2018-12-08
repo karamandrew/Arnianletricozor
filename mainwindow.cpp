@@ -27,7 +27,7 @@ void MainWindow::redraw()
     map->redraw();
 }
 
-Gameobject MainWindow::getMapObject(int i, int j)
+Gameobject& MainWindow::getMapObject(int i, int j)
 {
     return map->getmapObject(i,j);
 }

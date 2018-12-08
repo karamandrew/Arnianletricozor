@@ -32,10 +32,10 @@ void Map::paintEvent(QPaintEvent *event)
         int m=i+7;
         for (int j=0; j <17 ;j++){
            int t = j+2;
-           QPixmap pictureMap((mapObject[j][i].getDirectory()).c_str()); //c_str permet de régler un probleme de string pour qpixmap
-           painter.drawPixmap(m*40,t*40,40,40,pictureMap);
+           QPixmap pictureMap(mapObject[j][i]->getDirectory().c_str()); //c_str permet de régler un probleme de string pour qpixmap
+           painter.drawPixmap(m*40, t*40, 40, 40, pictureMap);
 
-           if ( game.getIndexUnit(i,j) != 444 ){
+           if (game.getIndexUnit(i,j) != 444){
                //QPixmap pictureUnits((game.getgameobject(i,j).getDirectory()).c_str());
                QPixmap pictureUnits((game.getUnite(i,j).getDirectory().c_str()));
                painter.drawPixmap(m*40,t*40,40,40,pictureUnits);
@@ -86,32 +86,32 @@ void Map::setmapobject()
 
             // Terrains
 
-                case 1 :            mapObject[i][j]= *new Plain(i,j); break;
-                case 2 :            mapObject[i][j]= *new Mountain(i,j); break;
-                case 3 :            mapObject[i][j]= *new Wood(i,j); break;
-                case 4 ... 14 :     mapObject[i][j]= *new River(i,j, bitse[i][j]); break;
-                case 15 ... 25 :    mapObject[i][j]= *new Road(i,j, bitse[i][j]); break;
-                case 26 ... 27 :    mapObject[i][j]= *new Bridge(i,j, bitse[i][j]); break;
-                case 28 :           mapObject[i][j]= *new Lake(i,j, bitse[i][j]); break;
-                case 29 ... 32 :    mapObject[i][j]= *new Shoal(i,j, bitse[i][j]); break;
-                case 33 :           mapObject[i][j]= *new Reef(i,j); break;
-                case 101 ... 110 :  mapObject[i][j]= *new Pipe(i,j, bitse[i][j]); break;
+                case 1 :            mapObject[i][j] = new Plain(i,j); break;
+                case 2 :            mapObject[i][j] = new Mountain(i,j); break;
+                case 3 :            mapObject[i][j] = new Wood(i,j); break;
+                case 4 ... 14 :     mapObject[i][j] = new River(i,j, bitse[i][j]); break;
+                case 15 ... 25 :    mapObject[i][j] = new Road(i,j, bitse[i][j]); break;
+                case 26 ... 27 :    mapObject[i][j] = new Bridge(i,j, bitse[i][j]); break;
+                case 28 :           mapObject[i][j] = new Lake(i,j, bitse[i][j]); break;
+                case 29 ... 32 :    mapObject[i][j] = new Shoal(i,j, bitse[i][j]); break;
+                case 33 :           mapObject[i][j] = new Reef(i,j); break;
+                case 101 ... 110 :  mapObject[i][j] = new Pipe(i,j, bitse[i][j]); break;
 
 
              // Buildings
 
                 // City
-                case 34 : mapObject[i][j]= *new Ville(i,j, bitse[i][j], 0); break; //Neutral
-                case 38 : mapObject[i][j]= *new Ville(i,j, bitse[i][j], 0); break; // Orange
-                case 43 : mapObject[i][j]= *new Ville(i,j, bitse[i][j], 0); break; // Blue
+                case 34 : mapObject[i][j] = new Ville(i,j, bitse[i][j], 0); break; //Neutral
+                case 38 : mapObject[i][j] = new Ville(i,j, bitse[i][j], 0); break; // Orange
+                case 43 : mapObject[i][j] = new Ville(i,j, bitse[i][j], 0); break; // Blue
                 // Base
-                case 35 : mapObject[i][j]= *new Base(i,j, bitse[i][j], 0); break; //Neutral
-                case 39 : mapObject[i][j]= *new Base(i,j, bitse[i][j], 0); break; // Orange
-                case 44 : mapObject[i][j]= *new Base(i,j, bitse[i][j], 0); break; // Blue
+                case 35 : mapObject[i][j] = new Base(i,j, bitse[i][j], 0); break; //Neutral
+                case 39 : mapObject[i][j] = new Base(i,j, bitse[i][j], 0); break; // Orange
+                case 44 : mapObject[i][j] = new Base(i,j, bitse[i][j], 0); break; // Blue
                 // Airport
-                case 36 : mapObject[i][j]= *new Airport(i,j, bitse[i][j], 0); break; //Neutral
-                case 40 : mapObject[i][j]= *new Airport(i,j, bitse[i][j], 0); break; // Orange
-                case 45 : mapObject[i][j]= *new Airport(i,j, bitse[i][j], 0); break;  // Blue
+                case 36 : mapObject[i][j] = new Airport(i,j, bitse[i][j], 0); break; //Neutral
+                case 40 : mapObject[i][j] = new Airport(i,j, bitse[i][j], 0); break; // Orange
+                case 45 : mapObject[i][j] = new Airport(i,j, bitse[i][j], 0); break;  // Blue
 
             }
 ;
@@ -124,9 +124,13 @@ void Map::redraw()
     this->repaint();
 }
 
-Gameobject Map::getmapObject(int i, int j)
+Gameobject& Map::getmapObject(int i, int j)
 {
-    return mapObject[j][i]; // INVERSE CAR TABLEAU INVERSE
-};
+    return *mapObject[j][i]; // INVERSE CAR TABLEAU INVERSE
+}
+
+Map::~Map() {
+    // TODO: delete les objets de la map
+}
 
 

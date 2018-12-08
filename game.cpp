@@ -12,7 +12,6 @@ Game &Game::Instance()
     return gInstance;
 }
 
-
 void Game::move(QMouseEvent *e)
 {
     float x=floorf(e->x()/40); float y=floorf(e->y()/40);
@@ -24,11 +23,11 @@ void Game::move(QMouseEvent *e)
 
         calculatePosAccessible(Xfoc, Yfoc, indexUnitFoc);
         // void showAccessible
-        if ( window->getMapObject(m,t).isAccessible() ) {  // setPos
+        if ( window->getMapObject(m,t).isAccessible() ) {  // new Pos is accessible
 
-        unite[indexUnitFoc].setPosX(m); unite[indexUnitFoc].setPosY(t);
-        unite[indexUnitFoc].setFocused(false);
-        window->redraw();
+            unite[indexUnitFoc].setPosX(m); unite[indexUnitFoc].setPosY(t);
+            unite[indexUnitFoc].setFocused(false);
+            window->redraw();
         }
     }
 
@@ -53,8 +52,6 @@ void Game::start(MainWindow &wind)
     unite.push_back(inf2);
     unite.push_back(inf3);
 
-
-
     window->redraw();
 }
 
@@ -75,14 +72,14 @@ int Game::getIndexUnit(int x, int y)
 
 void Game::calculatePosAccessible(int currentX, int currentY, int indexUnit){
 
+
          char MovType = unite[indexUnit].getTypeMovement();
          int potentialMP = unite[indexUnit].getMP();
 
-        // window->getMapObject(0,0).setAccessible(true);
+         window->getMapObject(0,0).setAccessible(true);
+
+
          //int terrainID = window->getMapObject(newPosX,newPosy).getId();
-
-
-
     }
 
 
