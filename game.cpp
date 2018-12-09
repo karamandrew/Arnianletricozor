@@ -21,7 +21,7 @@ void Game::move(QMouseEvent *e)
 
         int indexUnitFoc = getIndexUnit(Xfoc,Yfoc);
 
-        calculatePosAccessible(Xfoc, Yfoc, indexUnitFoc);
+        calculatePosAccessible(Xfoc, Yfoc, indexUnitFoc, unite[indexUnitFoc].getMP());
         // void showAccessible
         if ( window->getMapObject(m,t).isAccessible() ) {  // new Pos is accessible
 
@@ -46,7 +46,7 @@ void Game::start(MainWindow &wind)
     window = &wind ;
     Infantry inf(0,9,200,true);
     Infantry inf2(20,9,200,false);
-    Infantry inf3(2,2,200,true);
+    Infantry inf3(10,10,200,true);
 
     unite.push_back(inf);
     unite.push_back(inf2);
@@ -70,17 +70,41 @@ int Game::getIndexUnit(int x, int y)
     return 444;
 }
 
-void Game::calculatePosAccessible(int currentX, int currentY, int indexUnit){
+void Game::calculatePosAccessible(int currentX, int currentY, int indexUnit, int mp){
 
-
+         if (mp==0){return;}
          char MovType = unite[indexUnit].getTypeMovement();
-         int potentialMP = unite[indexUnit].getMP();
+         int mpleft = mp;
+         int around[4][3];
 
-         window->getMapObject(0,0).setAccessible(true);
+         window->getMapObject(currentX,currentY).setAccessible(true);
 
+         around[0][0]=getMalusMove(MovType, getmapId(currentX-1, currentY));
+         around[0][1]=currentX-1; around[0][2]=currentY;
+         around[1][0]=getMalusMove(MovType, getmapId(currentX+1, currentY));
+         around[1][1]=currentX+1; around[1][2]=currentY;
+         around[2][0]=getMalusMove(MovType, getmapId(currentX, currentY-1));
+         around[2][1]=currentX; around[2][2]=currentY-1;
+         around[3][0]=getMalusMove(MovType, getmapId(currentX, currentY+1));
+         around[3][1]=currentX; around[3][2]=currentY+1;
+         if(!window->getMapObject(around[0][1],around[0][2]).isAccessible() && around[0][0]<=around[1][0] && around[0][0]<=around[2][0] && around[0][0]<=around[3][0] && around[0][0]<=mpleft){
+             calculatePosAccessible(around[0][1], around[0][2], indexUnit, mpleft-around[0][0]);
+         }
+         else if(!window->getMapObject(around[1][1],around[1][2]).isAccessible() && around[1][0]<=around[0][0] && around[1][0]<=around[2][0] && around[1][0]<=around[3][0] && around[1][0]<=mpleft){
+             calculatePosAccessible(around[0][1], around[0][2], indexUnit, mpleft-around[1][0]);
+         }
+         else if(!window->getMapObject(around[2][1],around[2][2]).isAccessible() && around[2][0]<=around[1][0] && around[2][0]<=around[0][0] && around[2][0]<=around[3][0] && around[2][0]<=mpleft){
+             calculatePosAccessible(around[0][1], around[0][2], indexUnit, mpleft-around[2][0]);
+         }
+         else if(!window->getMapObject(around[3][1],around[3][2]).isAccessible() && around[3][0]<=mpleft){
+             calculatePosAccessible(around[0][1], around[0][2], indexUnit, mpleft-around[3][0]);
+         }
+         else {return;}
+}
 
-         //int terrainID = window->getMapObject(newPosX,newPosy).getId();
-    }
+int Game::getmapId(int x, int y){
+    return window->getMapObject(x, y).getId();
+}
 
 
 int Game::getMalusMove(char moveType, int terrainID){

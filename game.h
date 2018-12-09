@@ -11,9 +11,9 @@ public:
     void start(MainWindow &wind);
     int getIndexUnit(int x, int y);
     int getMalusMove(char moveType, int terrainID);
-
+    int getmapId(int x, int y);
     Unite getUnite(int x, int y);
-    void calculatePosAccessible(int Xfoc, int Yfoc, int indexUnit);
+    void calculatePosAccessible(int Xfoc, int Yfoc, int indexUnit, int mp);
 private:
     Game();
     static Game gInstance;
