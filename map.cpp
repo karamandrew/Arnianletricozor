@@ -53,7 +53,7 @@ void Map::paintEvent(QPaintEvent *event)
 
 
 
-           if (game.getIndexUnit(i,j) != 444){
+           if (game.getIndexUnit(i,j) != (-1)){
                QPixmap pictureUnits((game.getUnite(i,j).getDirectory().c_str()));
                painter.drawPixmap(m*40,t*40,40,40,pictureUnits);
            }

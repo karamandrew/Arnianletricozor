@@ -18,29 +18,22 @@ void Game::move(QMouseEvent *e)
     int m= (int)x-7; int t= (int)y-2;
 
 
+    if ( getIndexUnit(Xfoc,Yfoc) != (-1) && unite[getIndexUnit(Xfoc,Yfoc)].getFocused() && window->getMapObject(m,t).isAccessible() )  {  // Unité selectionné
 
-    if (unite[getIndexUnit(Xfoc,Yfoc)].getFocused()){  // Unité selectionné
 
         int indexUnitFoc = getIndexUnit(Xfoc,Yfoc);
 
-        if ( window->getMapObject(m,t).isAccessible() ) {
-
-            unite[indexUnitFoc].setPosX(m); unite[indexUnitFoc].setPosY(t);
-            unite[indexUnitFoc].setFocused(false);
-
-        }
-
+        unite[indexUnitFoc].setPosX(m);
+        unite[indexUnitFoc].setPosY(t);
+        unite[indexUnitFoc].setFocused(false);
 
     }
 
-    else if ( getIndexUnit(m,t) != 444) {
-
+    else if ( getIndexUnit(m,t) != (-1)) {
 
         unite[getIndexUnit(m,t)].setFocused(true);
 
-        window->getMapObject(0,0).setAccessible(true);
-
-        //calculatePosAccessible(m,t, getIndexUnit(m,t), unite[getIndexUnit(m,t)].getMP());
+        calculatePosAccessible(m,t, getIndexUnit(m,t), unite[getIndexUnit(m,t)].getMP());
 
         Xfoc=m;
         Yfoc=t;
@@ -81,28 +74,20 @@ int Game::getIndexUnit(int x, int y)
 
         }
     }
-    return 444;
+    return (-1);
 }
 
 
 void Game::calculatePosAccessible(int currentX, int currentY, int indexUnit, int mp){
-
-         std::cout << "Heloooooo" << std::endl;
-
-         window->getMapObject(0,0).setAccessible(true);
-
-         // MTN ON DOIT RENDRE LES BONNES ACCESSIBLES
-
-
-
-         /*
 
          if (mp==0){return;}
          char MovType = unite[indexUnit].getTypeMovement();
          int mpleft = mp;
          int around[4][3];
 
+         window->getMapObject(5,5).setAccessible(true);
 
+         /*
 
          window->getMapObject(currentX,currentY).setAccessible(true);
 
@@ -128,9 +113,9 @@ void Game::calculatePosAccessible(int currentX, int currentY, int indexUnit, int
          }
          else {return;}
 
-
-
          */
+
+
 }
 
 
