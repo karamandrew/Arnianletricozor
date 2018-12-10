@@ -63,7 +63,7 @@ void Game::move(QMouseEvent *e)
 void Game::start(MainWindow &wind)
 {
     window = &wind;
-    window->setFixedSize(1100,560);
+    window->setFixedSize(1200,760);
 
     Infantry *inf = new Infantry(14,12,200,true);
     Infantry *inf2 = new Infantry(20,9,200,false);
