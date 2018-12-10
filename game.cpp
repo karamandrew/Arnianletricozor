@@ -101,28 +101,26 @@ void Game::calculatePosAccessible(int currentX, int currentY, int indexUnit, int
          around[3][0]=getMalusMove(MovType, getmapId(currentX, currentY+1));
          around[3][1]=currentX; around[3][2]=currentY+1;
 
-         for (int i=0; i<=3; i++){
-
-             if(around[0][0]<=around[1][0] && around[0][0]<=around[2][0] && around[0][0]<=around[3][0] && around[0][0]<=mpleft){
+             if(around[0][0]<=mpleft){
                  calculatePosAccessible(around[0][1], around[0][2], indexUnit, mpleft-around[0][0]);
                  around[0][0]+=10;
              }
 
-             else if(around[1][0]<=around[0][0] && around[1][0]<=around[2][0] && around[1][0]<=around[3][0] && around[1][0]<=mpleft){
+             if(around[1][0]<=mpleft){
                  calculatePosAccessible(around[1][1], around[1][2], indexUnit, mpleft-around[1][0]);
                  around[1][0]+=10;
              }
 
-             else if(around[2][0]<=around[1][0] && around[2][0]<=around[0][0] && around[2][0]<=around[3][0] && around[2][0]<=mpleft){
+             if(around[2][0]<=mpleft){
                  calculatePosAccessible(around[2][1], around[2][2], indexUnit, mpleft-around[2][0]);
                  around[2][0]+=10;
              }
 
-             else if(around[3][0]<=mpleft){
+             if(around[3][0]<=mpleft){
                  calculatePosAccessible(around[3][1], around[3][2], indexUnit, mpleft-around[3][0]);
                  around[3][0]+=10;
              }
-         }
+
 }
 
 
