@@ -16,7 +16,7 @@ public:
     int getPosY() const;
     void setPosY(int value);
     int getId() const;
-    bool getFocused() const;
+    bool isFocused() const;
     void setFocused(bool value);
     bool isAccessible() const;
     void setAccessible(bool value);

@@ -74,7 +74,7 @@ int Gameobject::getPosY() const
 
 void Gameobject::setPosX(int value)
 {
-    if ( value > 20){
+    if (value > 20){
         m_posX = 20;
     }
     else if ( value < 0){
@@ -103,7 +103,7 @@ int Gameobject::getId() const
     return m_ID;
 }
 
-bool Gameobject::getFocused() const
+bool Gameobject::isFocused() const
 {
     return focused;
 }

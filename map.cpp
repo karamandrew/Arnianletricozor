@@ -18,52 +18,38 @@
 #include "base.h"
 #include "airport.h"
 
-
-
-Map::Map(QWidget *parent ) : QWidget(parent)
+Map::Map(QWidget *parent) : QWidget(parent)
 {
 
 }
 
 void Map::paintEvent(QPaintEvent *event)
 {
-    Game& game=Game::Instance();
+    Game& game = Game::Instance();
     QPainter painter(this);
     for(int i=0 ;i<21;i++){
-        int m=i+7;
-        for (int j=0; j <17 ;j++){
+        int m = i+7;
+        for (int j=0; j<17; j++){
            int t = j+2;
            QPixmap pictureMap(mapObject[i][j]->getDirectory().c_str()); //c_str permet de régler un probleme de string pour qpixmap
            painter.drawPixmap(m*40, t*40, 40, 40, pictureMap);
 
-            /*
-
-           if (game.getUnite(i,j).getFocused()){    // Ne fonctionne pas parce que ce n'est pas un vecteur de pointeur, ça crash
-               QPixmap focused(":/Res/Animations/Focused.png");
-               painter.drawPixmap(m*40, t*40, 40, 40, focused);
-               //painter.drawRect(m*40, t*40, 38, 38); // Fonctionne
-           }
-
-           */
-
-
-           if (mapObject[i][j]->isAccessible()){
-
+           if (mapObject[i][j]->isAccessible()) {
                QPixmap accessible(":/Res/Animations/Misc.png");
                painter.drawPixmap(m*40, t*40, 40, 40, accessible);
            }
 
-
-
-           if (game.getIndexUnit(i,j) != (-1)){
-               QPixmap pictureUnits((game.getUnite(i,j).getDirectory().c_str()));
+           if (game.getIndexUnit(i,j) != -1) {
+               QPixmap pictureUnits(game.getUnite(i,j)->getDirectory().c_str());
                painter.drawPixmap(m*40,t*40,40,40,pictureUnits);
+
+               if (game.getUnite(i,j)->isFocused()) {    // Ne fonctionne pas parce que ce n'est pas un vecteur de pointeur, ça crash
+                   QPixmap focused(":/Res/Animations/Focused.png");
+                   painter.drawPixmap(m*40, t*40, 40, 40, focused);
+                   //painter.drawRect(m*40, t*40, 38, 38); // Fonctionne
+               }
            }
-
-
-
         }
-
     }
 }
 
@@ -72,7 +58,7 @@ void Map::mousePressEvent(QMouseEvent *m)
 
     if(m->buttons() == Qt::LeftButton){
 
-        Game& game=Game::Instance();
+        Game& game = Game::Instance();
         game.move(m);
     }
 }
@@ -147,6 +133,8 @@ void Map::redraw()
 
 Gameobject& Map::getmapObject(int i, int j)
 {
+    if(!(0 <= i && i < 21 && 0 <= j && j < 17))
+        throw std::invalid_argument("BLABLABALBAAA");
     return *mapObject[i][j];
 }
 
