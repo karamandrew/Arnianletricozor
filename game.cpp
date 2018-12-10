@@ -17,26 +17,38 @@ void Game::move(QMouseEvent *e)
     float x=floorf(e->x()/40); float y=floorf(e->y()/40);
     int m= (int)x-7; int t= (int)y-2;
 
+
+
     if (unite[getIndexUnit(Xfoc,Yfoc)].getFocused()){  // Unité selectionné
 
         int indexUnitFoc = getIndexUnit(Xfoc,Yfoc);
 
-        calculatePosAccessible(Xfoc, Yfoc, indexUnitFoc, unite[indexUnitFoc].getMP());
-        // void showAccessible
-        if ( window->getMapObject(m,t).isAccessible() ) {  // new Pos is accessible
+        if ( window->getMapObject(m,t).isAccessible() ) {
 
             unite[indexUnitFoc].setPosX(m); unite[indexUnitFoc].setPosY(t);
             unite[indexUnitFoc].setFocused(false);
-            window->redraw();
+
         }
+
+
     }
 
     else if ( getIndexUnit(m,t) != 444) {
 
+
         unite[getIndexUnit(m,t)].setFocused(true);
+
+        window->getMapObject(0,0).setAccessible(true);
+
+        //calculatePosAccessible(m,t, getIndexUnit(m,t), unite[getIndexUnit(m,t)].getMP());
+
         Xfoc=m;
         Yfoc=t;
+
+
     }
+
+    window->redraw();
 }
 
 
@@ -46,11 +58,13 @@ void Game::start(MainWindow &wind)
     window = &wind ;
     Infantry inf(0,9,200,true);
     Infantry inf2(20,9,200,false);
-    Infantry inf3(10,10,200,true);
+    Infantry inf3(2,2,200,true);
 
     unite.push_back(inf);
     unite.push_back(inf2);
     unite.push_back(inf3);
+
+    window->createMapObjects();
 
     window->redraw();
 }
@@ -70,12 +84,25 @@ int Game::getIndexUnit(int x, int y)
     return 444;
 }
 
+
 void Game::calculatePosAccessible(int currentX, int currentY, int indexUnit, int mp){
+
+         std::cout << "Heloooooo" << std::endl;
+
+         window->getMapObject(0,0).setAccessible(true);
+
+         // MTN ON DOIT RENDRE LES BONNES ACCESSIBLES
+
+
+
+         /*
 
          if (mp==0){return;}
          char MovType = unite[indexUnit].getTypeMovement();
          int mpleft = mp;
          int around[4][3];
+
+
 
          window->getMapObject(currentX,currentY).setAccessible(true);
 
@@ -100,7 +127,13 @@ void Game::calculatePosAccessible(int currentX, int currentY, int indexUnit, int
              calculatePosAccessible(around[0][1], around[0][2], indexUnit, mpleft-around[3][0]);
          }
          else {return;}
+
+
+
+         */
 }
+
+
 
 int Game::getmapId(int x, int y){
     return window->getMapObject(x, y).getId();

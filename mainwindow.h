@@ -17,6 +17,7 @@ public:
     explicit MainWindow(QWidget *parent = nullptr);
     ~MainWindow();
     void redraw();
+    void createMapObjects();
     Gameobject& getMapObject(int i, int j);
 
 private:

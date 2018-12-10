@@ -81,5 +81,7 @@
         <file>Res/Units/gerecon.gif</file>
         <file>Res/Units/getank.gif</file>
         <file>Res/Units/get-copter.gif</file>
+        <file>Res/Animations/Focused.png</file>
+        <file>Res/Animations/Misc.png</file>
     </qresource>
 </RCC>

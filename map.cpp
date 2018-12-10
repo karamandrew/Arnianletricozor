@@ -19,6 +19,7 @@
 #include "airport.h"
 
 
+
 Map::Map(QWidget *parent ) : QWidget(parent)
 {
 
@@ -35,11 +36,29 @@ void Map::paintEvent(QPaintEvent *event)
            QPixmap pictureMap(mapObject[i][j]->getDirectory().c_str()); //c_str permet de régler un probleme de string pour qpixmap
            painter.drawPixmap(m*40, t*40, 40, 40, pictureMap);
 
+           /*
+
+           if (game.getUnite(i,j).getFocused()){    // Ne fonctionne pas parce que ce n'est pas un vecteur de pointeur, ça crash
+               //QPixmap focused(":/Res/Annimations/Focused.png");
+               //painter.drawPixmap(m*40, t*40, 40, 40, focused);
+               painter.drawRect(m*40, t*40, 38, 38); // Fonctionne
+           }
+           */
+
+           if (mapObject[i][j]->isAccessible()){
+
+               QPixmap accessible(":/Res/Animations/Misc.png");
+               painter.drawPixmap(m*40, t*40, 40, 40, accessible);
+           }
+
+
+
            if (game.getIndexUnit(i,j) != 444){
-               //QPixmap pictureUnits((game.getgameobject(i,j).getDirectory()).c_str());
                QPixmap pictureUnits((game.getUnite(i,j).getDirectory().c_str()));
                painter.drawPixmap(m*40,t*40,40,40,pictureUnits);
            }
+
+
 
         }
 
@@ -126,7 +145,7 @@ void Map::redraw()
 
 Gameobject& Map::getmapObject(int i, int j)
 {
-    return *mapObject[i][j]; // INVERSE CAR TABLEAU INVERSE
+    return *mapObject[i][j];
 }
 
 Map::~Map() {

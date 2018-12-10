@@ -46,6 +46,8 @@ Gameobject::Gameobject(int x, int y, int ID): m_posX(x), m_posY(y), m_ID(ID), fo
     case(109): m_directory=":/Res/Terrains/spipeend.gif"; break;
     case(110): m_directory=":/Res/Terrains/wpipeend.gif"; break;
 
+    case(150): m_directory=":/Res/Annimations/Misc.png"; break;
+
 
     case(200): m_directory=":/Res/Units/geinfantry.gif"; break; // Unit
 

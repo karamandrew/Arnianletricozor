@@ -19,11 +19,12 @@ MainWindow::~MainWindow()
     delete ui;
 }
 
+void MainWindow::createMapObjects(){
+    map->setmapobject();
+}
 
 void MainWindow::redraw()
 {
-    map->setmapobject();
-
     map->redraw();
 }
 
