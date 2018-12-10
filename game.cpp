@@ -26,8 +26,8 @@ void Game::move(QMouseEvent *e)
         unite[indexUnitFoc].setPosX(m);
         unite[indexUnitFoc].setPosY(t);
         unite[indexUnitFoc].setFocused(false);
-        for (int i=0; i<18; i++){
-            for (int j=0; j<22; j++){
+        for (int i=0; i<21; i++){
+            for (int j=0; j<17; j++){
                 window->getMapObject(i,j).setAccessible(false);
             }
         }
@@ -126,7 +126,7 @@ void Game::calculatePosAccessible(int currentX, int currentY, int indexUnit, int
 
 
 int Game::getmapId(int x, int y){
-    return window->getMapObject(x, y).getId();
+        return window->getMapObject(x, y).getId();
 }
 
 
