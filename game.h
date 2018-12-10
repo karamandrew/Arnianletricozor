@@ -19,6 +19,7 @@ private:
     static Game gInstance;
     MainWindow *window;
     vector<Unite> unite;
+    //vector<Unite*> unite;
     int Xfoc=-1;
     int Yfoc=-1;
 

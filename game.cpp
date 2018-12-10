@@ -62,6 +62,7 @@ void Game::start(MainWindow &wind)
     unite.push_back(inf2);
     unite.push_back(inf3);
 
+
     window->createMapObjects();
 
     window->redraw();
@@ -85,7 +86,7 @@ int Game::getIndexUnit(int x, int y)
 
 void Game::calculatePosAccessible(int currentX, int currentY, int indexUnit, int mp){
 
-         if (mp==0){return;}
+         if (mp==0 || currentX < 0 || currentX > 20 || currentY < 0 || currentY > 16){return;}
          char MovType = unite[indexUnit].getTypeMovement();
          int mpleft = mp;
          int around[4][3];
@@ -103,27 +104,20 @@ void Game::calculatePosAccessible(int currentX, int currentY, int indexUnit, int
 
              if(around[0][0]<=mpleft){
                  calculatePosAccessible(around[0][1], around[0][2], indexUnit, mpleft-around[0][0]);
-                 around[0][0]+=10;
              }
 
              if(around[1][0]<=mpleft){
                  calculatePosAccessible(around[1][1], around[1][2], indexUnit, mpleft-around[1][0]);
-                 around[1][0]+=10;
              }
 
              if(around[2][0]<=mpleft){
                  calculatePosAccessible(around[2][1], around[2][2], indexUnit, mpleft-around[2][0]);
-                 around[2][0]+=10;
              }
 
              if(around[3][0]<=mpleft){
-                 calculatePosAccessible(around[3][1], around[3][2], indexUnit, mpleft-around[3][0]);
-                 around[3][0]+=10;
+                 calculatePosAccessible(around[3][1], around[3][2], indexUnit, mpleft-around[3][0]);    
              }
-
 }
-
-
 
 int Game::getmapId(int x, int y){
         return window->getMapObject(x, y).getId();

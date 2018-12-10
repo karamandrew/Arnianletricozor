@@ -74,12 +74,28 @@ int Gameobject::getPosY() const
 
 void Gameobject::setPosX(int value)
 {
-    m_posX = value;
+    if ( value > 20){
+        m_posX = 20;
+    }
+    else if ( value < 0){
+        m_posX = 0;
+    }
+    else {
+        m_posX = value;
+    }
 }
 
 void Gameobject::setPosY(int value)
 {
-    m_posY = value;
+    if ( value > 16){
+        m_posY = 16;
+    }
+    else if ( value < 0){
+        m_posY = 0;
+    }
+    else {
+        m_posY = value;
+    }
 }
 
 int Gameobject::getId() const
