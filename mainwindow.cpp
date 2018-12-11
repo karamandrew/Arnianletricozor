@@ -12,6 +12,10 @@ MainWindow::MainWindow(QWidget *parent) :
     ui->setupUi(this);
     map = new Map(this);
     MainWindow::setCentralWidget(map);
+
+    changeTurnButton = new QPushButton("Change Turn", this);
+          changeTurnButton->setGeometry(50,50, 100, 50);
+        QObject::connect(changeTurnButton, SIGNAL(clicked()), this, SLOT(changeTurn()));
 }
 
 MainWindow::~MainWindow()
@@ -31,4 +35,10 @@ void MainWindow::redraw()
 Gameobject& MainWindow::getMapObject(int i, int j)
 {
     return map->getmapObject(i,j);
+}
+
+void MainWindow::changeTurn()
+{
+    Game& game = Game::Instance();
+    game.turnChange();
 }

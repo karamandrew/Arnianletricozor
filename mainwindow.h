@@ -2,8 +2,13 @@
 #define MAINWINDOW_H
 #include <QMouseEvent>
 #include <QMainWindow>
+#include <QPushButton>
 #include"gameobject.h"
 #include "map.h"
+
+
+
+
 class Gameobject;
 namespace Ui {
 class MainWindow;
@@ -20,9 +25,13 @@ public:
     void createMapObjects();
     Gameobject& getMapObject(int i, int j);
 
+private slots :
+    void changeTurn();
+
 private:
     Ui::MainWindow *ui;
     Map *map;
+    QPushButton *changeTurnButton = nullptr;
 
 };
 
