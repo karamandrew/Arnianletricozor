@@ -16,6 +16,7 @@ public:
     void calculatePosAccessible(int Xfoc, int Yfoc, int indexUnit, int mp);
     bool isThereAnotherUnite(int x, int y);
     void setMapObjectfalse();
+    void setTurn();
     void setUnitefocusedfalse();
     ~Game();
 private:

@@ -10,6 +10,16 @@ int Unite::getMP()
     return m_MP;
 }
 
+void Unite::setTurn(bool turn)
+{
+    m_turn = turn;
+}
+
+bool Unite::isTurn()
+{
+    return m_turn;
+}
+
 char Unite::getTypeMovement()
 {
     return m_deplacementype;

@@ -47,6 +47,7 @@ void Game::move(QMouseEvent *e)
     if ( m >= 0 && m < 21 && t >= 0 && t < 17
          && getIndexUnit(Xfoc,Yfoc) != -1
          && unite[getIndexUnit(Xfoc,Yfoc)]->isFocused()
+
          && window->getMapObject(m,t).isAccessible() )  {  // Unité selectionné
 
         unsigned int indexUnitFoc = (int)getIndexUnit(Xfoc,Yfoc);
@@ -54,18 +55,21 @@ void Game::move(QMouseEvent *e)
         unite[indexUnitFoc]->setPosX(m);
         unite[indexUnitFoc]->setPosY(t);
         unite[indexUnitFoc]->setFocused(false);
+        unite[indexUnitFoc]->setTurn(false);
         setMapObjectfalse();
     }
 
     else if (getIndexUnit(m,t) != -1) {
         setUnitefocusedfalse();
         setMapObjectfalse();
-        unite[getIndexUnit(m,t)]->setFocused(true);
+        if(unite[getIndexUnit(m,t)]->isTurn()){
+            unite[getIndexUnit(m,t)]->setFocused(true);
 
-        calculatePosAccessible( m, t, getIndexUnit(m,t), unite[getIndexUnit(m,t)]->getMP()+1);
+            calculatePosAccessible( m, t, getIndexUnit(m,t), unite[getIndexUnit(m,t)]->getMP()+1);
 
-        Xfoc = m;
-        Yfoc = t;
+            Xfoc = m;
+            Yfoc = t;
+        }
     }
 
     window->redraw();
