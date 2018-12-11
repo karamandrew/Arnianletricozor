@@ -64,7 +64,7 @@ void Game::move(QMouseEvent *e)
     else if (getIndexUnit(m,t) != -1) {
         unite[getIndexUnit(m,t)]->setFocused(true);
 
-        calculatePosAccessible(m,t, getIndexUnit(m,t), unite[getIndexUnit(m,t)]->getMP()+1);
+        calculatePosAccessible( m, t, getIndexUnit(m,t), unite[getIndexUnit(m,t)]->getMP()+1);
 
         Xfoc = m;
         Yfoc = t;
@@ -210,6 +210,7 @@ void Game::calculatePosAccessible(int currentX, int currentY, int indexUnit, int
     if(around[3][0] <= mpleft){
         calculatePosAccessible(around[3][1], around[3][2], indexUnit, mpleft-around[3][0]);
     }
+
 }
 
 int Game::getmapId(int x, int y){
@@ -241,9 +242,51 @@ int Game::getMalusMove(char moveType, int terrainID){
             case 34 ... 36 : return 1 ;
             case 43 ... 45 : return 1 ;
             case 38 ... 40 : return 1 ;
-            //default: std::cout << "Type inconnu" <<  std::endl; break;
+            //default: std::cout << "Type inconnu (f) " <<  std::endl; break;
         }
     }
+
+    else if (moveType == 'b'){
+        switch (terrainID) {
+            case 1 : return 1 ;
+            case 2 : return 1 ;
+            case 3 : return 1 ;
+            case 4 ... 14 : return 1 ;
+            case 15 ... 25 : return 1 ;
+            case 26 ... 27 : return 1 ;
+            case 28 :return 1000 ;  // LAKE
+            case 29 ... 32 : return 1 ;
+            case 33 :return 1000 ;  // REEF
+            case 101 ... 110 : return 1000 ; // PIPE
+
+            case 34 ... 36 : return 1 ;
+            case 43 ... 45 : return 1 ;
+            case 38 ... 40 : return 1 ;
+            //default: std::cout << "Type inconnu (f) " <<  std::endl; break;
+        }
+    }
+
+    else if (moveType == 'w'){
+        switch (terrainID) {
+            case 1 : return 2 ;
+            case 2 : return 1000 ; //MOUNTAIN
+            case 3 : return 3 ;
+            case 4 ... 14 : return 1000 ; //RIVER
+            case 15 ... 25 : return 1 ;
+            case 26 ... 27 : return 1 ;
+            case 28 :return 1000 ;  // LAKE
+            case 29 ... 32 : return 1 ;
+            case 33 :return 1000 ;  // REEF
+            case 101 ... 110 : return 1000 ; // PIPE
+
+            case 34 ... 36 : return 1 ;
+            case 43 ... 45 : return 1 ;
+            case 38 ... 40 : return 1 ;
+            //default: std::cout << "Type inconnu (f) " <<  std::endl; break;
+        }
+    }
+
+
     else if (moveType == 't') {
         switch (terrainID) {
             case 1 : return 1 ;
@@ -260,7 +303,7 @@ int Game::getMalusMove(char moveType, int terrainID){
             case 34 ... 36 : return 1 ;
             case 43 ... 45 : return 1 ;
             case 38 ... 40 : return 1 ;
-            //default: std::cout << "Type inconnu" <<  std::endl; break;
+            //default: std::cout << "Type inconnu (t) " <<  std::endl; break;
         }
     }
     else if (moveType == 'a'){
@@ -279,7 +322,7 @@ int Game::getMalusMove(char moveType, int terrainID){
             case 34 ... 36 : return 1 ;
             case 43 ... 45 : return 1 ;
             case 38 ... 40 : return 1 ;
-            //default: std::cout << "Type inconnu" <<  std::endl; break;
+            //default: std::cout << "Type inconnu (a) " <<  std::endl; break;
         }
     }
 
