@@ -5,7 +5,7 @@
 #include <QPushButton>
 #include"gameobject.h"
 #include "map.h"
-
+#include "terrain.h"
 
 
 
@@ -23,7 +23,7 @@ public:
     ~MainWindow();
     void redraw();
     void createMapObjects();
-    Gameobject& getMapObject(int i, int j);
+    Terrain& getMapObject(int i, int j);
 
 private slots :
     void changeTurn();

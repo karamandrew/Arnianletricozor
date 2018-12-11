@@ -43,6 +43,12 @@ void Map::paintEvent(QPaintEvent *event)
                QPixmap pictureUnits(game.getUnite(i,j)->getDirectory().c_str());
                painter.drawPixmap(m*40,t*40,40,40,pictureUnits);
 
+               if (!game.getUnite(i,j)->isTurn()) {    // Ne fonctionne pas parce que ce n'est pas un vecteur de pointeur, ça crash
+                   QPixmap focused(":/Res/Animations/pause.png");
+                   painter.drawPixmap(m*40, t*40, 40, 40, focused);
+                   //painter.drawRect(m*40, t*40, 38, 38); // Fonctionne
+               }
+
                if (game.getUnite(i,j)->isFocused()) {    // Ne fonctionne pas parce que ce n'est pas un vecteur de pointeur, ça crash
                    QPixmap focused(":/Res/Animations/Focused.png");
                    painter.drawPixmap(m*40, t*40, 40, 40, focused);
@@ -57,7 +63,6 @@ void Map::mousePressEvent(QMouseEvent *m)
 {
 
     if(m->buttons() == Qt::LeftButton){
-
         Game& game = Game::Instance();
         game.move(m);
     }
@@ -131,7 +136,7 @@ void Map::redraw()
     this->repaint();
 }
 
-Gameobject& Map::getmapObject(int i, int j)
+Terrain& Map::getmapObject(int i, int j)
 {
     if( !(0 <= i && i < 21 && 0 <= j && j < 17) ){
         throw std::invalid_argument("getmapObject out of the tab");

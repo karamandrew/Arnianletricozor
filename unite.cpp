@@ -27,7 +27,12 @@ bool Unite::isTeam()
 
 void Unite::receiveDamage(int dmg)
 {
+    m_vie-=dmg;
+}
 
+int Unite::getVie()
+{
+    return m_vie;
 }
 
 char Unite::getTypeMovement()
