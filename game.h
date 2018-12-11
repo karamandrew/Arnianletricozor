@@ -15,6 +15,8 @@ public:
     Unite* getUnite(int x, int y);
     void calculatePosAccessible(int Xfoc, int Yfoc, int indexUnit, int mp);
     bool isThereAnotherUnite(int x, int y);
+    void setMapObjectfalse();
+    void setUnitefocusedfalse();
     ~Game();
 private:
     Game();

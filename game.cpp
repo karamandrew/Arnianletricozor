@@ -54,14 +54,12 @@ void Game::move(QMouseEvent *e)
         unite[indexUnitFoc]->setPosX(m);
         unite[indexUnitFoc]->setPosY(t);
         unite[indexUnitFoc]->setFocused(false);
-        for (int i=0; i<21; i++){
-            for (int j=0; j<17; j++){
-                window->getMapObject(i,j).setAccessible(false);
-            }
-        }
+        setMapObjectfalse();
     }
 
     else if (getIndexUnit(m,t) != -1) {
+        setUnitefocusedfalse();
+        setMapObjectfalse();
         unite[getIndexUnit(m,t)]->setFocused(true);
 
         calculatePosAccessible( m, t, getIndexUnit(m,t), unite[getIndexUnit(m,t)]->getMP()+1);
@@ -220,6 +218,21 @@ bool Game::isThereAnotherUnite(int x, int y)
         }
     }
     return false;
+}
+
+void Game::setMapObjectfalse(){
+    for (int i=0; i<21; i++){
+        for (int j=0; j<17; j++){
+          window->getMapObject(i,j).setAccessible(false);
+        }
+    }
+}
+
+void Game::setUnitefocusedfalse()
+{
+    for(Unite* u : unite) {
+        u->setFocused(false);
+    }
 }
 
 int Game::getmapId(int x, int y){
