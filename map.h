@@ -1,7 +1,9 @@
 #ifndef MAP_H
 #define MAP_H
 #include <QWidget>
-#include"gameobject.h"
+#include "gameobject.h"
+#include "terrain.h"
+
 class Map : public QWidget{
     Q_OBJECT
 public:
@@ -10,10 +12,10 @@ public:
     void mousePressEvent(QMouseEvent *e);
     void setmapobject();
     void redraw();
-    Gameobject& getmapObject(int i, int j);
+    Terrain& getmapObject(int i, int j);
     ~Map();
 private:
-    Gameobject  *mapObject[21][17];
+    Terrain  *mapObject[21][17];
 
 };
 #endif // MAP_H

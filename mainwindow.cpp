@@ -4,6 +4,8 @@
 #include "ui_mainwindow.h"
 #include <QPainter>
 #include <iostream>
+#include "terrain.h"
+
 MainWindow::MainWindow(QWidget *parent) :
     QMainWindow(parent),
     ui(new Ui::MainWindow)
@@ -32,7 +34,7 @@ void MainWindow::redraw()
     map->redraw();
 }
 
-Gameobject& MainWindow::getMapObject(int i, int j)
+Terrain& MainWindow::getMapObject(int i, int j)
 {
     return map->getmapObject(i,j);
 }

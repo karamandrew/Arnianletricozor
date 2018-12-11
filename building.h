@@ -1,13 +1,13 @@
 #ifndef BUILDING_H
 #define BUILDING_H
-#include"gameobject.h"
+#include"terrain.h"
 
 
-class Building : public Gameobject
+class Building : public Terrain
 {
 
 public:
-    Building(int x, int y, int Id, bool team);
+    Building(int x, int y, int Id, int defense, bool team);
 
 private:
     int m_ptCapture=20;

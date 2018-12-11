@@ -10,6 +10,7 @@ class Terrain : public Gameobject
 {
 public:
     Terrain(int x, int y, int Id, int def);
+    int getDefense();
 private:
     int m_defense;
 };

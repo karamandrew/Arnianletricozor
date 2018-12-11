@@ -22,7 +22,7 @@ public:
     void turnChange();
     void setUnitefocusedfalse();
     int attack(Unite* a, Unite* d);
-    int calculDegat();
+    int calculDegat(Unite* u, Unite* v);
     Unite* Enemyclose(Unite* unit);
     ~Game();
 private:

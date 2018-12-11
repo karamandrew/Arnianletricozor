@@ -55,7 +55,9 @@ void Game::move(QMouseEvent *e)
         unite[indexUnitFoc]->setPosY(t);
         if (Enemyclose(unite[indexUnitFoc])!=NULL){
             std::cout << " Ennemi a cote " << std::endl;
-            attack(unite[indexUnitFoc], Enemyclose(unite[indexUnitFoc]));
+            Enemyclose(unite[indexUnitFoc])->receiveDamage((int)calculDegat(unite[indexUnitFoc], Enemyclose(unite[indexUnitFoc])));
+            std::cout << Enemyclose(unite[indexUnitFoc])->getVie() << std::endl;
+
         }
         unite[indexUnitFoc]->setFocused(false);
         unite[indexUnitFoc]->setTurn(false);
@@ -74,7 +76,6 @@ void Game::move(QMouseEvent *e)
             Yfoc = t;
         }
     }
-
     window->redraw();
 }
 
@@ -401,8 +402,9 @@ int Game::attack(Unite* u, Unite* v)
 
 
 
-    int Game::calculDegat()
+    int Game::calculDegat(Unite* u, Unite* v)
     {
+        return attack(u, v)*u->getVie()/10*(100-window->getMapObject(v->getPosX(), v->getPosY()).getDefense()*v->getVie())/100;
 
         /*Damage = B * A_HP / 10 * (100 - D_TR * D_HP) / 100
 

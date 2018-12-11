@@ -5,3 +5,8 @@ Terrain::Terrain(int x, int y, int Id, int def) : Gameobject (x, y, Id)
     m_defense=def;
 }
 
+int Terrain::getDefense()
+{
+    return m_defense;
+}
+
