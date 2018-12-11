@@ -133,12 +133,12 @@ void Map::redraw()
 
 Gameobject& Map::getmapObject(int i, int j)
 {
-    if(!(0 <= i && i < 21 && 0 <= j && j < 17)){
-        throw std::invalid_argument("BLABLABALBAAA");
+    if( !(0 <= i && i < 21 && 0 <= j && j < 17) ){
+        throw std::invalid_argument("getmapObject out of the tab");
     }
-        else {
-            return *mapObject[i][j];
-        }
+    else {
+        return *mapObject[i][j];
+    }
 
 }
 

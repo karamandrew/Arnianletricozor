@@ -105,7 +105,7 @@ Pos operator+(Pos const& a, Pos const& b){
 // Pos{1,2} + Pos{3,4}
 
 void Game::calculatePosAccessible(int currentX, int currentY, int indexUnit, int mp){
-    // if (mp == 0 || (currentX < 0 || currentX > 20 || currentY < 0 || currentY > 16)){
+
     if (mp == 0 || !(0 <= currentX && currentX < 21 && 0 <= currentY && currentY < 17)){
         return;
     }
@@ -150,7 +150,15 @@ void Game::calculatePosAccessible(int currentX, int currentY, int indexUnit, int
 }
 
 int Game::getmapId(int x, int y){
-    return window->getMapObject(x, y).getId();
+
+    if (!(0 <= x && x < 21 && 0 <= y && y < 17)){
+        //std::cerr << "getMapId out of the map" << std::endl;
+        return -1;
+    }
+    else {
+        return window->getMapObject(x, y).getId();
+    }
+
 }
 
 int Game::getMalusMove(char moveType, int terrainID){
@@ -170,6 +178,7 @@ int Game::getMalusMove(char moveType, int terrainID){
             case 34 ... 36 : return 1 ;
             case 43 ... 45 : return 1 ;
             case 38 ... 40 : return 1 ;
+            //default: std::cout << "Type inconnu" <<  std::endl; break;
         }
     }
     else if (moveType == 't') {
@@ -188,6 +197,7 @@ int Game::getMalusMove(char moveType, int terrainID){
             case 34 ... 36 : return 1 ;
             case 43 ... 45 : return 1 ;
             case 38 ... 40 : return 1 ;
+            //default: std::cout << "Type inconnu" <<  std::endl; break;
         }
     }
     else if (moveType == 'a'){
@@ -206,10 +216,11 @@ int Game::getMalusMove(char moveType, int terrainID){
             case 34 ... 36 : return 1 ;
             case 43 ... 45 : return 1 ;
             case 38 ... 40 : return 1 ;
+            //default: std::cout << "Type inconnu" <<  std::endl; break;
         }
     }
 
-    std::cerr << "Error : getMalusMove : wrong MoveType" << std::endl;
+    //std::cerr << "Error : getMalusMove : wrong MoveType" << std::endl;
     return 0;
 }
 
