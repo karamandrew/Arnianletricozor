@@ -44,7 +44,7 @@ void Map::paintEvent(QPaintEvent *event)
                painter.drawPixmap(m*40,t*40,40,40,pictureUnits);
 
                if (!game.getUnite(i,j)->isTurn()) {    // Ne fonctionne pas parce que ce n'est pas un vecteur de pointeur, ça crash
-                   QPixmap focused(":/Res/Animations/pausepaus.png");
+                   QPixmap focused(":/Res/Animations/pause.png");
                    painter.drawPixmap(m*40, t*40, 40, 40, focused);
                    //painter.drawRect(m*40, t*40, 38, 38); // Fonctionne
                }
