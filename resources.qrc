@@ -105,5 +105,6 @@
         <file>Res/Units/osneotank.gif</file>
         <file>Res/Units/osrecon.gif</file>
         <file>Res/Units/ostank.gif</file>
+        <file>Res/Animations/Pause.png</file>
     </qresource>
 </RCC>
