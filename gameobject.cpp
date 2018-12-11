@@ -46,10 +46,35 @@ Gameobject::Gameobject(int x, int y, int ID): m_posX(x), m_posY(y), m_ID(ID), fo
     case(109): m_directory=":/Res/Terrains/spipeend.gif"; break;
     case(110): m_directory=":/Res/Terrains/wpipeend.gif"; break;
 
-    case(150): m_directory=":/Res/Annimations/Misc.png"; break;
+    // UNITS
 
+    // BLUEMOON
 
-    case(200): m_directory=":/Res/Units/geinfantry.gif"; break; // Unit
+    case(200): m_directory=":/Res/Units/bminfantry.gif"; break;
+    case(201): m_directory=":/Res/Units/bmmech.gif"; break;
+    case(202): m_directory=":/Res/Units/bmrecon.gif"; break;
+    case(203): m_directory=":/Res/Units/bmanti-air.gif"; break;
+    case(204): m_directory=":/Res/Units/bmtank.gif"; break;
+    case(205): m_directory=":/Res/Units/bmmd.tank.gif"; break;
+    case(206): m_directory=":/Res/Units/bmmegatank.gif"; break;
+    case(207): m_directory=":/Res/Units/bmneotank.gif"; break;
+    case(208): m_directory=":/Res/Units/bmb-copter.gif"; break;
+    case(209): m_directory=":/Res/Units/bmfighter.gif"; break;
+    case(210): m_directory=":/Res/Units/bmbomber.gif"; break;
+
+    // ORANGE
+
+    case(300): m_directory=":/Res/Units/osinfantry.gif"; break;
+    case(301): m_directory=":/Res/Units/osmech.gif"; break;
+    case(302): m_directory=":/Res/Units/osrecon.gif"; break;
+    case(303): m_directory=":/Res/Units/osanti-air.gif"; break;
+    case(304): m_directory=":/Res/Units/ostank.gif"; break;
+    case(305): m_directory=":/Res/Units/osmd.tank.gif"; break;
+    case(306): m_directory=":/Res/Units/osmegatank.gif"; break;
+    case(307): m_directory=":/Res/Units/osneotank.gif"; break;
+    case(308): m_directory=":/Res/Units/osb-copter.gif"; break;
+    case(309): m_directory=":/Res/Units/osfighter.gif"; break;
+    case(310): m_directory=":/Res/Units/osbomber.gif"; break;
 
     default: std::cout << "Type inconnu, ID : "<< m_ID <<  std::endl; break;
     }

@@ -2,7 +2,7 @@
 
 
 
-BCopter::BCopter(int x, int y, int type, bool team): Unite(x,y,type,team,9000,6,'a')
+BCopter::BCopter(int x, int y, int Id, bool team): Unite(  x, y, Id, team, 9000, 6, 'a')
 {
 
 }

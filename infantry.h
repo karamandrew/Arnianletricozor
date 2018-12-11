@@ -5,7 +5,7 @@
 class Infantry : public Unite
 {
 public:
-    Infantry(int x, int y, int type, bool team);
+    Infantry(int x, int y, int Id, bool team);
 };
 
 #endif // INFANTRY_H

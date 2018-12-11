@@ -6,7 +6,7 @@
 class Antiair : public Unite
 {
 public:
-    Antiair(int x, int y, int type, bool team);
+    Antiair(int x, int y, int Id, bool team);
 };
 
 #endif // ANTIAIR_H

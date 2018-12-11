@@ -7,7 +7,7 @@ class Recon : public Unite
 {
 public:
 
-    Recon(int x, int y, int type, bool team);
+    Recon(int x, int y, int Id, bool team);
 };
 
 #endif // RECON_H

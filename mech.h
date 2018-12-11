@@ -7,7 +7,7 @@ class Mech : public Unite
 {
 
 public:
-    Mech(int x, int y, int type, bool team);
+    Mech(int x, int y, int Id, bool team);
 };
 
 #endif // MECH_H

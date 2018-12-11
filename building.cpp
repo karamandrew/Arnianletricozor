@@ -1,7 +1,7 @@
 #include "building.h"
 
 
-Building::Building(int x, int y, int type, bool team): Gameobject (x,y,type)
+Building::Building(int x, int y, int Id, bool team): Gameobject ( x, y, Id)
 {
-    m_team=team;
+    m_team = team;
 }

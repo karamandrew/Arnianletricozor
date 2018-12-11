@@ -2,6 +2,6 @@
 
 
 
-MdTank::MdTank(int x, int y, int type, bool team): Unite(x,y,type,team,16000,5,'t')
+MdTank::MdTank(int x, int y, int Id, bool team): Unite( x , y, Id, team, 16000, 5, 't')
 {
 }

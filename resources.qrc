@@ -68,7 +68,6 @@
         <file>Res/Terrains/wnroad.gif</file>
         <file>Res/Terrains/wood.gif</file>
         <file>Res/Terrains/wpipeend.gif</file>
-        <file>Res/Units/geanti-air.gif</file>
         <file>Res/Units/geapc.gif</file>
         <file>Res/Units/geartillery.gif</file>
         <file>Res/Units/geb-copter.gif</file>
@@ -83,5 +82,28 @@
         <file>Res/Units/get-copter.gif</file>
         <file>Res/Animations/Focused.png</file>
         <file>Res/Animations/Misc.png</file>
+        <file>Res/Units/bmanti-air.gif</file>
+        <file>Res/Units/bmb-copter.gif</file>
+        <file>Res/Units/bmbomber.gif</file>
+        <file>Res/Units/bmfighter.gif</file>
+        <file>Res/Units/bminfantry.gif</file>
+        <file>Res/Units/bmmd.tank.gif</file>
+        <file>Res/Units/bmmech.gif</file>
+        <file>Res/Units/bmmegatank.gif</file>
+        <file>Res/Units/bmneotank.gif</file>
+        <file>Res/Units/bmrecon.gif</file>
+        <file>Res/Units/bmtank.gif</file>
+        <file>Res/Units/osanti-air.gif</file>
+        <file>Res/Units/osb-copter.gif</file>
+        <file>Res/Units/osbomber.gif</file>
+        <file>Res/Units/osfighter.gif</file>
+        <file>Res/Units/osinfantry.gif</file>
+        <file>Res/Units/osinfantry (1).gif</file>
+        <file>Res/Units/osmd.tank.gif</file>
+        <file>Res/Units/osmech.gif</file>
+        <file>Res/Units/osmegatank.gif</file>
+        <file>Res/Units/osneotank.gif</file>
+        <file>Res/Units/osrecon.gif</file>
+        <file>Res/Units/ostank.gif</file>
     </qresource>
 </RCC>

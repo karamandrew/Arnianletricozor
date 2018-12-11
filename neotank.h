@@ -6,7 +6,7 @@
 class NeoTank : public Unite
 {
 public:
-    NeoTank(int x, int y, int type, bool team);
+    NeoTank(int x, int y, int Id, bool team);
 };
 
 #endif // NEOTANK_H

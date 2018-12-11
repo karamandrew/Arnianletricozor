@@ -5,7 +5,7 @@
 class Tank : public Unite
 {
 public:
-    Tank(int x, int y, int type, bool team);
+    Tank(int x, int y, int Id, bool team);
 };
 
 #endif // TANK_H

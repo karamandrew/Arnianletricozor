@@ -1,7 +1,7 @@
 #include "recon.h"
 
 
-Recon::Recon(int x, int y, int type, bool team):  Unite(x,y,type,team,4000,8,'w')
+Recon::Recon(int x, int y, int Id, bool team):  Unite( x, y, Id, team, 4000, 8, 'w')
 {
 
 }

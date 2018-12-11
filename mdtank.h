@@ -7,7 +7,7 @@ class MdTank : public Unite
 {
 public:
 
-    MdTank(int x, int y, int type, bool team);
+    MdTank(int x, int y, int Id, bool team);
 };
 
 #endif // MDTANK_H

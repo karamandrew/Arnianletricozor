@@ -1,9 +1,22 @@
 #include "game.h"
 #include <iostream>
 #include "math.h"
-#include "infantry.h"
+
 #include "gameobject.h"
 #include "unite.h"
+#include "infantry.h"
+#include "mech.h"
+#include "recon.h"
+#include "antiair.h"
+#include "tank.h"
+#include "mdtank.h"
+#include "megatank.h"
+#include "neotank.h"
+#include "bcopter.h"
+#include "fighter.h"
+#include "bomber.h"
+
+
 
 Game Game::gInstance;
 
@@ -28,6 +41,8 @@ void Game::move(QMouseEvent *e)
     float y = floorf(e->y()/40);
     int m = (int)x-7;
     int t = (int)y-2;
+
+    std::cout << " La pos est : " << m << t << std::endl;
 
     if ( m >= 0 && m < 21 && t >= 0 && t < 17
          && getIndexUnit(Xfoc,Yfoc) != -1
@@ -65,13 +80,61 @@ void Game::start(MainWindow &wind)
     window = &wind;
     window->setFixedSize(1200,760);
 
-    Infantry *inf = new Infantry(14,12,200,true);
-    Infantry *inf2 = new Infantry(20,9,200,false);
-    Infantry *inf3 = new Infantry(2,2,200,true);
+    // Blue Moon
 
-    unite.push_back(inf);
-    unite.push_back(inf2);
-    unite.push_back(inf3);
+    Infantry *bminf = new Infantry( 10, 0, 200, false);
+    Mech *bmmech = new Mech( 11, 0, 201, false);
+    Recon *bmrecon = new Recon( 12, 0, 202, false);
+    Antiair *bmantiair = new Antiair( 13, 0, 203, false);
+    Tank *bmtank = new Tank( 14, 0, 204, false);
+    MdTank *bmmdtank = new MdTank( 15, 0, 205, false);
+    MegaTank *bmmegatank = new MegaTank( 10, 1, 206, false);
+    NeoTank *bmneotank = new NeoTank( 11, 1, 207, false);
+    BCopter *bmbcopter = new BCopter( 12, 1, 208, false);
+    Fighter *bmfighter = new Fighter( 13, 1, 209, false);
+    Bomber *bmbomber = new Bomber( 14, 1, 210, false);
+
+    // Orange
+
+    Infantry *osinf = new Infantry( 0, 15, 300, true);
+    Mech *osmech = new Mech( 1, 15, 301, true);
+    Recon *osrecon = new Recon( 2, 15, 302, true);
+    Antiair *osantiair = new Antiair( 3, 15, 303, true);
+    Tank *ostank = new Tank( 4, 15, 304, true);
+    MdTank *osmdtank = new MdTank( 5, 15, 305, true);
+    MegaTank *osmegatank = new MegaTank( 0, 14, 306, true);
+    NeoTank *osneotank = new NeoTank( 1, 14, 307, true);
+    BCopter *osbcopter = new BCopter( 2, 14, 308, true);
+    Fighter *osfighter = new Fighter( 3, 14, 309, true);
+    Bomber *osbomber = new Bomber( 4, 14, 310, true);
+
+
+
+
+    unite.push_back(bminf);
+    unite.push_back(bmmech);
+    unite.push_back(bmrecon);
+    unite.push_back(bmantiair);
+    unite.push_back(bmtank);
+    unite.push_back(bmmdtank);
+    unite.push_back(bmmegatank);
+    unite.push_back(bmneotank);
+    unite.push_back(bmbcopter);
+    unite.push_back(bmfighter);
+    unite.push_back(bmbomber);
+
+    unite.push_back(osinf);
+    unite.push_back(osmech);
+    unite.push_back(osrecon);
+    unite.push_back(osantiair);
+    unite.push_back(ostank);
+    unite.push_back(osmdtank);
+    unite.push_back(osmegatank);
+    unite.push_back(osneotank);
+    unite.push_back(osbcopter);
+    unite.push_back(osfighter);
+    unite.push_back(osbomber);
+
 
     window->createMapObjects();
 

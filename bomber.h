@@ -6,7 +6,7 @@
 class Bomber : public Unite
 {
 public:
-    Bomber(int x, int y, int type, bool team);
+    Bomber(int x, int y, int Id, bool team);
 };
 
 #endif // BOMBER_H

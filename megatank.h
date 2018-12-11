@@ -5,7 +5,7 @@
 class MegaTank : public Unite
 {
 public:
-    MegaTank(int x, int y, int type, bool team);
+    MegaTank(int x, int y, int Id, bool team);
 };
 
 #endif // MEGATANK_H

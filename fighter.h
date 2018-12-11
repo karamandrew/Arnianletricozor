@@ -5,7 +5,7 @@
 class Fighter : public Unite
 {
 public:
-    Fighter(int x, int y, int type, bool team);
+    Fighter(int x, int y, int Id, bool team);
 };
 
 #endif // FIGHTER_H
