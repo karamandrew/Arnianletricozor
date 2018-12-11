@@ -17,6 +17,7 @@ public:
     bool isThereAnotherUnite(int x, int y);
     void setMapObjectfalse();
     void setTurn();
+    void turnChange();
     void setUnitefocusedfalse();
     ~Game();
 private:
@@ -27,6 +28,7 @@ private:
     //vector<Unite*> unite;
     int Xfoc=-1;
     int Yfoc=-1;
+    bool activeTurn=true;
 
 
 };

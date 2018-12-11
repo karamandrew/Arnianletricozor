@@ -20,6 +20,11 @@ bool Unite::isTurn()
     return m_turn;
 }
 
+bool Unite::isTeam()
+{
+    return m_team;
+}
+
 char Unite::getTypeMovement()
 {
     return m_deplacementype;

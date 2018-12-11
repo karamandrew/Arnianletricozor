@@ -136,7 +136,7 @@ void Game::start(MainWindow &wind)
     unite.push_back(osbcopter);
     unite.push_back(osfighter);
     unite.push_back(osbomber);
-
+    turnChange();
 
     window->createMapObjects();
 
@@ -356,10 +356,31 @@ int Game::getMalusMove(char moveType, int terrainID){
     return 0;
 }
 
+void Game::turnChange(){
+    activeTurn=!activeTurn;
+    for(Unite* u : unite) {
+        if(activeTurn){
+            if(u->isTeam()){
+                u->setTurn(false);
+            }
+            else{
+                u->setTurn(true);
+            }
+        }
+        else{
+            if(!u->isTeam()){
+                u->setTurn(false);
+            }
+            else{
+                u->setTurn(true);
+            }
+        }
+    }
+}
+
 Unite* Game::getUnite(int x, int y){
     int a = getIndexUnit(x,y);
     if(a == -1)
         throw invalid_argument("la fin des haricots");
     return unite[a];
 }
-

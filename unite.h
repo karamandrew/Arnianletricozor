@@ -9,6 +9,7 @@ public:
     int getMP();
     void setTurn(bool turn);
     bool isTurn();
+    bool isTeam();
     char getTypeMovement(); // Si fonctions redéfinies dans les classes filles -> ajouté virtual ici
 private:
     int m_MP;
