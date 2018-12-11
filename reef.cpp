@@ -1,6 +1,6 @@
 #include "reef.h"
 
-Reef::Reef(int x, int y) : Terrain(x,y,33)
+Reef::Reef(int x, int y) : Terrain(x,y,33, 1)
 {
 
 }

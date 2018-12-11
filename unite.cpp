@@ -25,6 +25,11 @@ bool Unite::isTeam()
     return m_team;
 }
 
+void Unite::receiveDamage(int dmg)
+{
+
+}
+
 char Unite::getTypeMovement()
 {
     return m_deplacementype;

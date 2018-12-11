@@ -9,8 +9,9 @@ using namespace std;
 class Terrain : public Gameobject
 {
 public:
-    Terrain(int x, int y, int Id);
+    Terrain(int x, int y, int Id, int def);
 private:
+    int m_defense;
 };
 
 #endif // TERRAIN_H

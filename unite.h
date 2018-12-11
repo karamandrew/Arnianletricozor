@@ -10,6 +10,7 @@ public:
     void setTurn(bool turn);
     bool isTurn();
     bool isTeam();
+    void receiveDamage(int dmg);
     char getTypeMovement(); // Si fonctions redéfinies dans les classes filles -> ajouté virtual ici
 private:
     int m_MP;
