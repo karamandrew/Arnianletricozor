@@ -21,7 +21,9 @@ public:
     void setTurn();
     void turnChange();
     void setUnitefocusedfalse();
-    bool isThereEnemyclose(Unite* unit);
+    int attack(Unite* a, Unite* d);
+    int calculDegat();
+    Unite* Enemyclose(Unite* unit);
     ~Game();
 private:
     Game();

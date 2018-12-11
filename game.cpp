@@ -53,8 +53,9 @@ void Game::move(QMouseEvent *e)
 
         unite[indexUnitFoc]->setPosX(m);
         unite[indexUnitFoc]->setPosY(t);
-        if (isThereEnemyclose(unite[indexUnitFoc])){
+        if (Enemyclose(unite[indexUnitFoc])!=NULL){
             std::cout << " Ennemi a cote " << std::endl;
+            attack(unite[indexUnitFoc], Enemyclose(unite[indexUnitFoc]));
         }
         unite[indexUnitFoc]->setFocused(false);
         unite[indexUnitFoc]->setTurn(false);
@@ -80,7 +81,7 @@ void Game::move(QMouseEvent *e)
 void Game::start(MainWindow &wind)
 {
     window = &wind;
-    window->setFixedSize(1200,760);
+    window->setFixedSize(1200,860);
 
     // Blue Moon
 
@@ -239,29 +240,203 @@ void Game::setUnitefocusedfalse()
     }
 }
 
-bool Game::isThereEnemyclose(Unite* unit)
+int Game::attack(Unite* u, Unite* v)
+{
+    int a=u->getId();
+    int d=v->getId();
+    if(u->getId()>299){
+        a-=100;
+    }
+    if(v->getId()>299){
+        d-=100;
+    }
+
+    switch (a) {
+    case (200): switch (d){
+        case (200) : return 55;
+        case (201) : return 45;
+        case (202) : return 12;
+        case (203) : return 5;
+        case (204) : return 5;
+        case (205) : return 1;
+        case (206) : return 1;
+        case (207) : return 1;
+        case (208) : return 7;
+        case (209) : return 0;
+        case (210) : return 0;
+        }
+    case (201): switch (d){ //mech
+        case (200) : return 65; //inf
+        case (201) : return 55; //mech
+        case (202) : return 85; //recon
+        case (203) : return 65; //antiair
+        case (204) : return 55; //tank
+        case (205) : return 15; //mdtank
+        case (206) : return 5; //megatank
+        case (207) : return 15; //neotank
+        case (208) : return 9; //helico
+        case (209) : return 0; //fighter
+        case (210) : return 0; //bomber
+        }
+    case (202): switch (d){ //recon
+        case (200) : return 70; //inf
+        case (201) : return 65; //mech
+        case (202) : return 35; //recon
+        case (203) : return 4; //antiair
+        case (204) : return 6; //tank
+        case (205) : return 1; //mdtank
+        case (206) : return 1; //megatank
+        case (207) : return 1; //neotank
+        case (208) : return 12; //helico
+        case (209) : return 0; //fighter
+        case (210) : return 0; //bomber
+        }
+    case (203): switch (d){ //antiair
+        case (200) : return 105; //inf
+        case (201) : return 105; //mech
+        case (202) : return 60; //recon
+        case (203) : return 45; //antiair
+        case (204) : return 25; //tank
+        case (205) : return 10; //mdtank
+        case (206) : return 1; //megatank
+        case (207) : return 5; //neotank
+        case (208) : return 120; //helico
+        case (209) : return 65; //fighter
+        case (210) : return 75; //bomber
+        }
+    case (204): switch (d){ //tank
+        case (200) : return 75; //inf
+        case (201) : return 70; //mech
+        case (202) : return 85; //recon
+        case (203) : return 65; //antiair
+        case (204) : return 55; //tank
+        case (205) : return 15; //mdtank
+        case (206) : return 10; //megatank
+        case (207) : return 15; //neotank
+        case (208) : return 10; //helico
+        case (209) : return 0; //fighter
+        case (210) : return 0; //bomber
+        }
+    case (205): switch (d){ //mdtank
+        case (200) : return 105; //inf
+        case (201) : return 95; //mech
+        case (202) : return 105; //recon
+        case (203) : return 105; //antiair
+        case (204) : return 85; //tank
+        case (205) : return 55; //mdtank
+        case (206) : return 25; //megatank
+        case (207) : return 45; //neotank
+        case (208) : return 12; //helico
+        case (209) : return 0; //fighter
+        case (210) : return 0; //bomber
+        }
+    case (206): switch (d){ //megatank
+        case (200) : return 135; //inf
+        case (201) : return 125; //mech
+        case (202) : return 195; //recon
+        case (203) : return 195; //antiair
+        case (204) : return 180; //tank
+        case (205) : return 125; //mdtank
+        case (206) : return 65; //megatank
+        case (207) : return 115; //neotank
+        case (208) : return 22; //helico
+        case (209) : return 0; //fighter
+        case (210) : return 0; //bomber
+        }
+    case (207): switch (d){ //neotank
+        case (200) : return 125; //inf
+        case (201) : return 115; //mech
+        case (202) : return 125; //recon
+        case (203) : return 85; //antiair
+        case (204) : return 105; //tank
+        case (205) : return 75; //mdtank
+        case (206) : return 35; //megatank
+        case (207) : return 55; //neotank
+        case (208) : return 22; //helico
+        case (209) : return 0; //fighter
+        case (210) : return 0; //bomber
+        }
+    case (208): switch (d){ //helico
+        case (200) : return 75; //inf
+        case (201) : return 75; //mech
+        case (202) : return 55; //recon
+        case (203) : return 25; //antiair
+        case (204) : return 55; //tank
+        case (205) : return 25; //mdtank
+        case (206) : return 10; //megatank
+        case (207) : return 20; //neotank
+        case (208) : return 65; //helico
+        case (209) : return 0; //fighter
+        case (210) : return 0; //bomber
+        }
+    case (209): switch (d){ //fighter
+        case (200) : return 0; //inf
+        case (201) : return 0; //mech
+        case (202) : return 0; //recon
+        case (203) : return 0; //antiair
+        case (204) : return 0; //tank
+        case (205) : return 0; //mdtank
+        case (206) : return 0; //megatank
+        case (207) : return 0; //neotank
+        case (208) : return 100; //helico
+        case (209) : return 100; //fighter
+        case (210) : return 55; //bomber
+        }
+    case (210): switch (d){ //helico
+        case (200) : return 110; //inf
+        case (201) : return 110; //mech
+        case (202) : return 105; //recon
+        case (203) : return 95; //antiair
+        case (204) : return 105; //tank
+        case (205) : return 95; //mdtank
+        case (206) : return 35; //megatank
+        case (207) : return 105; //neotank
+        case (208) : return 0; //helico
+        case (209) : return 0; //fighter
+        case (210) : return 0; //bomber
+        }
+    }
+}
+
+
+
+
+    int Game::calculDegat()
+    {
+
+        /*Damage = B * A_HP / 10 * (100 - D_TR * D_HP) / 100
+
+Damage est exprimé sur 100, on doit donc diviser par 10 pour obtenir le nombre de points de vie.
+B, dépend des unités en jeu, (voir la matrice dans Damage Chart),
+A_HP, un entier entre 1 et 10, Points de vie de l'attaquant,
+D_TR, un entier entre 0 et 4, Points de défense lié au terrain (voir Terrain Chart) (toujours zéro pour les unités aériennes),
+D_HP, un entier entre 1 et 10, Points de vie du défenseur.*/
+
+    }
+
+Unite* Game::Enemyclose(Unite* unit)
 {
     if(getIndexUnit(unit->getPosX()-1, unit->getPosY())!=-1){
         if(unite[getIndexUnit(unit->getPosX()-1, unit->getPosY())]->isTeam()!=unit->isTeam()){
-            return true;
+            return unite[getIndexUnit(unit->getPosX()-1, unit->getPosY())];
         }
     }
     else if(getIndexUnit(unit->getPosX()+1, unit->getPosY())!=-1){
         if(unite[getIndexUnit(unit->getPosX()+1, unit->getPosY())]->isTeam()!=unit->isTeam()){
-            return true;
+            return unite[getIndexUnit(unit->getPosX()+1, unit->getPosY())];
         }
     }
     else if(getIndexUnit(unit->getPosX(), unit->getPosY()+1)!=-1){
         if(unite[getIndexUnit(unit->getPosX(), unit->getPosY()+1)]->isTeam()!=unit->isTeam()){
-            return true;
+            return unite[getIndexUnit(unit->getPosX(), unit->getPosY()+1)];
         }
     }
     else if(getIndexUnit(unit->getPosX(), unit->getPosY()-1)!=-1){
         if(unite[getIndexUnit(unit->getPosX(), unit->getPosY()-1)]->isTeam()!=unit->isTeam()){
-            return true;
+            return unite[getIndexUnit(unit->getPosX(), unit->getPosY()-1)];
         }
     }
-        return false;
+    return NULL;
 }
 
 int Game::getmapId(int x, int y){
