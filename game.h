@@ -14,6 +14,7 @@ public:
     int getmapId(int x, int y);
     Unite* getUnite(int x, int y);
     void calculatePosAccessible(int Xfoc, int Yfoc, int indexUnit, int mp);
+    bool isThereAnotherUnite(int x, int y);
     ~Game();
 private:
     Game();

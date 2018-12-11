@@ -195,22 +195,31 @@ void Game::calculatePosAccessible(int currentX, int currentY, int indexUnit, int
     around[3][1] = currentX;
     around[3][2] = currentY+1;
 
-    if(around[0][0] <= mpleft){
+    if(around[0][0] <= mpleft && !isThereAnotherUnite(around[0][1], around[0][2])){
         calculatePosAccessible(around[0][1], around[0][2], indexUnit, mpleft-around[0][0]);
     }
 
-    if(around[1][0] <= mpleft){
+    if(around[1][0] <= mpleft && !isThereAnotherUnite(around[1][1], around[1][2])){
         calculatePosAccessible(around[1][1], around[1][2], indexUnit, mpleft-around[1][0]);
     }
 
-    if(around[2][0] <= mpleft){
+    if(around[2][0] <= mpleft && !isThereAnotherUnite(around[2][1], around[2][2])){
         calculatePosAccessible(around[2][1], around[2][2], indexUnit, mpleft-around[2][0]);
     }
 
-    if(around[3][0] <= mpleft){
+    if(around[3][0] <= mpleft && !isThereAnotherUnite(around[3][1], around[3][2])){
         calculatePosAccessible(around[3][1], around[3][2], indexUnit, mpleft-around[3][0]);
     }
+}
 
+bool Game::isThereAnotherUnite(int x, int y)
+{
+    for(Unite* u : unite) {
+        if (u->getPosX()==x && u->getPosY()==y){
+            return true;
+        }
+    }
+    return false;
 }
 
 int Game::getmapId(int x, int y){
