@@ -47,13 +47,15 @@ void Game::move(QMouseEvent *e)
     if ( m >= 0 && m < 21 && t >= 0 && t < 17
          && getIndexUnit(Xfoc,Yfoc) != -1
          && unite[getIndexUnit(Xfoc,Yfoc)]->isFocused()
-
          && window->getMapObject(m,t).isAccessible() )  {  // Unité selectionné
 
         unsigned int indexUnitFoc = (int)getIndexUnit(Xfoc,Yfoc);
 
         unite[indexUnitFoc]->setPosX(m);
         unite[indexUnitFoc]->setPosY(t);
+        if (isThereEnemyclose(unite[indexUnitFoc])){
+            std::cout << " Ennemi a cote " << std::endl;
+        }
         unite[indexUnitFoc]->setFocused(false);
         unite[indexUnitFoc]->setTurn(false);
         setMapObjectfalse();
@@ -74,8 +76,6 @@ void Game::move(QMouseEvent *e)
 
     window->redraw();
 }
-
-
 
 void Game::start(MainWindow &wind)
 {
@@ -239,6 +239,31 @@ void Game::setUnitefocusedfalse()
     }
 }
 
+bool Game::isThereEnemyclose(Unite* unit)
+{
+    if(getIndexUnit(unit->getPosX()-1, unit->getPosY())!=-1){
+        if(unite[getIndexUnit(unit->getPosX()-1, unit->getPosY())]->isTeam()!=unit->isTeam()){
+            return true;
+        }
+    }
+    else if(getIndexUnit(unit->getPosX()+1, unit->getPosY())!=-1){
+        if(unite[getIndexUnit(unit->getPosX()+1, unit->getPosY())]->isTeam()!=unit->isTeam()){
+            return true;
+        }
+    }
+    else if(getIndexUnit(unit->getPosX(), unit->getPosY()+1)!=-1){
+        if(unite[getIndexUnit(unit->getPosX(), unit->getPosY()+1)]->isTeam()!=unit->isTeam()){
+            return true;
+        }
+    }
+    else if(getIndexUnit(unit->getPosX(), unit->getPosY()-1)!=-1){
+        if(unite[getIndexUnit(unit->getPosX(), unit->getPosY()-1)]->isTeam()!=unit->isTeam()){
+            return true;
+        }
+    }
+        return false;
+}
+
 int Game::getmapId(int x, int y){
 
     if (!(0 <= x && x < 21 && 0 <= y && y < 17)){
@@ -376,6 +401,7 @@ void Game::turnChange(){
             }
         }
     }
+    window->redraw();
 }
 
 Unite* Game::getUnite(int x, int y){
