@@ -15,6 +15,7 @@
 #include "fighter.h"
 #include "bomber.h"
 
+
 Game Game::gInstance;
 
 Game::Game(){
@@ -77,83 +78,70 @@ void Game::move(QMouseEvent *e)
     window->redraw();
 }
 
+void Game::createUnit(int x, int y, char type, bool team, int unitWanted){
+    std::cout << "app 1fois" << std::endl;
 
-void Game::createUnits(QMouseEvent *e){
+    if ( getIndexUnit(x,y) == -1){
+
+    if ( team == true ){
+        if ( type == 't'){
+            switch (unitWanted){
+            case 1 : Infantry *osinf = new Infantry( x, y, 300, true); unite.push_back(osinf); moneyTeamT -= 1000; break;
+            //case 2 : Mech *osmech = new Mech( x, y, 301, true); unite.push_back(osmech); moneyTeamT -= 1000; break;
+            }
+        }
+    }
+    }
+    window->redraw();
+
+}
+
+void Game::selectUnits(QMouseEvent *e){
 
     float x = floorf(e->x()/40);
     float y = floorf(e->y()/40);
     int m = (int)x-7;
     int t = (int)y-2;
     int IDmap = getmapId(m, t);
-    if (((34 <= IDmap && IDmap <= 36) || (38 <= IDmap && IDmap <= 40) || (43 <= IDmap && IDmap <= 45)
-          &&  getIndexUnit(m,t)) == -1 ) {
-          //&& Activetrun == getmzp              {
-        std::cout<< "focus building" << std::endl;
-        window->getMapObject(m,t).setFocused(true);
-        // show menu
 
+    if (getIndexUnit(m,t) == -1){
 
-        if ( IDmap == 38) {
-         std::cout << " Création Unité orange city" << std::endl;
-            if ( moneyTeamT >= 1000){
-                Infantry *osinf = new Infantry( m, t, 300, true);
-                unite.push_back(osinf);
-                moneyTeamT -= 1000;
-            }
-
+        if ( IDmap == 39 ){
+            // Créatio unités terrestre orange
+            diaBuyTerreOS = new DialogBuyTerre(window);
+            diaBuyTerreOS->show();
+            diaBuyTerreOS->getInfo( m, t, true);
         }
 
-        window->getMapObject(m,t).setFocused(false);
-        window->redraw();
+        if ( IDmap == 40){
+            // Création unités aériennes orange
+            diaBuyAirOS = new DialogBuyAir(window);
+            diaBuyAirOS->show();
+            diaBuyAirOS->getInfo( m, t, true);
+        }
 
-    /*
+        if ( IDmap == 44){
+            // Création unités terrestres bleues
+            diaBuyTerreBM = new DialogBuyTerre(window);
+            diaBuyTerreBM->show();
+            diaBuyTerreBM->getInfo( m, t, false);
+        }
 
-    if ( window->getMapObject(m,t).getId() == 39 ) {
-        std::cout << " Création Unité orange city" << std::endl;
-         Infantry *osinf = new Infantry( 0, 15, 300, true);
-         unite.push_back(osinf);
-    }
-    if ( window->getMapObject(m,t).getId() == 38 ) {
-        std::cout << " Création Unité orange city" << std::endl;
-         Infantry *osinf = new Infantry( 0, 15, 300, true);
-         unite.push_back(osinf);
-    }
-    if ( window->getMapObject(m,t).getId() == 38 ) {
-        std::cout << " Création Unité orange city" << std::endl;
-         Infantry *osinf = new Infantry( 0, 15, 300, true);
-         unite.push_back(osinf);
-    }
-    if ( window->getMapObject(m,t).getId() == 38 ) {
-        std::cout << " Création Unité orange city" << std::endl;
-         Infantry *osinf = new Infantry( 0, 15, 300, true);
-         unite.push_back(osinf);
-    }
-    if ( window->getMapObject(m,t).getId() == 38 ) {
-        std::cout << " Création Unité orange city" << std::endl;
-         Infantry *osinf = new Infantry( 0, 15, 300, true);
-         unite.push_back(osinf);
-    }
-    if ( window->getMapObject(m,t).getId() == 38 ) {
-        std::cout << " Création Unité orange city" << std::endl;
-         Infantry *osinf = new Infantry( 0, 15, 300, true);
-         unite.push_back(osinf);
-    }
-    if ( window->getMapObject(m,t).getId() == 38 ) {
-        std::cout << " Création Unité orange city" << std::endl;
-         Infantry *osinf = new Infantry( 0, 15, 300, true);
-         unite.push_back(osinf);
-    }
-
-    */
-
-
+        if (IDmap == 45){
+            diaBuyAirBM = new DialogBuyAir(window);
+            diaBuyAirBM->show();
+            diaBuyAirBM->getInfo( m, t, false);
+        }
     }
 }
+
 
 void Game::start(MainWindow &wind)
 {
     window = &wind;
     window->setFixedSize(1200,860);
+
+    /*
 
     MegaTank *bmmegatank = new MegaTank( 15, 8, 206, false);
     Infantry *osinf = new Infantry( 13, 8, 300, true);
@@ -162,7 +150,7 @@ void Game::start(MainWindow &wind)
     unite.push_back(bmmegatank);
     unite.push_back(osinf);
     unite.push_back(bminf);
-    /*
+
 
     // Blue Moon
 

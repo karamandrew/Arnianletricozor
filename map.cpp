@@ -81,7 +81,7 @@ void Map::mousePressEvent(QMouseEvent *m)
         Game& game = Game::Instance();
         game.attack(m);
         game.move(m);
-        game.createUnits(m);
+        game.selectUnits(m);
 
     }
 }

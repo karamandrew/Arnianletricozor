@@ -57,7 +57,9 @@ SOURCES += \
     shoal.cpp \
     reef.cpp \
     pipe.cpp \
-    dialogunitprice.cpp
+    dialogunitprice.cpp \
+    dialogbuyterre.cpp \
+    dialogbuyair.cpp
 
 HEADERS += \
         mainwindow.h \
@@ -91,11 +93,15 @@ HEADERS += \
     shoal.h \
     reef.h \
     pipe.h \
-    dialogunitprice.h
+    dialogunitprice.h \
+    dialogbuyterre.h \
+    dialogbuyair.h
 
 FORMS += \
         mainwindow.ui \
-    dialogunitprice.ui
+    dialogunitprice.ui \
+    dialogbuyterre.ui \
+    dialogbuyair.ui
 
 # Default rules for deployment.
 qnx: target.path = /tmp/$${TARGET}/bin

@@ -60,3 +60,15 @@ void MainWindow::showPrice(){
     priceDialog = new  DialogUnitPrice(this);
     priceDialog->show();
 }
+
+/*
+void MainWindow::buyUnitTerrestre(){
+
+}
+*/
+
+
+
+
+
+

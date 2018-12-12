@@ -3,13 +3,16 @@
 #include "mainwindow.h"
 #include "unite.h"
 
+#include "dialogbuyterre.h"
+#include "dialogbuyair.h"
+
 
 class Game{
 public:
     static Game& Instance();
 
     void move(QMouseEvent *e);
-    void createUnits(QMouseEvent *e);
+    void selectUnits(QMouseEvent *e);
     void attack(QMouseEvent *e);
 
     void start(MainWindow &wind);
@@ -30,6 +33,10 @@ public:
     bool Enemyclose(Unite* unit);
     void turnChange();
 
+
+
+    void createUnit(int x, int y, char type, bool team, int unitWanted);
+
     ~Game();
 
 private:
@@ -48,6 +55,13 @@ private:
 
     int moneyTeamF = 2000;  // Blue
     int moneyTeamT = 2000; // Orange
+
+    DialogBuyTerre *diaBuyTerreOS;
+    DialogBuyAir *diaBuyAirOS;
+    DialogBuyTerre *diaBuyTerreBM;
+    DialogBuyAir *diaBuyAirBM;
+
+
 
 };
 #endif // GAME_H
