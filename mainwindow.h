@@ -3,6 +3,7 @@
 #include <QMouseEvent>
 #include <QMainWindow>
 #include <QPushButton>
+#include <QLabel>
 #include"gameobject.h"
 #include "map.h"
 #include "terrain.h"
@@ -27,11 +28,14 @@ public:
 
 private slots :
     void changeTurn();
+    void showPrice();
 
 private:
     Ui::MainWindow *ui;
     Map *map;
     QPushButton *changeTurnButton = nullptr;
+    QPushButton *showUnitPriceButton = nullptr;
+    QLabel *labelArnian = nullptr;
 
 };
 

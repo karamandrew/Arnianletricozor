@@ -5,6 +5,8 @@
 #include <QPainter>
 #include <iostream>
 #include "terrain.h"
+//#include "dialog.h"
+
 
 MainWindow::MainWindow(QWidget *parent) :
     QMainWindow(parent),
@@ -16,8 +18,17 @@ MainWindow::MainWindow(QWidget *parent) :
     MainWindow::setCentralWidget(map);
 
     changeTurnButton = new QPushButton("Change Turn", this);
-          changeTurnButton->setGeometry(50,50, 100, 50);
+          changeTurnButton->setGeometry(50,250, 100, 50);
         QObject::connect(changeTurnButton, SIGNAL(clicked()), this, SLOT(changeTurn()));
+
+    labelArnian = new QLabel("Arnian Le Tricozor", this);
+        labelArnian->setGeometry(20,20, 200, 200);
+
+    showUnitPriceButton = new QPushButton("Show Units Prices", this);
+        showUnitPriceButton->setGeometry(50, 450, 100, 50);
+        QObject::connect(showUnitPriceButton, SIGNAL(clicked()), this, SLOT(showPrice));
+
+
 }
 
 MainWindow::~MainWindow()
@@ -43,4 +54,9 @@ void MainWindow::changeTurn()
 {
     Game& game = Game::Instance();
     game.turnChange();
+}
+
+void MainWindow::showPrice(){
+    Game& game = Game::Instance();
+    //Dialog priceDialog;
 }
