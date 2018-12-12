@@ -7,6 +7,7 @@
 #include"gameobject.h"
 #include "map.h"
 #include "terrain.h"
+#include "dialogunitprice.h"
 
 
 
@@ -32,6 +33,7 @@ private slots :
 
 private:
     Ui::MainWindow *ui;
+    DialogUnitPrice *priceDialog;
     Map *map;
     QPushButton *changeTurnButton = nullptr;
     QPushButton *showUnitPriceButton = nullptr;

@@ -5,7 +5,7 @@
 #include <QPainter>
 #include <iostream>
 #include "terrain.h"
-//#include "dialog.h"
+#include "dialogunitprice.h"
 
 
 MainWindow::MainWindow(QWidget *parent) :
@@ -26,7 +26,7 @@ MainWindow::MainWindow(QWidget *parent) :
 
     showUnitPriceButton = new QPushButton("Show Units Prices", this);
         showUnitPriceButton->setGeometry(50, 450, 100, 50);
-        QObject::connect(showUnitPriceButton, SIGNAL(clicked()), this, SLOT(showPrice));
+        QObject::connect(showUnitPriceButton, SIGNAL(clicked()), this, SLOT(showPrice()));
 
 
 }
@@ -57,6 +57,6 @@ void MainWindow::changeTurn()
 }
 
 void MainWindow::showPrice(){
-    Game& game = Game::Instance();
-    //Dialog priceDialog;
+    priceDialog = new  DialogUnitPrice(this);
+    priceDialog->show();
 }

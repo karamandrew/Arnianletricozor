@@ -97,7 +97,8 @@ void Game::createUnits(QMouseEvent *e){
 
 
     if ( ( ( 34 <= IDmap &&  IDmap <= 36 ) || ( 38 <= IDmap &&  IDmap <= 40 ) || ( 43 <= IDmap && IDmap <= 45) )
-          &&  getIndexUnit(m,t) == -1 )   {
+          &&  getIndexUnit(m,t) == -1 ) {
+          //&& Activetrun == getmzp              {
         std::cout<< "focus building" << std::endl;
         window->getMapObject(m,t).setFocused(true);
         // show menu
