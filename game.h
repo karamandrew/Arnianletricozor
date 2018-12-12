@@ -13,7 +13,6 @@ public:
     void start(MainWindow &wind);
     int getIndexUnit(int x, int y);
     int getMalusMove(char moveType, int terrainID);
-    int getDamageDone(Unite a, Unite d);
     int getmapId(int x, int y);
     Unite* getUnite(int x, int y);
     void calculatePosAccessible(int Xfoc, int Yfoc, int indexUnit, int mp);
@@ -23,7 +22,7 @@ public:
     void turnChange();
     void setUnitefocusedfalse();
     int attack(Unite* a, Unite* d);
-    int calculDegat(Unite* u, Unite* v);
+    double calculDegat(Unite* u, Unite* v);
     Unite* Enemyclose(Unite* unit);
     ~Game();
 private:

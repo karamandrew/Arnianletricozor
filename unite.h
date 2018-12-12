@@ -10,9 +10,11 @@ public:
     void setTurn(bool turn);
     bool isTurn();
     bool isTeam();
-    void receiveDamage(int dmg);
+    void receiveDamage(double dmg);
     int getVie();
     char getTypeMovement(); // Si fonctions redéfinies dans les classes filles -> ajouté virtual ici
+    ~Unite();
+
 private:
     int m_MP;
     int m_vie=10;

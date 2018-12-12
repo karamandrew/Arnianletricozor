@@ -1,5 +1,5 @@
 #include "unite.h"
-
+#include <cmath>
 Unite::Unite(int x, int y, int Id, bool team, int prix, int MP, char deplacementype): Gameobject (x, y, Id), m_MP(MP), m_prix(prix), m_team(team), m_deplacementype(deplacementype)
 {
 
@@ -25,9 +25,12 @@ bool Unite::isTeam()
     return m_team;
 }
 
-void Unite::receiveDamage(int dmg)
+void Unite::receiveDamage(double dmg)
 {
     m_vie-=dmg;
+    if (m_vie <0) m_vie=0;
+    m_vie=floor(m_vie);
+
 }
 
 int Unite::getVie()
@@ -38,4 +41,9 @@ int Unite::getVie()
 char Unite::getTypeMovement()
 {
     return m_deplacementype;
+}
+
+Unite::~Unite()
+{
+    delete this;
 }
