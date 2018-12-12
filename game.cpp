@@ -1,7 +1,6 @@
 #include "game.h"
 #include <iostream>
 #include "math.h"
-
 #include "gameobject.h"
 #include "unite.h"
 #include "infantry.h"
@@ -15,8 +14,6 @@
 #include "bcopter.h"
 #include "fighter.h"
 #include "bomber.h"
-
-
 
 Game Game::gInstance;
 
@@ -42,7 +39,6 @@ void Game::move(QMouseEvent *e)
     int m = (int)x-7;
     int t = (int)y-2;
 
-    std::cout << " La pos est : " << m << t << std::endl;
 
     if ( m >= 0 && m < 21 && t >= 0 && t < 17
          && getIndexUnit(Xfoc,Yfoc) != -1
@@ -57,6 +53,16 @@ void Game::move(QMouseEvent *e)
             std::cout << " Ennemi a cote " << std::endl;
             Enemyclose(unite[indexUnitFoc])->receiveDamage((int)calculDegat(unite[indexUnitFoc], Enemyclose(unite[indexUnitFoc])));
             std::cout << Enemyclose(unite[indexUnitFoc])->getVie() << std::endl;
+
+             /*
+
+            for(Unite* u : unite) {
+                if (u->getVie() <= 0){
+                    delete u;
+                }
+            }
+
+            */
 
         }
         unite[indexUnitFoc]->setFocused(false);
@@ -112,9 +118,6 @@ void Game::start(MainWindow &wind)
     Fighter *osfighter = new Fighter( 3, 14, 309, true);
     Bomber *osbomber = new Bomber( 4, 14, 310, true);
 
-
-
-
     unite.push_back(bminf);
     unite.push_back(bmmech);
     unite.push_back(bmrecon);
@@ -156,6 +159,9 @@ int Game::getIndexUnit(int x, int y)
     }
     return -1;
 }
+
+/*
+
 class Pos{
 public:
     int x;
@@ -168,6 +174,8 @@ Pos operator+(Pos const& a, Pos const& b){
     n.y = a.y + b.y;
     return n;
 }
+
+*/
 
 // Pos{1,2} + Pos{3,4}
 
@@ -404,7 +412,14 @@ int Game::attack(Unite* u, Unite* v)
 
     int Game::calculDegat(Unite* u, Unite* v)
     {
-        return attack(u, v)*u->getVie()/10*(100-window->getMapObject(v->getPosX(), v->getPosY()).getDefense()*v->getVie())/100;
+        int B = attack(u,v);
+        int A_HP = u->getVie();
+        int D_TR = window->getMapObject(v->getPosX(), v->getPosY()).getDefense();
+        int D_HP = v->getVie();
+
+        return  B * ( A_HP / 10 ) * ( ( 100 - D_TR * D_HP) / 100 ) ;
+
+        //return attack(u, v) * u->getVie()/10*(100-window->getMapObject(v->getPosX(), v->getPosY()).getDefense()*v->getVie())/100;
 
         /*Damage = B * A_HP / 10 * (100 - D_TR * D_HP) / 100
 
