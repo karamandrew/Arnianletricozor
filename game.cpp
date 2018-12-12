@@ -85,10 +85,87 @@ void Game::move(QMouseEvent *e)
     window->redraw();
 }
 
+
+void Game::createUnits(QMouseEvent *e){
+
+    float x = floorf(e->x()/40);
+    float y = floorf(e->y()/40);
+    int m = (int)x-7;
+    int t = (int)y-2;
+
+    int IDmap = window->getMapObject(m,t).getId();
+
+
+    if ( ( ( 34 <= IDmap &&  IDmap <= 36 ) || ( 38 <= IDmap &&  IDmap <= 40 ) || ( 43 <= IDmap && IDmap <= 45) )
+          &&  getIndexUnit(m,t) == -1 )   {
+        std::cout<< "focus building" << std::endl;
+        window->getMapObject(m,t).setFocused(true);
+        // show menu
+
+
+        if ( IDmap == 38) {
+         std::cout << " Création Unité orange city" << std::endl;
+            if ( moneyTeamT >= 1000){
+                Infantry *osinf = new Infantry( m, t, 300, true);
+                unite.push_back(osinf);
+                moneyTeamT -= 1000;
+            }
+
+        }
+
+        window->getMapObject(m,t).setFocused(false);
+        window->redraw();
+
+    /*
+
+    if ( window->getMapObject(m,t).getId() == 39 ) {
+        std::cout << " Création Unité orange city" << std::endl;
+         Infantry *osinf = new Infantry( 0, 15, 300, true);
+         unite.push_back(osinf);
+    }
+    if ( window->getMapObject(m,t).getId() == 38 ) {
+        std::cout << " Création Unité orange city" << std::endl;
+         Infantry *osinf = new Infantry( 0, 15, 300, true);
+         unite.push_back(osinf);
+    }
+    if ( window->getMapObject(m,t).getId() == 38 ) {
+        std::cout << " Création Unité orange city" << std::endl;
+         Infantry *osinf = new Infantry( 0, 15, 300, true);
+         unite.push_back(osinf);
+    }
+    if ( window->getMapObject(m,t).getId() == 38 ) {
+        std::cout << " Création Unité orange city" << std::endl;
+         Infantry *osinf = new Infantry( 0, 15, 300, true);
+         unite.push_back(osinf);
+    }
+    if ( window->getMapObject(m,t).getId() == 38 ) {
+        std::cout << " Création Unité orange city" << std::endl;
+         Infantry *osinf = new Infantry( 0, 15, 300, true);
+         unite.push_back(osinf);
+    }
+    if ( window->getMapObject(m,t).getId() == 38 ) {
+        std::cout << " Création Unité orange city" << std::endl;
+         Infantry *osinf = new Infantry( 0, 15, 300, true);
+         unite.push_back(osinf);
+    }
+    if ( window->getMapObject(m,t).getId() == 38 ) {
+        std::cout << " Création Unité orange city" << std::endl;
+         Infantry *osinf = new Infantry( 0, 15, 300, true);
+         unite.push_back(osinf);
+    }
+
+    */
+
+
+    }
+}
+
 void Game::start(MainWindow &wind)
 {
     window = &wind;
     window->setFixedSize(1200,860);
+
+    /*
 
     // Blue Moon
 
@@ -141,6 +218,9 @@ void Game::start(MainWindow &wind)
     unite.push_back(osbcopter);
     unite.push_back(osfighter);
     unite.push_back(osbomber);
+
+    */
+
     turnChange();
 
     window->createMapObjects();

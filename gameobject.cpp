@@ -28,6 +28,9 @@ Gameobject::Gameobject(int x, int y, int ID): m_posX(x), m_posY(y), m_ID(ID), fo
     case(29): m_directory=":/Res/Terrains/hshoal.gif"; break;
     case(30): m_directory=":/Res/Terrains/hshoaln.gif"; break;
     case(33): m_directory=":/Res/Terrains/reef.gif"; break;
+
+
+
     case(34): m_directory=":/Res/Terrains/neutralcity.gif"; break;
     case(35): m_directory=":/Res/Terrains/neutralbase.gif"; break;
     case(36): m_directory=":/Res/Terrains/neutralairport.gif"; break;

@@ -8,6 +8,7 @@ class Game{
 public:
     static Game& Instance();
     void move(QMouseEvent *e);
+    void createUnits(QMouseEvent *e);
 
     void start(MainWindow &wind);
     int getIndexUnit(int x, int y);
@@ -30,10 +31,11 @@ private:
     static Game gInstance;
     MainWindow *window;
     vector<Unite*> unite;
-    //vector<Unite*> unite;
-    int Xfoc=-1;
-    int Yfoc=-1;
+    int Xfoc = -1;
+    int Yfoc = -1;
     bool activeTurn=true;
+    int moneyTeamF = 2000;  // Blue
+    int moneyTeamT = 2000; // Orange
 
 
 };
