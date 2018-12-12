@@ -10,15 +10,17 @@ public:
     void setTurn(bool turn);
     bool isTurn();
     bool isTeam();
+    bool isAttackable();
+    bool setAttackable(bool set);
     void receiveDamage(double dmg);
     int getVie();
     char getTypeMovement(); // Si fonctions redéfinies dans les classes filles -> ajouté virtual ici
-    ~Unite();
 
 private:
     int m_MP;
     int m_vie=10;
     int m_prix;
+    bool m_attackable=false;
     bool m_team;
     char m_deplacementype;
     bool m_turn=true;

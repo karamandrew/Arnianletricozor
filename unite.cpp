@@ -25,6 +25,16 @@ bool Unite::isTeam()
     return m_team;
 }
 
+bool Unite::isAttackable()
+{
+    return m_attackable;
+}
+
+bool Unite::setAttackable(bool set)
+{
+    m_attackable=set;
+}
+
 void Unite::receiveDamage(double dmg)
 {
     m_vie-=dmg;
@@ -41,9 +51,4 @@ int Unite::getVie()
 char Unite::getTypeMovement()
 {
     return m_deplacementype;
-}
-
-Unite::~Unite()
-{
-    delete this;
 }

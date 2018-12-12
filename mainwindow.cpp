@@ -17,7 +17,7 @@ MainWindow::MainWindow(QWidget *parent) :
     map = new Map(this);
     MainWindow::setCentralWidget(map);
 
-    changeTurnButton = new QPushButton("Change Turn", this);
+    changeTurnButton = new QPushButton("Change Turn", this); // ui->changeTurnButton
           changeTurnButton->setGeometry(50,250, 100, 50);
         QObject::connect(changeTurnButton, SIGNAL(clicked()), this, SLOT(changeTurn()));
 

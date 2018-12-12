@@ -63,6 +63,12 @@ void Map::paintEvent(QPaintEvent *event)
                    painter.drawPixmap(m*40, t*40, 40, 40, focused);
                    //painter.drawRect(m*40, t*40, 38, 38); // Fonctionne
                }
+
+               if (game.getUnite(i,j)->isAttackable()) {    // Ne fonctionne pas parce que ce n'est pas un vecteur de pointeur, ça crash
+                   //QPixmap focused(":/Res/Animations/Focused.png");
+                   painter.drawPixmap(m*40, t*40, 40, 40, focused);
+                   //painter.drawRect(m*40, t*40, 38, 38); // Fonctionne
+               }
            }
         }
     }
@@ -73,8 +79,10 @@ void Map::mousePressEvent(QMouseEvent *m)
 
     if(m->buttons() == Qt::LeftButton){
         Game& game = Game::Instance();
+        game.attack(m);
         game.move(m);
         game.createUnits(m);
+
     }
 }
 
