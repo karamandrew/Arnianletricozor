@@ -69,6 +69,7 @@ int Unite::getVie()
 
 void Unite::setVie(int impact){
     m_vie += impact;
+    if (m_vie > 10) { m_vie = 10;}
 }
 
 int Unite::getPrix(){
