@@ -261,6 +261,9 @@ void Game::setUnitefocusedfalse()
         double A_HP = u->getVie();
         double D_TR = window->getMapObject(v->getPosX(), v->getPosY()).getDefense();
         double D_HP = v->getVie();
+        if (v->getTypeMovement()=='a'){
+            D_TR=0;
+        }
         std::cerr << (B * ( A_HP / 10 ) * ( ( 100 - D_TR * D_HP) / 100 ))/10 << std::endl;
         return  (B *( A_HP / 10 ) * ( ( 100 - D_TR * D_HP) / 100 ))/10 ;
 
@@ -322,7 +325,7 @@ int Game::getmapId(int x, int y){
 }
 
 void Game::turnChange(){
-    //RESET TOUTES LES UNITES ET LA MAP
+    //RESET TOUTES LES UNITES SELECTIONEE ET LES DALLES SELECTIONNEEs
     for(Unite* u: unite){
         u->setAttackable(false);
         u->setFocused(false);
@@ -686,14 +689,12 @@ void Game::attack(QMouseEvent *e)
                         unite.erase(unite.begin() + getIndexUnit(unite[getIndexUnit(m,t)]->getPosX(), unite[getIndexUnit(m,t)]->getPosY()));
                         window->redraw();
                     }
-
                     for(Unite* set:unite){
                         set->setAttackable(false);
                         set->setFocused(false);
                     }
                     window->redraw();
                     return;
-
                 }
                 else if(a->isFocused() && a->isTeam()==activeTurn){
                     for(Unite* set:unite){
@@ -702,14 +703,12 @@ void Game::attack(QMouseEvent *e)
                         set->setFocused(false);
                     }
                     window->redraw();
-
                 }
             }
         }
     }
     else{
         for(Unite* a: unite){
-
             if(a->isAttackable()){
                 for(Unite* b: unite){
                     b->setFocused(false);
@@ -718,16 +717,4 @@ void Game::attack(QMouseEvent *e)
             a->setAttackable(false);
         }
     }
-    /*std::cout << "Point de vie unite attaquee avant " <<Enemyclose(unite[indexUnitFoc])->getVie() << std::endl;
-    Enemyclose(unite[indexUnitFoc])->receiveDamage(calculDegat(unite[indexUnitFoc], Enemyclose(unite[indexUnitFoc])));
-    std::cout << "Point de vie unite attaquee apres " <<Enemyclose(unite[indexUnitFoc])->getVie() << std::endl;
-    // on fait des if
-    // ouais, des if et on crée variables
-    // event, input()
-    for(Unite* u : unite) {
-        if (u->getVie() <= 0){
-            delete u;
-            unite.erase(unite.begin() + getIndexUnit(u->getPosX(), u->getPosY()));
-        }
-    }*/
 }
