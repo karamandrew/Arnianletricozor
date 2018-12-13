@@ -363,6 +363,7 @@ void Game::cureUnit(bool turn){
         int x = u->getPosX();
         int y = u->getPosY();
         int unitLife = u->getVie();
+        std::cout << "Life unit : " << unitLife << std::endl; ;
         int mapId = getmapId(x,y);
         char typeMove = u->getTypeMovement();
         bool team = u->isTeam();

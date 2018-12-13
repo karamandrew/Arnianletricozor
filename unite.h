@@ -26,6 +26,7 @@ private:
     bool m_team;
     char m_deplacementype;
     bool m_turn=true;
+    //bool m_fusionnable = false;
 };
 
 #endif // UNITE_H
