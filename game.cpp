@@ -83,17 +83,43 @@ void Game::createUnit(int x, int y, char type, bool team, int unitWanted){
 
     if ( getIndexUnit(x,y) == -1){
 
-    if ( team == true ){
+    if ( team == true && activeTurn == true){
         if ( type == 't'){
-            switch (unitWanted){
-            case 1 : Infantry *osinf = new Infantry( x, y, 300, true); unite.push_back(osinf); moneyTeamT -= 1000; break;
-            //case 2 : Mech *osmech = new Mech( x, y, 301, true); unite.push_back(osmech); moneyTeamT -= 1000; break;
-            }
+            if ( unitWanted == 1 && moneyTeamT >= 1000 ) { Infantry *osinf = new Infantry( x, y, 300, true); unite.push_back(osinf); moneyTeamT -= 1000; }
+            if ( unitWanted == 2 && moneyTeamT >= 3000 ) { Mech *osmech = new Mech( x, y, 301, true); unite.push_back(osmech); moneyTeamT -= 3000; }
+            if ( unitWanted == 3 && moneyTeamT >= 4000 ) { Recon *osrecon = new Recon( x, y, 302, true); unite.push_back(osrecon); moneyTeamT -= 4000; }
+            if ( unitWanted == 4 && moneyTeamT >= 8000 ) { Antiair *osantiair = new Antiair( x, y, 303, true); unite.push_back(osantiair); moneyTeamT -= 8000; }
+            if ( unitWanted == 5 && moneyTeamT >= 7000 ) { Tank *ostank = new Tank( x, y, 304, true); unite.push_back(ostank); moneyTeamT -= 7000; }
+            if ( unitWanted == 6 && moneyTeamT >= 16000) { MdTank *osmdtank = new MdTank( x, y, 305, true); unite.push_back(osmdtank); moneyTeamT -= 16000; }
+            if ( unitWanted == 7 && moneyTeamT >= 28000) { MegaTank *osmegatank = new MegaTank( x, y, 306, true); unite.push_back(osmegatank); moneyTeamT -= 28000; }
+            if ( unitWanted == 8 && moneyTeamT >= 22000) { NeoTank *osneotank = new NeoTank( x, y, 307, true); unite.push_back(osneotank); moneyTeamT -= 22000; }
+        }
+        if ( type == 'a'){
+            if ( unitWanted == 1 && moneyTeamT >= 9000 ) { BCopter *osbcopter = new BCopter( x, y, 308, true); unite.push_back(osbcopter); moneyTeamT -= 9000; }
+            if ( unitWanted == 2 && moneyTeamT >= 20000) { Fighter *osfighter = new Fighter( x, y, 309, true); unite.push_back(osfighter); moneyTeamT -= 20000; }
+            if ( unitWanted == 3 && moneyTeamT >= 22000) { Bomber *osbomber = new Bomber( x, y, 310, true); unite.push_back(osbomber); moneyTeamT -= 22000; }
+        }
+    }
+    if ( team == false && activeTurn == false){
+        if ( type == 't'){
+            if ( unitWanted == 1 && moneyTeamF >= 1000 ) { Infantry *bminf = new Infantry( x, y, 200, true); unite.push_back(bminf); moneyTeamF -= 1000; }
+            if ( unitWanted == 2 && moneyTeamF >= 3000 ) { Mech *bmmech = new Mech( x, y, 201, true); unite.push_back(bmmech); moneyTeamF -= 3000; }
+            if ( unitWanted == 3 && moneyTeamF >= 4000 ) { Recon *bmrecon = new Recon( x, y, 202, true); unite.push_back(bmrecon); moneyTeamF -= 4000; }
+            if ( unitWanted == 4 && moneyTeamF >= 8000 ) { Antiair *bmantiair = new Antiair( x, y, 203, true); unite.push_back(bmantiair); moneyTeamF -= 8000; }
+            if ( unitWanted == 5 && moneyTeamF >= 7000 ) { Tank *bmtank = new Tank( x, y, 204, true); unite.push_back(bmtank); moneyTeamF -= 7000; }
+            if ( unitWanted == 6 && moneyTeamF >= 16000) { MdTank *bmmdtank = new MdTank( x, y, 205, true); unite.push_back(bmmdtank); moneyTeamF -= 16000; }
+            if ( unitWanted == 7 && moneyTeamF >= 28000) { MegaTank *bmmegatank = new MegaTank( x, y, 206, true); unite.push_back(bmmegatank); moneyTeamF -= 28000; }
+            if ( unitWanted == 8 && moneyTeamF >= 22000) { NeoTank *bmneotank = new NeoTank( x, y, 207, true); unite.push_back(bmneotank); moneyTeamF -= 22000;
+        }
+        if ( type == 'a'){
+            if ( unitWanted == 1 && moneyTeamF >= 9000 ) { BCopter *bmbcopter = new BCopter( x, y, 208, true); unite.push_back(bmbcopter); moneyTeamF -= 9000; }
+            if ( unitWanted == 2 && moneyTeamF >= 20000) { Fighter *bmfighter = new Fighter( x, y, 209, true); unite.push_back(bmfighter); moneyTeamF -= 20000; }
+            if ( unitWanted == 3 && moneyTeamF >= 22000) { Bomber *bmbomber = new Bomber( x, y, 210, true); unite.push_back(bmbomber); moneyTeamF -= 22000; }
+        }
         }
     }
     }
     window->redraw();
-
 }
 
 void Game::selectUnits(QMouseEvent *e){
@@ -106,28 +132,29 @@ void Game::selectUnits(QMouseEvent *e){
 
     if (getIndexUnit(m,t) == -1){
 
-        if ( IDmap == 39 ){
+        if ( IDmap == 39 && activeTurn == true){
             // Créatio unités terrestre orange
             diaBuyTerreOS = new DialogBuyTerre(window);
             diaBuyTerreOS->show();
             diaBuyTerreOS->getInfo( m, t, true);
         }
 
-        if ( IDmap == 40){
+        if ( IDmap == 40 && activeTurn == true){
             // Création unités aériennes orange
             diaBuyAirOS = new DialogBuyAir(window);
             diaBuyAirOS->show();
             diaBuyAirOS->getInfo( m, t, true);
         }
 
-        if ( IDmap == 44){
+        if ( IDmap == 44 && activeTurn == false){
             // Création unités terrestres bleues
             diaBuyTerreBM = new DialogBuyTerre(window);
             diaBuyTerreBM->show();
             diaBuyTerreBM->getInfo( m, t, false);
         }
 
-        if (IDmap == 45){
+        if (IDmap == 45 && activeTurn == false){
+            // Création unités aériennes bleues
             diaBuyAirBM = new DialogBuyAir(window);
             diaBuyAirBM->show();
             diaBuyAirBM->getInfo( m, t, false);
@@ -141,75 +168,9 @@ void Game::start(MainWindow &wind)
     window = &wind;
     window->setFixedSize(1200,860);
 
-    /*
-
-    MegaTank *bmmegatank = new MegaTank( 15, 8, 206, false);
-    Infantry *osinf = new Infantry( 13, 8, 300, true);
-    Infantry *bminf = new Infantry( 14, 9, 200, false);
-
-    unite.push_back(bmmegatank);
-    unite.push_back(osinf);
-    unite.push_back(bminf);
-
-
-    // Blue Moon
-
-    Infantry *bminf = new Infantry( 10, 0, 200, false);
-    Mech *bmmech = new Mech( 11, 0, 201, false);
-    Recon *bmrecon = new Recon( 12, 0, 202, false);
-    Antiair *bmantiair = new Antiair( 13, 0, 203, false);
-    Tank *bmtank = new Tank( 14, 0, 204, false);
-    MdTank *bmmdtank = new MdTank( 15, 0, 205, false);
-    MegaTank *bmmegatank = new MegaTank( 15, 8, 206, false);
-    NeoTank *bmneotank = new NeoTank( 11, 1, 207, false);
-    BCopter *bmbcopter = new BCopter( 12, 1, 208, false);
-    Fighter *bmfighter = new Fighter( 13, 1, 209, false);
-    Bomber *bmbomber = new Bomber( 14, 1, 210, false);
-
-    // Orange
-
-    Infantry *osinf = new Infantry( 0, 15, 300, true);
-    Mech *osmech = new Mech( 1, 15, 301, true);
-    Recon *osrecon = new Recon( 2, 15, 302, true);
-    Antiair *osantiair = new Antiair( 3, 15, 303, true);
-    Tank *ostank = new Tank( 4, 15, 304, true);
-    MdTank *osmdtank = new MdTank( 5, 15, 305, true);
-    MegaTank *osmegatank = new MegaTank( 0, 14, 306, true);
-    NeoTank *osneotank = new NeoTank( 1, 14, 307, true);
-    BCopter *osbcopter = new BCopter( 2, 14, 308, true);
-    Fighter *osfighter = new Fighter( 3, 14, 309, true);
-    Bomber *osbomber = new Bomber( 4, 14, 310, true);
-
-    unite.push_back(bminf);
-    unite.push_back(bmmech);
-    unite.push_back(bmrecon);
-    unite.push_back(bmantiair);
-    unite.push_back(bmtank);
-    unite.push_back(bmmdtank);
-    unite.push_back(bmmegatank);
-    unite.push_back(bmneotank);
-    unite.push_back(bmbcopter);
-    unite.push_back(bmfighter);
-    unite.push_back(bmbomber);
-
-    unite.push_back(osinf);
-    unite.push_back(osmech);
-    unite.push_back(osrecon);
-    unite.push_back(osantiair);
-    unite.push_back(ostank);
-    unite.push_back(osmdtank);
-    unite.push_back(osmegatank);
-    unite.push_back(osneotank);
-    unite.push_back(osbcopter);
-    unite.push_back(osfighter);
-    unite.push_back(osbomber);
-
-    */
-
     turnChange();
 
     window->createMapObjects();
-
     window->redraw();
 }
 

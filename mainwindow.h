@@ -38,6 +38,7 @@ private:
     QPushButton *changeTurnButton = nullptr;
     QPushButton *showUnitPriceButton = nullptr;
     QLabel *labelArnian = nullptr;
+    string m_turn;
 
 };
 

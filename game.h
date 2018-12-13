@@ -53,8 +53,8 @@ private:
 
     bool activeTurn=false;
 
-    int moneyTeamF = 2000;  // Blue
-    int moneyTeamT = 2000; // Orange
+    int moneyTeamF = 200000000;  // Blue
+    int moneyTeamT = 200000000; // Orange
 
     DialogBuyTerre *diaBuyTerreOS;
     DialogBuyAir *diaBuyAirOS;

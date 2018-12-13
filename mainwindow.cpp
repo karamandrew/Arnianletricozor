@@ -27,8 +27,6 @@ MainWindow::MainWindow(QWidget *parent) :
     showUnitPriceButton = new QPushButton("Show Units Prices", this);
         showUnitPriceButton->setGeometry(50, 450, 100, 50);
         QObject::connect(showUnitPriceButton, SIGNAL(clicked()), this, SLOT(showPrice()));
-
-
 }
 
 MainWindow::~MainWindow()
@@ -61,11 +59,7 @@ void MainWindow::showPrice(){
     priceDialog->show();
 }
 
-/*
-void MainWindow::buyUnitTerrestre(){
 
-}
-*/
 
 
 
