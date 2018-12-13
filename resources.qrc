@@ -107,5 +107,9 @@
         <file>Res/Units/ostank.gif</file>
         <file>Res/Animations/pause.png</file>
         <file>Res/Animations/advanced.git</file>
+        <file>Res/Animations/deg1.git</file>
+        <file>Res/Animations/deg2.git</file>
+        <file>Res/Animations/deg3.git</file>
+        <file>Res/Animations/deg4.git</file>
     </qresource>
 </RCC>

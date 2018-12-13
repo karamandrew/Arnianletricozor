@@ -837,3 +837,5 @@ void Game::attack(QMouseEvent *e)
         }
     }
 }
+
+// This is the end of the world

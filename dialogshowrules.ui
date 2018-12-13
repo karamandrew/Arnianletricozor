@@ -6,13 +6,29 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>400</width>
+    <width>301</width>
     <height>300</height>
    </rect>
   </property>
   <property name="windowTitle">
    <string>Dialog</string>
   </property>
+  <widget class="QLabel" name="label">
+   <property name="geometry">
+    <rect>
+     <x>0</x>
+     <y>0</y>
+     <width>301</width>
+     <height>301</height>
+    </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">background-image: url(:/Res/Animations/deg4.git);</string>
+   </property>
+   <property name="text">
+    <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-size:12pt; font-weight:600; text-decoration: underline; color:#ffffff;&quot;&gt;Game rules:&lt;br/&gt;&lt;/span&gt;&lt;span style=&quot; color:#ffffff;&quot;&gt;The &lt;/span&gt;&lt;span style=&quot; font-weight:600; color:#ffffff;&quot;&gt;gameends&lt;/span&gt;&lt;span style=&quot; color:#ffffff;&quot;&gt; when all of a player's production &lt;br/&gt;buildings are occupied by an enemy unit&lt;br/&gt;&lt;/span&gt;&lt;span style=&quot; font-weight:600; color:#ffffff;&quot;&gt;Money&lt;/span&gt;&lt;span style=&quot; color:#ffffff;&quot;&gt; : At each turn, the player receives 1000 per&lt;br/&gt;city or base he owns&lt;br/&gt;&lt;/span&gt;&lt;span style=&quot; font-weight:600; color:#ffffff;&quot;&gt;Fight&lt;/span&gt;&lt;span style=&quot; color:#ffffff;&quot;&gt; : When a player has finished attacking,&lt;br/&gt;automatic defens ripost with remaining degats&lt;br/&gt;&lt;/span&gt;&lt;span style=&quot; font-weight:600; color:#ffffff;&quot;&gt;Life&lt;/span&gt;&lt;span style=&quot; color:#ffffff;&quot;&gt;: each unit appears with 10 life points on the &lt;br/&gt;box of the production building&lt;br/&gt;&lt;/span&gt;&lt;span style=&quot; font-weight:600; color:#ffffff;&quot;&gt;Capture&lt;/span&gt;&lt;span style=&quot; color:#ffffff;&quot;&gt;: Infantry and Bazooka units can capture &lt;br/&gt;neutral / opposing buildings by visiting them. The &lt;br/&gt;capture speed depends on their hit points. Once &lt;br/&gt;captured, the capture points of the building are &lt;br/&gt;reset to 10&lt;br/&gt;&lt;/span&gt;&lt;span style=&quot; font-weight:600; color:#ffffff;&quot;&gt;Recovery&lt;/span&gt;&lt;span style=&quot; color:#ffffff;&quot;&gt;: To restore his health, a unit can go to an &lt;br/&gt;ally building. His life will be increased by 2 points per &lt;br/&gt;turn. In exchange, the player will have to pay 10% of &lt;br/&gt;the cost of the unit.&lt;br/&gt;&lt;/span&gt;&lt;span style=&quot; font-weight:600; color:#ffffff;&quot;&gt;Fusion&lt;/span&gt;&lt;span style=&quot; color:#ffffff;&quot;&gt;: Two units of the same type whose life is &lt;br/&gt;smaller than 10 can merge.&lt;/span&gt;&lt;/p&gt;&lt;p&gt;&lt;span style=&quot; color:#ffffff;&quot;&gt;&lt;br/&gt;&lt;/span&gt;&lt;/p&gt;&lt;p&gt;&lt;span style=&quot; color:#ffffff;&quot;&gt;&lt;br/&gt;&lt;/span&gt;&lt;/p&gt;&lt;p&gt;&lt;span style=&quot; color:#ffffff;&quot;&gt;&lt;br/&gt;&lt;/span&gt;&lt;/p&gt;&lt;p&gt;&lt;span style=&quot; color:#ffffff;&quot;&gt;&lt;br/&gt;&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+   </property>
+  </widget>
  </widget>
  <resources/>
  <connections/>
