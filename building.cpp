@@ -5,3 +5,9 @@ Building::Building(int x, int y, int Id, int defense, bool team): Terrain ( x, y
 {
     m_team = team;
 }
+
+/*
+void Building::impact(){
+    //do nothing
+}
+*/

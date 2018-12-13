@@ -16,11 +16,13 @@ public:
     int getPosY() const;
     void setPosY(int value);
     int getId() const;
+    void setId(int impact);
     bool isFocused() const;
     void setFocused(bool value);
     bool isAccessible() const;
     void setAccessible(bool value);
     string getDirectory() const;
+    void setDirectory();
 
 private:
     int m_posX;

@@ -39,6 +39,10 @@ public:
     void updateMoneyTeam(bool team);
     void setMoney(bool team, int impact);
 
+    void capture(bool turn);
+
+    void giveBuildingsPtCapture();
+
     ~Game();
 
 private:

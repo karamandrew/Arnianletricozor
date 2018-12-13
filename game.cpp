@@ -126,6 +126,8 @@ void Game::selectUnits(QMouseEvent *e){
     int t = (int)y-1;
     int IDmap = getmapId(m, t);
 
+    std::cout << " Test pour capture " << window->getMapObject(m,t).getPtCapture() << std::endl;
+
     if (getIndexUnit(m,t) == -1){
 
         if ( IDmap == 39 && activeTurn == true){
@@ -165,12 +167,25 @@ void Game::start(MainWindow &wind)
     window->setFixedSize(1400,865);
     window->createMapObjects();
 
-    Infantry *osinf = new Infantry( 13, 13, 300, true); unite.push_back(osinf);
-    Infantry *bminf = new Infantry( 12, 12, 200, false); unite.push_back(bminf);
+    //Infantry *osinf = new Infantry( 13, 13, 300, true); unite.push_back(osinf);
+    //Infantry *bminf = new Infantry( 12, 12, 200, false); unite.push_back(bminf);
     turnChange();  // NE PAS ENLEVER PERMET DE SET UP LA MONEY DES TEAM
+
+    giveBuildingsPtCapture();
 
 
     window->redraw();
+}
+
+void Game::giveBuildingsPtCapture(){
+    for(int i=0 ;i<21;i++){
+        for (int j=0; j<17; j++){
+            int IDmap = getmapId(i,j);
+            if ( IDmap == 34 || IDmap == 35 || IDmap == 36 || IDmap == 38 || IDmap == 39 || IDmap == 40 || IDmap == 43 || IDmap == 44 || IDmap == 45){
+                window->getMapObject(i,j).setPtCapture(20);
+            }
+       }
+    }
 }
 
 
@@ -331,7 +346,7 @@ void Game::turnChange(){
         u->setFocused(false);
     }
     setMapObjectfalse();
-
+    capture(activeTurn);
     activeTurn=!activeTurn;
     updateMoneyTeam(activeTurn);
     window->updateTurn(activeTurn);
@@ -354,6 +369,44 @@ void Game::turnChange(){
         }
     }
     window->redraw();
+}
+
+void Game::capture(bool turn){
+    for(Unite* u: unite){
+        int IDu = u->getId();
+        int x = u->getPosX();
+        int y = u->getPosY();
+        int mapId = getmapId(x,y);
+        int impact = u->getVie();
+        int Ptrestant;
+        if ( IDu == 200 || IDu == 201 || IDu == 300 || IDu == 301 ){ // INfantry or mech
+            if (turn) { // tour des oranges
+                if ( mapId == 34 || mapId == 35 || mapId == 36 ){
+                    window->getMapObject(x,y).setPtCapture(-impact);
+                    Ptrestant = window->getMapObject(x,y).getPtCapture();
+                    if ( Ptrestant <= 0 ) { window->getMapObject(x,y).setId(+4); }
+                    std::cout << "hello" << std::endl;
+                }
+                if ( mapId == 43 || mapId == 44 || mapId == 45) {
+                    window->getMapObject(x,y).setPtCapture(-impact);
+                    Ptrestant = window->getMapObject(x,y).getPtCapture();
+                    if ( Ptrestant <= 0 ) { window->getMapObject(x,y).setId(-5); }
+                }
+            }
+            else { // tour des bleus
+                if ( mapId == 34 || mapId == 35 || mapId == 36 ){
+                     window->getMapObject(x,y).setPtCapture(-impact);
+                     Ptrestant = window->getMapObject(x,y).getPtCapture();
+                     if ( Ptrestant <= 0 ) { window->getMapObject(x,y).setId(+9); }
+                    }
+                if ( mapId == 38 || mapId == 39 || mapId == 40 ){
+                     window->getMapObject(x,y).setPtCapture(-impact);
+                     Ptrestant = window->getMapObject(x,y).getPtCapture();
+                     if ( Ptrestant <= 0 ) { window->getMapObject(x,y).setId(+5); }
+                    }
+           }
+      }
+   }
 }
 
 void Game::updateMoneyTeam(bool team){

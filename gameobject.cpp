@@ -4,6 +4,81 @@
 
 Gameobject::Gameobject(int x, int y, int ID): m_posX(x), m_posY(y), m_ID(ID), focused(false), m_accessible(false)
 {
+  setDirectory();
+}
+Gameobject::Gameobject()
+{
+}
+
+string Gameobject::getDirectory() const{
+    return m_directory;
+}
+
+int Gameobject::getPosX() const
+{
+    return m_posX;
+}
+
+int Gameobject::getPosY() const
+{
+    return m_posY;
+}
+
+void Gameobject::setPosX(int value)
+{
+    if (value > 20){
+        m_posX = 20;
+    }
+    else if ( value < 0){
+        m_posX = 0;
+    }
+    else {
+        m_posX = value;
+    }
+}
+
+void Gameobject::setPosY(int value)
+{
+    if ( value > 16){
+        m_posY = 16;
+    }
+    else if ( value < 0){
+        m_posY = 0;
+    }
+    else {
+        m_posY = value;
+    }
+}
+
+int Gameobject::getId() const
+{
+    return m_ID;
+}
+
+void Gameobject::setId(int impact){
+    m_ID += impact;
+    std::cout << " hello de set Id " << std::endl;
+}
+
+bool Gameobject::isFocused() const
+{
+    return focused;
+}
+
+void Gameobject::setFocused(bool value)
+{
+    focused = value;
+}
+
+bool Gameobject::isAccessible() const {
+    return m_accessible;
+}
+
+void Gameobject::setAccessible(bool value){
+    m_accessible = value;
+}
+
+void Gameobject::setDirectory(){
     switch(m_ID){
     case(1): m_directory=":/Res/Terrains/plain.gif"; break;
     case(2): m_directory=":/Res/Terrains/mountain.gif"; break;
@@ -81,72 +156,6 @@ Gameobject::Gameobject(int x, int y, int ID): m_posX(x), m_posY(y), m_ID(ID), fo
 
     default: std::cout << "Type inconnu, ID : "<< m_ID <<  std::endl; break;
     }
-}
-Gameobject::Gameobject()
-{
-}
-
-string Gameobject::getDirectory() const{
-    return m_directory;
-}
-
-int Gameobject::getPosX() const
-{
-    return m_posX;
-}
-
-int Gameobject::getPosY() const
-{
-    return m_posY;
-}
-
-void Gameobject::setPosX(int value)
-{
-    if (value > 20){
-        m_posX = 20;
-    }
-    else if ( value < 0){
-        m_posX = 0;
-    }
-    else {
-        m_posX = value;
-    }
-}
-
-void Gameobject::setPosY(int value)
-{
-    if ( value > 16){
-        m_posY = 16;
-    }
-    else if ( value < 0){
-        m_posY = 0;
-    }
-    else {
-        m_posY = value;
-    }
-}
-
-int Gameobject::getId() const
-{
-    return m_ID;
-}
-
-bool Gameobject::isFocused() const
-{
-    return focused;
-}
-
-void Gameobject::setFocused(bool value)
-{
-    focused = value;
-}
-
-bool Gameobject::isAccessible() const {
-    return m_accessible;
-}
-
-void Gameobject::setAccessible(bool value){
-    m_accessible = value;
 }
 
 

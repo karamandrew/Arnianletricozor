@@ -9,4 +9,10 @@ int Terrain::getDefense()
 {
     return m_defense;
 }
+int Terrain::getPtCapture(){
+    return  m_PtCapture;
+}
+void Terrain::setPtCapture(int impact){
+    m_PtCapture += impact;
+}
 

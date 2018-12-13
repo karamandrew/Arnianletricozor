@@ -128,7 +128,7 @@ void MainWindow::updateMoneyTeam(int moneyTeamT, int moneyTeamF) {
     std::string moneyT = std::to_string(moneyTeamT);
     std::string moneyF = std::to_string(moneyTeamF);
     labelMoneyT->setText("MONEY : " + QString::fromStdString(moneyT) );
-    labelMoneyF->setText( "MONEY : " + QString::fromStdString(moneyT));
+    labelMoneyF->setText( "MONEY : " + QString::fromStdString(moneyF));
 }
 
 void MainWindow::updateTurn(bool activeTurn){
