@@ -331,7 +331,9 @@ void Game::turnChange(){
         u->setFocused(false);
     }
     setMapObjectfalse();
+
     capture(activeTurn);
+    cureUnit(activeTurn);
     activeTurn=!activeTurn;
     updateMoneyTeam(activeTurn);
     window->updateTurn(activeTurn);
@@ -356,15 +358,56 @@ void Game::turnChange(){
     window->redraw();
 }
 
+void Game::cureUnit(bool turn){
+    for (Unite* u:unite){
+        int x = u->getPosX();
+        int y = u->getPosY();
+        int unitLife = u->getVie();
+        int mapId = getmapId(x,y);
+        char typeMove = u->getTypeMovement();
+        bool team = u->isTeam();
+        int cout = u->getPrix()/10;
+        if (unitLife < 10){
+            if (typeMove == 'f' || typeMove == 'b' || typeMove == 't' || typeMove == 'w'){
+                if ( (!turn) && (team)){ //Orange
+                    if (mapId == 38 || mapId == 39){
+                        u->setVie(2);
+                        setMoney(true, -cout);
+                    }
+                }
+                else { // Bleu
+                    if (mapId == 43 || mapId == 44){
+                        u->setVie(2);
+                        setMoney(false, -cout);
+                     }
+                }
+            }
+            if (typeMove == 'a'){
+                if ( (!turn) && (team)){ //Orange
+                    if (mapId == 40){
+                        u->setVie(2);
+                        setMoney(true,-cout);
+                    }
+                }
+                else { // Bleu
+                    if (mapId == 45){
+                        u->setVie(2);
+                        setMoney(false, -cout);
+                    }
+               }
+            }
+        }
+    }
+}
+
 void Game::capture(bool turn){
-    std::cout << "tour : " << turn << std::endl;
     for(Unite* u: unite){
         int IDu = u->getId();
         int x = u->getPosX();
         int y = u->getPosY();
         int mapId = getmapId(x,y);
         int impact = u->getVie();
-        std::cout << "team u " << u->isTeam() << std::endl;
+
         int Ptrestant;
         if ( IDu == 200 || IDu == 201 || IDu == 300 || IDu == 301 ){ // INfantry or mech
             if ( !turn) { // tour des oranges

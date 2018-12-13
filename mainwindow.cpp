@@ -108,7 +108,6 @@ Terrain& MainWindow::getMapObject(int i, int j)
 
 void MainWindow::changeTurn()
 {
-    std::cout << " SLot change turn" << std::endl;
     Game& game = Game::Instance();
     game.turnChange();
 }

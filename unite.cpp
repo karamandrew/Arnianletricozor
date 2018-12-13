@@ -67,6 +67,14 @@ int Unite::getVie()
     return m_vie;
 }
 
+void Unite::setVie(int impact){
+    m_vie += impact;
+}
+
+int Unite::getPrix(){
+    return m_prix;
+}
+
 char Unite::getTypeMovement()
 {
     return m_deplacementype;

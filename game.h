@@ -43,6 +43,8 @@ public:
 
     void giveBuildingsPtCapture();
 
+    void cureUnit(bool turn);
+
     ~Game();
 
 private:

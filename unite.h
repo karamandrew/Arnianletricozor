@@ -14,7 +14,9 @@ public:
     bool setAttackable(bool set);
     void receiveDamage(double dmg);
     int getVie();
+    void setVie(int impact);
     char getTypeMovement(); // Si fonctions redéfinies dans les classes filles -> ajouté virtual ici
+    int getPrix();
 
 private:
     int m_MP;
