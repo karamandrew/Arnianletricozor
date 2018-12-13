@@ -7,7 +7,6 @@
 #include "terrain.h"
 #include "dialogunitprice.h"
 
-
 MainWindow::MainWindow(QWidget *parent) :
     QMainWindow(parent),
     ui(new Ui::MainWindow)
@@ -28,10 +27,8 @@ MainWindow::MainWindow(QWidget *parent) :
         showUnitPriceButton->setGeometry(50, 450, 100, 50);
         QObject::connect(showUnitPriceButton, SIGNAL(clicked()), this, SLOT(showPrice()));
 
-     /*
-     labelMoneyT = new QLabel(moneyT.c_str(), this);
+     labelMoneyT = new QLabel("lol", this);
          labelMoneyT->setGeometry(100,100, 200, 200);
-     */
 }
 
 MainWindow::~MainWindow()
@@ -39,7 +36,7 @@ MainWindow::~MainWindow()
     delete ui;
 }
 
-void MainWindow::createMapObjects(){
+void MainWindow::createMapObjects() {
     map->setmapobject();
 }
 
@@ -65,16 +62,11 @@ void MainWindow::showPrice(){
     priceDialog->show();
 }
 
-/*
-
-void MainWindow::updateMoneyTeam(int moneyTeamT, int moneyTeamF){
+void MainWindow::updateMoneyTeam(int moneyTeamT, int moneyTeamF) {
     std::string moneyT = std::to_string(moneyTeamT);
     std::string moneyF = std::to_string(moneyTeamF);
-    labelMoneyT->
+    labelMoneyT->setText(QString::fromStdString(moneyT));
 }
-
-*/
-
 
 
 

@@ -38,12 +38,10 @@ private:
     Map *map;
     QPushButton *changeTurnButton = nullptr;
     QPushButton *showUnitPriceButton = nullptr;
-    QLabel *labelArnian = nullptr;
+    QLabel* labelArnian = nullptr;
     //string m_turn;
-    QLabel *labelMoneyT = nullptr;
-    QLabel *labelMoneyF = nullptr;
-
-
+    QLabel* labelMoneyT = nullptr;
+    QLabel labelMoneyF;
 };
 
 #endif // MAINWINDOW_H

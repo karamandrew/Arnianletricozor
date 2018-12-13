@@ -376,7 +376,7 @@ void Game::setMoney(bool team, int impact){
     else{
         moneyTeamF += impact;
     }
-    //window->updateMoneyTeam(moneyTeamT, moneyTeamF);
+    window->updateMoneyTeam(moneyTeamT, moneyTeamF);
 }
 
 Unite* Game::getUnite(int x, int y){
@@ -619,7 +619,7 @@ int Game::attackChart(Unite* u, Unite* v)
         case (208) : return 65; //helico
         case (209) : return 0; //fighter
         case (210) : return 0; //bomber
-        }
+    }
     case (209): switch (d){ //fighter
         case (200) : return 0; //inf
         case (201) : return 0; //mech
@@ -632,7 +632,7 @@ int Game::attackChart(Unite* u, Unite* v)
         case (208) : return 100; //helico
         case (209) : return 100; //fighter
         case (210) : return 55; //bomber
-        }
+    }
     case (210): switch (d){ //helico
         case (200) : return 110; //inf
         case (201) : return 110; //mech
@@ -644,9 +644,11 @@ int Game::attackChart(Unite* u, Unite* v)
         case (207) : return 105; //neotank
         case (208) : return 0; //helico
         case (209) : return 0; //fighter
-        case (210) : return 0; //bomber
+        case 210: return 0; //bomber
+        default: return 0;
         }
     }
+    return 0;
 }
 
 void Game::attack(QMouseEvent *e)
