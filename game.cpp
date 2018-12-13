@@ -36,7 +36,7 @@ void Game::move(QMouseEvent *e)
     float x = floorf(e->x()/40);
     float y = floorf(e->y()/40);
     int m = (int)x-7;
-    int t = (int)y-2;
+    int t = (int)y-1;
 
 
     if ( m >= 0 && m < 21 && t >= 0 && t < 17
@@ -123,7 +123,7 @@ void Game::selectUnits(QMouseEvent *e){
     float x = floorf(e->x()/40);
     float y = floorf(e->y()/40);
     int m = (int)x-7;
-    int t = (int)y-2;
+    int t = (int)y-1;
     int IDmap = getmapId(m, t);
 
     if (getIndexUnit(m,t) == -1){
@@ -162,7 +162,7 @@ void Game::selectUnits(QMouseEvent *e){
 void Game::start(MainWindow &wind)
 {
     window = &wind;
-    window->setFixedSize(1200,860);
+    window->setFixedSize(1400,865);
     window->createMapObjects();
 
     //Infantry *osinf = new Infantry( 13, 13, 300, true); unite.push_back(osinf);
@@ -656,7 +656,7 @@ void Game::attack(QMouseEvent *e)
     float x = floorf(e->x()/40);
     float y = floorf(e->y()/40);
     int m = (int)x-7;
-    int t = (int)y-2;
+    int t = (int)y-1;
 
     if(getIndexUnit(m,t)!=-1){
         if(unite[getIndexUnit(m,t)]->isAttackable() || unite[getIndexUnit(m,t)]->isFocused()){

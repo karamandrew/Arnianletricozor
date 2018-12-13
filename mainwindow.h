@@ -8,6 +8,7 @@
 #include "map.h"
 #include "terrain.h"
 #include "dialogunitprice.h"
+#include "dialogshowrules.h"
 
 
 
@@ -32,17 +33,29 @@ public:
 private slots :
     void changeTurn();
     void showPrice();
+    void showRules();
 
 private:
     Ui::MainWindow *ui;
     DialogUnitPrice *priceDialog;
+    DialogShowRules *rulesDialog;
     Map *map;
     QPushButton *changeTurnButton = nullptr;
     QPushButton *showUnitPriceButton = nullptr;
+    QPushButton *showRulesButton= nullptr;
     QLabel* labelArnian = nullptr;
     bool m_turn;
     QLabel* labelMoneyT = nullptr;
     QLabel* labelMoneyF = nullptr;
+    QLabel* labelNameT= nullptr;
+    QLabel* labelNameF= nullptr;
+    QLabel* labelTurn= nullptr;
+    QLabel* labelT1= nullptr;
+    QLabel* labelT2= nullptr;
+    QLabel* labelT3= nullptr;
+    QLabel* labelT4= nullptr;
+    QLabel* labelDeviseT= nullptr;
+    QLabel* labelDeviseF=nullptr;
 
 };
 

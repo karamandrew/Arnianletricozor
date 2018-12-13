@@ -35,7 +35,7 @@ void Map::paintEvent(QPaintEvent *event)
     for(int i=0 ;i<21;i++){
         int m = i+7;
         for (int j=0; j<17; j++){
-           int t = j+2;
+           int t = j+1;
            QPixmap pictureMap(mapObject[i][j]->getDirectory().c_str()); //c_str permet de régler un probleme de string pour qpixmap
            painter.drawPixmap(m*40, t*40, 40, 40, pictureMap);
 
