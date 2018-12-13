@@ -663,21 +663,29 @@ void Game::attack(QMouseEvent *e)
 
             for(Unite* a: unite){
                 if (a->isFocused()){
-                                std::cout << "Point de vie unite attaquee avant " <<unite[getIndexUnit(m,t)]->getVie() << std::endl;
-                                unite[getIndexUnit(m,t)]->receiveDamage(calculDegat(a,unite[getIndexUnit(m,t)]));
-                                std::cout << "Point de vie unite attaquee apres " <<unite[getIndexUnit(m,t)]->getVie() << std::endl;
-                                a->setTurn(false);
-                                if(unite[getIndexUnit(m,t)]->getVie()<=0){
-                                    delete unite[getIndexUnit(m,t)];
-                                    unite.erase(unite.begin() + getIndexUnit(unite[getIndexUnit(m,t)]->getPosX(), unite[getIndexUnit(m,t)]->getPosY()));
-                                    window->redraw();
-                                }
-                                for(Unite* set:unite){
-                                    set->setAttackable(false);
-                                    set->setFocused(false);
-                                }
-                                window->redraw();
-                                return;
+
+                    std::cout << "Point de vie unite attaquee avant " <<unite[getIndexUnit(m,t)]->getVie() << std::endl;
+                    unite[getIndexUnit(m,t)]->receiveDamage(calculDegat(a,unite[getIndexUnit(m,t)]));  //attaque
+                    std::cout << "Point de vie unite attaquee apres " <<unite[getIndexUnit(m,t)]->getVie() << std::endl;
+
+                    std::cout << "Point de vie unite qui attaque avant " <<a->getVie() << std::endl;
+                    a->receiveDamage(calculDegat(unite[getIndexUnit(m,t)],a));  //contreattaque
+                    std::cout << "Point de vie unite qui attaque apres " <<a->getVie() << std::endl;
+
+                    a->setTurn(false);
+
+                    if(unite[getIndexUnit(m,t)]->getVie()<=0){
+                        delete unite[getIndexUnit(m,t)];
+                        unite.erase(unite.begin() + getIndexUnit(unite[getIndexUnit(m,t)]->getPosX(), unite[getIndexUnit(m,t)]->getPosY()));
+                        window->redraw();
+                    }
+
+                    for(Unite* set:unite){
+                        set->setAttackable(false);
+                        set->setFocused(false);
+                    }
+                    window->redraw();
+                    return;
 
                 }
                 else if(a->isFocused() && a->isTeam()==activeTurn){
