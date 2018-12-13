@@ -369,13 +369,13 @@ void Game::cureUnit(bool turn){
         int cout = u->getPrix()/10;
         if (unitLife < 10){
             if (typeMove == 'f' || typeMove == 'b' || typeMove == 't' || typeMove == 'w'){
-                if ( (!turn) && (team)){ //Orange
+                if ( !turn && team){ //Orange
                     if (mapId == 38 || mapId == 39){
                         u->setVie(2);
                         setMoney(true, -cout);
                     }
                 }
-                else { // Bleu
+                if ( turn && !team ) { // Bleu
                     if (mapId == 43 || mapId == 44){
                         u->setVie(2);
                         setMoney(false, -cout);
@@ -383,13 +383,13 @@ void Game::cureUnit(bool turn){
                 }
             }
             if (typeMove == 'a'){
-                if ( (!turn) && (team)){ //Orange
+                if ( !turn && team){ //Orange
                     if (mapId == 40){
                         u->setVie(2);
                         setMoney(true,-cout);
                     }
                 }
-                else { // Bleu
+                if ( turn && !team ) { // Bleu
                     if (mapId == 45){
                         u->setVie(2);
                         setMoney(false, -cout);
@@ -407,10 +407,10 @@ void Game::capture(bool turn){
         int y = u->getPosY();
         int mapId = getmapId(x,y);
         int impact = u->getVie();
-
+        int team = u->isTeam();
         int Ptrestant;
         if ( IDu == 200 || IDu == 201 || IDu == 300 || IDu == 301 ){ // INfantry or mech
-            if ( !turn) { // tour des oranges
+            if ( !turn && team ) { // tour des oranges
                 if ( mapId == 34 || mapId == 35 || mapId == 36 ){
                     window->getMapObject(x,y).setPtCapture(-impact);
                     Ptrestant = window->getMapObject(x,y).getPtCapture();
@@ -422,7 +422,7 @@ void Game::capture(bool turn){
                     if ( Ptrestant <= 0 ) { window->getMapObject(x,y).setId(-5); window->getMapObject(x,y).setPtCapture(20); }
                 }
             }
-            else { // tour des bleus
+            if (turn && !team) { // tour des bleus
                 if ( mapId == 34 || mapId == 35 || mapId == 36 ){
                      window->getMapObject(x,y).setPtCapture(-impact);
                      Ptrestant = window->getMapObject(x,y).getPtCapture();
