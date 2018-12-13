@@ -58,10 +58,10 @@ private:
     int moneyTeamF = 0;  // Blue
     int moneyTeamT = 0; // Orange
 
-    DialogBuyTerre *diaBuyTerreOS;
-    DialogBuyAir *diaBuyAirOS;
-    DialogBuyTerre *diaBuyTerreBM;
-    DialogBuyAir *diaBuyAirBM;
+    DialogBuyTerre *diaBuyTerreOS = nullptr;
+    DialogBuyAir *diaBuyAirOS = nullptr;
+    DialogBuyTerre *diaBuyTerreBM = nullptr;
+    DialogBuyAir *diaBuyAirBM = nullptr;
 
 
 

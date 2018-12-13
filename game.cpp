@@ -165,7 +165,10 @@ void Game::start(MainWindow &wind)
     window->setFixedSize(1200,860);
     window->createMapObjects();
 
+    Infantry *osinf = new Infantry( 13, 13, 300, true); unite.push_back(osinf);
+    Infantry *bminf = new Infantry( 12, 12, 200, false); unite.push_back(bminf);
     turnChange();  // NE PAS ENLEVER PERMET DE SET UP LA MONEY DES TEAM
+
 
     window->redraw();
 }
@@ -181,25 +184,6 @@ int Game::getIndexUnit(int x, int y)
     }
     return -1;
 }
-
-/*
-
-class Pos{
-public:
-    int x;
-    int y;
-};
-
-Pos operator+(Pos const& a, Pos const& b){
-    Pos n;
-    n.x = a.x + b.x;
-    n.y = a.y + b.y;
-    return n;
-}
-
-*/
-
-// Pos{1,2} + Pos{3,4}
 
 void Game::calculatePosAccessible(int currentX, int currentY, int indexUnit, int mp){
 
@@ -694,7 +678,7 @@ void Game::attack(QMouseEvent *e)
                                 window->redraw();
                             }
                         }
-                else if(a->isAttackable() && a->isTeam()==activeTurn){
+                else if(a->isFocused() && a->isTeam()==activeTurn){
                     for(Unite* set:unite){
                         set->setAttackable(false);
                         set->setTurn(false);

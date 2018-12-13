@@ -44,9 +44,9 @@ void Map::paintEvent(QPaintEvent *event)
                painter.drawPixmap(m*40, t*40, 40, 40, accessible);
            }
 
-           if (mapObject[i][j]->isFocused()){
-               painter.drawPixmap( m*40, t*40, 40, 40, focused);
-           }
+           //if (mapObject[i][j]->isFocused()){
+             //  painter.drawPixmap( m*40, t*40, 40, 40, focused);
+        //   }
 
            if (game.getIndexUnit(i,j) != -1) {
                QPixmap pictureUnits(game.getUnite(i,j)->getDirectory().c_str());
@@ -66,7 +66,7 @@ void Map::paintEvent(QPaintEvent *event)
 
                if (game.getUnite(i,j)->isAttackable()) {    // Ne fonctionne pas parce que ce n'est pas un vecteur de pointeur, ça crash
                    //QPixmap focused(":/Res/Animations/Focused.png");
-                   painter.drawPixmap(m*40, t*40, 40, 40, focused);
+                   painter.drawPixmap(m*40, t*40, 40, 40, accessible);
                    //painter.drawRect(m*40, t*40, 38, 38); // Fonctionne
                }
            }

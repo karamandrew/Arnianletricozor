@@ -29,7 +29,8 @@ void DialogBuyAir::getInfo(int x, int y, bool value){
 void DialogBuyAir::on_spinBox_editingFinished()
 {
     Game& game = Game::Instance();
-    game.createUnit( m_x, m_y, m_type, m_value, m_unitWanted);
-    this->close();
-
+    if (m_unitWanted != 0){
+        this->close();
+        game.createUnit( m_x, m_y, m_type, m_value, m_unitWanted);
+    }
 }
