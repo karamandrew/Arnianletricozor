@@ -139,7 +139,7 @@ void MainWindow::updateTurn(bool activeTurn){
     }
     else {
         labelTurn->setText("Blue Moon, à vous de jouer!");
-        labelTurn->setStyleSheet(" QLabel {font: 15 pt ;color : blue; }");
+        labelTurn->setStyleSheet(" QLabel {font: 15pt ;color : blue; }");
     }
 }
 
