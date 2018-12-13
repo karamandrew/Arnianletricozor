@@ -27,6 +27,7 @@ public:
     void createMapObjects();
     Terrain& getMapObject(int i, int j);
     void updateMoneyTeam(int teamT, int teamF);
+    void updateTurn(bool turn);
 
 private slots :
     void changeTurn();
@@ -39,9 +40,10 @@ private:
     QPushButton *changeTurnButton = nullptr;
     QPushButton *showUnitPriceButton = nullptr;
     QLabel* labelArnian = nullptr;
-    //string m_turn;
+    bool m_turn;
     QLabel* labelMoneyT = nullptr;
-    QLabel labelMoneyF;
+    QLabel* labelMoneyF = nullptr;
+
 };
 
 #endif // MAINWINDOW_H

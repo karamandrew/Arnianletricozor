@@ -165,8 +165,8 @@ void Game::start(MainWindow &wind)
     window->setFixedSize(1200,860);
     window->createMapObjects();
 
-    Infantry *osinf = new Infantry( 13, 13, 300, true); unite.push_back(osinf);
-    Infantry *bminf = new Infantry( 12, 12, 200, false); unite.push_back(bminf);
+    //Infantry *osinf = new Infantry( 13, 13, 300, true); unite.push_back(osinf);
+    //Infantry *bminf = new Infantry( 12, 12, 200, false); unite.push_back(bminf);
     turnChange();  // NE PAS ENLEVER PERMET DE SET UP LA MONEY DES TEAM
 
 
@@ -324,6 +324,7 @@ int Game::getmapId(int x, int y){
 void Game::turnChange(){
     activeTurn=!activeTurn;
     updateMoneyTeam(activeTurn);
+    window->updateTurn(activeTurn);
     for(Unite* u : unite) {
         if(activeTurn){
             if(u->isTeam()){
@@ -342,7 +343,6 @@ void Game::turnChange(){
             }
         }
     }
-    std::cout << "tour : " << activeTurn << std::endl;
     window->redraw();
 }
 

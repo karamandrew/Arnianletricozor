@@ -29,6 +29,9 @@ MainWindow::MainWindow(QWidget *parent) :
 
      labelMoneyT = new QLabel("lol", this);
          labelMoneyT->setGeometry(100,100, 200, 200);
+
+     labelMoneyF = new QLabel("",this);
+        labelMoneyT->setGeometry(400,100, 200, 200);
 }
 
 MainWindow::~MainWindow()
@@ -65,8 +68,21 @@ void MainWindow::showPrice(){
 void MainWindow::updateMoneyTeam(int moneyTeamT, int moneyTeamF) {
     std::string moneyT = std::to_string(moneyTeamT);
     std::string moneyF = std::to_string(moneyTeamF);
-    labelMoneyT->setText(QString::fromStdString(moneyT));
+    labelMoneyT->setText(" Tune Orange : " + QString::fromStdString(moneyT) );
+    labelMoneyF->setText( " Tune bleu : " + QString::fromStdString(moneyT));
 }
+
+void MainWindow::updateTurn(bool activeTurn){
+    m_turn = activeTurn; // true si tour orange et false si tour bleu
+    if (m_turn){
+        //labelTurn->setText("Tour des oranges");
+    }
+    else {
+        //labelTurn->setText("Tour des bleus");
+    }
+}
+
+
 
 
 
