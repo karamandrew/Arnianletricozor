@@ -11,12 +11,18 @@ public:
     bool isTurn();
     bool isTeam();
     bool isAttackable();
-    bool setAttackable(bool set);
+    void setAttackable(bool set);
     void receiveDamage(double dmg);
     int getVie();
     void setVie(int impact);
     char getTypeMovement(); // Si fonctions redéfinies dans les classes filles -> ajouté virtual ici
     int getPrix();
+
+    bool isFusionnable();
+    void setFusionnable(bool set);
+
+
+
 
 private:
     int m_MP;
@@ -26,7 +32,8 @@ private:
     bool m_team;
     char m_deplacementype;
     bool m_turn=true;
-    //bool m_fusionnable = false;
+
+    bool m_fusionnable = false;
 };
 
 #endif // UNITE_H

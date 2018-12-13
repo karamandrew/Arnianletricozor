@@ -30,7 +30,7 @@ bool Unite::isAttackable()
     return m_attackable;
 }
 
-bool Unite::setAttackable(bool set)
+void Unite::setAttackable(bool set)
 {
     m_attackable=set;
 }
@@ -79,4 +79,12 @@ int Unite::getPrix(){
 char Unite::getTypeMovement()
 {
     return m_deplacementype;
+}
+
+bool Unite::isFusionnable(){
+    return m_fusionnable;
+}
+
+void Unite::setFusionnable(bool set){
+    m_fusionnable = set;
 }

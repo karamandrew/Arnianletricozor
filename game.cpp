@@ -59,6 +59,14 @@ void Game::move(QMouseEvent *e)
         unite[indexUnitFoc]->setTurn(false);
     }
 
+    if ( m>=0 && m < 21 && t >= 0 && t < 17
+         && getIndexUnit(Xfoc,Yfoc) != -1
+         && getIndexUnit(m,t) != -1
+         && unite[getIndexUnit(m,t)]->isFusionnable() ) {
+
+         fusion(unite[getIndexUnit(Xfoc,Yfoc)],unite[getIndexUnit(m,t)]);
+    }
+
     else if (getIndexUnit(m,t) != -1) {
         setUnitefocusedfalse();
         setMapObjectfalse();
@@ -72,6 +80,28 @@ void Game::move(QMouseEvent *e)
         }
     }
     window->redraw();
+}
+
+void Game::fusion(Unite* u1, Unite* u2){
+    int bonusLife = u1->getVie();
+    //if (newLife > 10) { newLife = 10; }
+    //int newPosX = u2->getPosX();
+    //int newPosY = u2->getPosY();
+    //bool newTeam = u1->isTeam();
+    //int newID = u1->getId();
+
+    int indexu1 = getIndexUnit(u1->getPosX(),u1->getPosY());
+    delete u1;
+    unite.erase(unite.begin() + indexu1);
+
+    u2->setVie(bonusLife);
+
+    //int indexu2 = getIndexUnit(u2->getPosX(),u2->getPosY());
+    //delete u2;
+    //unite.erase(unite.begin() + indexu2);
+
+    window->redraw();
+
 }
 
 void Game::createUnit(int x, int y, char type, bool team, int unitWanted){
@@ -224,27 +254,33 @@ void Game::calculatePosAccessible(int currentX, int currentY, int indexUnit, int
     around[3][1] = currentX;
     around[3][2] = currentY+1;
 
-    if(around[0][0] <= mpleft && !isThereAnotherUnite(around[0][1], around[0][2])){
+    if(around[0][0] <= mpleft && !isThereAnotherUnite(around[0][1], around[0][2], indexUnit)){
         calculatePosAccessible(around[0][1], around[0][2], indexUnit, mpleft-around[0][0]);
     }
 
-    if(around[1][0] <= mpleft && !isThereAnotherUnite(around[1][1], around[1][2])){
+    if(around[1][0] <= mpleft && !isThereAnotherUnite(around[1][1], around[1][2], indexUnit)){
         calculatePosAccessible(around[1][1], around[1][2], indexUnit, mpleft-around[1][0]);
     }
 
-    if(around[2][0] <= mpleft && !isThereAnotherUnite(around[2][1], around[2][2])){
+    if(around[2][0] <= mpleft && !isThereAnotherUnite(around[2][1], around[2][2], indexUnit)){
         calculatePosAccessible(around[2][1], around[2][2], indexUnit, mpleft-around[2][0]);
     }
 
-    if(around[3][0] <= mpleft && !isThereAnotherUnite(around[3][1], around[3][2])){
+    if(around[3][0] <= mpleft && !isThereAnotherUnite(around[3][1], around[3][2], indexUnit)){
         calculatePosAccessible(around[3][1], around[3][2], indexUnit, mpleft-around[3][0]);
     }
 }
 
-bool Game::isThereAnotherUnite(int x, int y)
+bool Game::isThereAnotherUnite(int x, int y, int indexUnitFoc)
 {
+
     for(Unite* u : unite) {
         if (u->getPosX()==x && u->getPosY()==y){
+            if ( unite[indexUnitFoc]->getId() ==  u->getId() && unite[indexUnitFoc]->getVie() < 10 && u->getVie() < 10 ) {
+                u->setFusionnable(true);
+                std:cout << "set fusionnable mom" << std::endl;
+            }
+            std::cout << " there is another unit fdp" << std::endl;
             return true;
         }
     }

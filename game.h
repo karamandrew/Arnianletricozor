@@ -21,7 +21,7 @@ public:
     int getMalusMove(char moveType, int terrainID);
     int getmapId(int x, int y);
     Unite* getUnite(int x, int y);
-    bool isThereAnotherUnite(int x, int y);
+    bool isThereAnotherUnite(int x, int y, int indexUnitFoc);
 
     void setMapObjectfalse();
     void setTurn();
@@ -44,6 +44,8 @@ public:
     void giveBuildingsPtCapture();
 
     void cureUnit(bool turn);
+
+    void fusion(Unite* u1, Unite* u2);
 
     ~Game();
 
