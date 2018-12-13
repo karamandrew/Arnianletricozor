@@ -106,5 +106,6 @@
         <file>Res/Units/osrecon.gif</file>
         <file>Res/Units/ostank.gif</file>
         <file>Res/Animations/pause.png</file>
+        <file>Res/Animations/advanced.git</file>
     </qresource>
 </RCC>
