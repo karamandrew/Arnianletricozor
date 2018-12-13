@@ -165,8 +165,8 @@ void Game::start(MainWindow &wind)
     window->setFixedSize(1400,865);
     window->createMapObjects();
 
-    //Infantry *osinf = new Infantry( 13, 13, 300, true); unite.push_back(osinf);
-    //Infantry *bminf = new Infantry( 12, 12, 200, false); unite.push_back(bminf);
+    Infantry *osinf = new Infantry( 13, 13, 300, true); unite.push_back(osinf);
+    Infantry *bminf = new Infantry( 12, 12, 200, false); unite.push_back(bminf);
     turnChange();  // NE PAS ENLEVER PERMET DE SET UP LA MONEY DES TEAM
 
 
@@ -257,12 +257,12 @@ void Game::setUnitefocusedfalse()
 
     double Game::calculDegat(Unite* u, Unite* v)
     {
-        int B = attackChart(u,v);
-        int A_HP = u->getVie();
-        int D_TR = window->getMapObject(v->getPosX(), v->getPosY()).getDefense();
-        int D_HP = v->getVie();
+        double B = attackChart(u,v);
+        double A_HP = u->getVie();
+        double D_TR = window->getMapObject(v->getPosX(), v->getPosY()).getDefense();
+        double D_HP = v->getVie();
         std::cerr << (B * ( A_HP / 10 ) * ( ( 100 - D_TR * D_HP) / 100 ))/10 << std::endl;
-        return  (B * ( A_HP / 10 ) * ( ( 100 - D_TR * D_HP) / 100 ))/10 ;
+        return  (B *( A_HP / 10 ) * ( ( 100 - D_TR * D_HP) / 100 ))/10 ;
 
         //return attack(u, v) * u->getVie()/10*(100-window->getMapObject(v->getPosX(), v->getPosY()).getDefense()*v->getVie())/100;
 
@@ -658,15 +658,15 @@ void Game::attack(QMouseEvent *e)
     int m = (int)x-7;
     int t = (int)y-1;
 
-    if(getIndexUnit(m,t)!=-1){
-        if(unite[getIndexUnit(m,t)]->isAttackable() || unite[getIndexUnit(m,t)]->isFocused()){
+    if(getIndexUnit(m,t)!=-1 && !unite[getIndexUnit(m,t)]->isFocused()){
+        if(unite[getIndexUnit(m,t)]->isAttackable()){
 
             for(Unite* a: unite){
-                if (a->isFocused() && a->isTeam()!=activeTurn){
-                         if (unite[getIndexUnit(m,t)]->isTeam()!=a->isTeam()){
+                if (a->isFocused()){
                                 std::cout << "Point de vie unite attaquee avant " <<unite[getIndexUnit(m,t)]->getVie() << std::endl;
                                 unite[getIndexUnit(m,t)]->receiveDamage(calculDegat(a,unite[getIndexUnit(m,t)]));
                                 std::cout << "Point de vie unite attaquee apres " <<unite[getIndexUnit(m,t)]->getVie() << std::endl;
+                                a->setTurn(false);
                                 if(unite[getIndexUnit(m,t)]->getVie()<=0){
                                     delete unite[getIndexUnit(m,t)];
                                     unite.erase(unite.begin() + getIndexUnit(unite[getIndexUnit(m,t)]->getPosX(), unite[getIndexUnit(m,t)]->getPosY()));
@@ -674,12 +674,12 @@ void Game::attack(QMouseEvent *e)
                                 }
                                 for(Unite* set:unite){
                                     set->setAttackable(false);
-                                    set->setTurn(false);
                                     set->setFocused(false);
                                 }
                                 window->redraw();
-                            }
-                        }
+                                return;
+
+                }
                 else if(a->isFocused() && a->isTeam()==activeTurn){
                     for(Unite* set:unite){
                         set->setAttackable(false);
@@ -690,6 +690,17 @@ void Game::attack(QMouseEvent *e)
 
                 }
             }
+        }
+    }
+    else{
+        for(Unite* a: unite){
+
+            if(a->isAttackable()){
+                for(Unite* b: unite){
+                    b->setFocused(false);
+                }
+            }
+            a->setAttackable(false);
         }
     }
     /*std::cout << "Point de vie unite attaquee avant " <<Enemyclose(unite[indexUnitFoc])->getVie() << std::endl;
