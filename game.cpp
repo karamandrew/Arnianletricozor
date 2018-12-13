@@ -322,6 +322,13 @@ int Game::getmapId(int x, int y){
 }
 
 void Game::turnChange(){
+    //RESET TOUTES LES UNITES ET LA MAP
+    for(Unite* u: unite){
+        u->setAttackable(false);
+        u->setFocused(false);
+    }
+    setMapObjectfalse();
+
     activeTurn=!activeTurn;
     updateMoneyTeam(activeTurn);
     window->updateTurn(activeTurn);
