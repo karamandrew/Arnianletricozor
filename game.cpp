@@ -51,12 +51,10 @@ void Game::move(QMouseEvent *e)
 
         setMapObjectfalse();
         if (Enemyclose(unite[indexUnitFoc])){
-            std::cout << " Ennemi a cote " << std::endl;
             window->redraw();
             unite[indexUnitFoc]->setTurn(false);
             return;
-        }
-       // indexUnitFoc = (int)getIndexUnit(Xfoc,Yfoc);
+        };
         unite[indexUnitFoc]->setFocused(false);
         unite[indexUnitFoc]->setTurn(false);
     }
@@ -125,8 +123,6 @@ void Game::selectUnits(QMouseEvent *e){
     int m = (int)x-7;
     int t = (int)y-1;
     int IDmap = getmapId(m, t);
-
-    std::cout << " Test pour capture " << window->getMapObject(m,t).getPtCapture() << std::endl;
 
     if (getIndexUnit(m,t) == -1){
 
@@ -281,17 +277,6 @@ void Game::setUnitefocusedfalse()
         }
         std::cerr << (B * ( A_HP / 10 ) * ( ( 100 - D_TR * D_HP) / 100 ))/10 << std::endl;
         return  (B *( A_HP / 10 ) * ( ( 100 - D_TR * D_HP) / 100 ))/10 ;
-
-        //return attack(u, v) * u->getVie()/10*(100-window->getMapObject(v->getPosX(), v->getPosY()).getDefense()*v->getVie())/100;
-
-        /*Damage = B * A_HP / 10 * (100 - D_TR * D_HP) / 100
-
-Damage est exprimé sur 100, on doit donc diviser par 10 pour obtenir le nombre de points de vie.
-B, dépend des unités en jeu, (voir la matrice dans Damage Chart),
-A_HP, un entier entre 1 et 10, Points de vie de l'attaquant,
-D_TR, un entier entre 0 et 4, Points de défense lié au terrain (voir Terrain Chart) (toujours zéro pour les unités aériennes),
-D_HP, un entier entre 1 et 10, Points de vie du défenseur.*/
-
     }
 
 bool Game::Enemyclose(Unite* unit)
@@ -372,20 +357,21 @@ void Game::turnChange(){
 }
 
 void Game::capture(bool turn){
+    std::cout << "tour : " << turn << std::endl;
     for(Unite* u: unite){
         int IDu = u->getId();
         int x = u->getPosX();
         int y = u->getPosY();
         int mapId = getmapId(x,y);
         int impact = u->getVie();
+        std::cout << "team u " << u->isTeam() << std::endl;
         int Ptrestant;
         if ( IDu == 200 || IDu == 201 || IDu == 300 || IDu == 301 ){ // INfantry or mech
-            if (turn) { // tour des oranges
+            if ( !turn) { // tour des oranges
                 if ( mapId == 34 || mapId == 35 || mapId == 36 ){
                     window->getMapObject(x,y).setPtCapture(-impact);
                     Ptrestant = window->getMapObject(x,y).getPtCapture();
                     if ( Ptrestant <= 0 ) { window->getMapObject(x,y).setId(+4); window->getMapObject(x,y).setPtCapture(20); }
-                    std::cout << "hello" << std::endl;
                 }
                 if ( mapId == 43 || mapId == 44 || mapId == 45) {
                     window->getMapObject(x,y).setPtCapture(-impact);

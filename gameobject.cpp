@@ -57,7 +57,7 @@ int Gameobject::getId() const
 
 void Gameobject::setId(int impact){
     m_ID += impact;
-    std::cout << " hello de set Id " << std::endl;
+    setDirectory();
 }
 
 bool Gameobject::isFocused() const
