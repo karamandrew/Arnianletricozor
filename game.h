@@ -36,6 +36,8 @@ public:
 
 
     void createUnit(int x, int y, char type, bool team, int unitWanted);
+    void updateMoneyTeam(bool team);
+    void setMoney(bool team, int impact);
 
     ~Game();
 
@@ -53,8 +55,8 @@ private:
 
     bool activeTurn=false;
 
-    int moneyTeamF = 200000000;  // Blue
-    int moneyTeamT = 200000000; // Orange
+    int moneyTeamF = 0;  // Blue
+    int moneyTeamT = 0; // Orange
 
     DialogBuyTerre *diaBuyTerreOS;
     DialogBuyAir *diaBuyAirOS;

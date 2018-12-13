@@ -27,6 +27,11 @@ MainWindow::MainWindow(QWidget *parent) :
     showUnitPriceButton = new QPushButton("Show Units Prices", this);
         showUnitPriceButton->setGeometry(50, 450, 100, 50);
         QObject::connect(showUnitPriceButton, SIGNAL(clicked()), this, SLOT(showPrice()));
+
+     /*
+     labelMoneyT = new QLabel(moneyT.c_str(), this);
+         labelMoneyT->setGeometry(100,100, 200, 200);
+     */
 }
 
 MainWindow::~MainWindow()
@@ -50,6 +55,7 @@ Terrain& MainWindow::getMapObject(int i, int j)
 
 void MainWindow::changeTurn()
 {
+    std::cout << " SLot change turn" << std::endl;
     Game& game = Game::Instance();
     game.turnChange();
 }
@@ -58,6 +64,16 @@ void MainWindow::showPrice(){
     priceDialog = new  DialogUnitPrice(this);
     priceDialog->show();
 }
+
+/*
+
+void MainWindow::updateMoneyTeam(int moneyTeamT, int moneyTeamF){
+    std::string moneyT = std::to_string(moneyTeamT);
+    std::string moneyF = std::to_string(moneyTeamF);
+    labelMoneyT->
+}
+
+*/
 
 
 
