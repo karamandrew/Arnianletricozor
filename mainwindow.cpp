@@ -5,8 +5,7 @@
 #include <QPainter>
 #include <iostream>
 #include "terrain.h"
-#include "dialogunitprice.h"
-#include "dialogshowrules.h"
+
 
 MainWindow::MainWindow(QWidget *parent) :
     QMainWindow(parent),
@@ -28,6 +27,16 @@ MainWindow::MainWindow(QWidget *parent) :
     showUnitPriceButton = new QPushButton("Show Units Prices", this);
         showUnitPriceButton->setGeometry(15,760, 120, 50);
         QObject::connect(showUnitPriceButton, SIGNAL(clicked()), this, SLOT(showPrice()));
+
+    showCommandsButton = new QPushButton("Show commands", this);
+        showCommandsButton->setGeometry(15,700, 120, 50);
+        QObject::connect(showCommandsButton, SIGNAL(clicked()), this, SLOT(showCommands()));
+
+    languageButton = new QPushButton("Language", this);
+        languageButton->setGeometry(145,700, 120, 50);
+        QObject::connect(languageButton, SIGNAL(clicked()), this, SLOT(language()));
+
+
 
      labelArnian = new QLabel("©(AR)NIANLETRICOZORProduction", this);
          labelArnian->setGeometry(1150,730, 200, 200);
@@ -61,7 +70,7 @@ MainWindow::MainWindow(QWidget *parent) :
       labelT2= new QLabel("", this);
           labelT2->setText("---------------------------");
           labelT2->setStyleSheet("QLabel { font: 20pt ; color:orange}");
-          labelT2->setGeometry(15, 300, 300, 20);
+          labelT2->setGeometry(15, 225, 300, 20);
 
        labelT3= new QLabel("", this);
           labelT3->setText("---------------------------");
@@ -71,7 +80,7 @@ MainWindow::MainWindow(QWidget *parent) :
        labelT4= new QLabel("", this);
           labelT4->setText("---------------------------");
           labelT4->setStyleSheet("QLabel { font: 20pt ; color:blue}");
-          labelT4->setGeometry(1150, 300, 300, 20);
+          labelT4->setGeometry(1150, 225, 300, 20);
 
     labelDeviseF= new QLabel("", this);
         labelDeviseF->setText("Make America great again");
@@ -120,6 +129,18 @@ void MainWindow::showPrice(){
 void MainWindow::showRules(){
     rulesDialog = new DialogShowRules(this);
     rulesDialog->show();
+
+}
+
+void MainWindow::showCommands(){
+    commandsDialog = new DialogShowCommands(this);
+    commandsDialog->show();
+
+}
+
+void MainWindow::language(){
+    languageDialog = new DialogLanguage(this);
+    languageDialog->show();
 
 }
 

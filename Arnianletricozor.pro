@@ -60,7 +60,9 @@ SOURCES += \
     dialogunitprice.cpp \
     dialogbuyterre.cpp \
     dialogbuyair.cpp \
-    dialogshowrules.cpp
+    dialogshowrules.cpp \
+    dialogshowcommands.cpp \
+    dialoglanguage.cpp
 
 HEADERS += \
         mainwindow.h \
@@ -97,14 +99,18 @@ HEADERS += \
     dialogunitprice.h \
     dialogbuyterre.h \
     dialogbuyair.h \
-    dialogshowrules.h
+    dialogshowrules.h \
+    dialogshowcommands.h \
+    dialoglanguage.h
 
 FORMS += \
         mainwindow.ui \
     dialogunitprice.ui \
     dialogbuyterre.ui \
     dialogbuyair.ui \
-    dialogshowrules.ui
+    dialogshowrules.ui \
+    dialogshowcommands.ui \
+    dialoglanguage.ui
 
 # Default rules for deployment.
 qnx: target.path = /tmp/$${TARGET}/bin
