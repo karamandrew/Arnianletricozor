@@ -50,14 +50,70 @@ int Game::getYCoordinate(QMouseEvent *e)
     return static_cast<int>(y-1);
 }
 
-void Game::mousePressed(int x, int y)
+void Game::mouseLeftPressed(int x, int y)
 {
-    attack(x,y);
-    move(x,y);
-    selectUnits(x,y);
+        attack(x,y);
+        move(x,y);
+        selectUnits(x,y);
 }
 
+void Game::mouseRightPressed(int x, int y)
+{
+    std::cout << "Clic droit en (" << x << ", " << y << ")" <<std::endl;
+}
 
+void Game::attack(int x, int y)
+{
+    if(getIndexUnit(x,y)!=-1 && !unite[getIndexUnit(x,y)]->isFocused()){
+        if(unite[getIndexUnit(x,y)]->isAttackable()){
+
+            for(Unite* a: unite){
+                if (a->isFocused()){
+
+                    std::cout << "Point de vie unite attaquee avant " <<unite[getIndexUnit(x,y)]->getVie() << std::endl;
+                    unite[getIndexUnit(x,y)]->receiveDamage(calculDegat(a,unite[getIndexUnit(x,y)]));  //attaque
+                    std::cout << "Point de vie unite attaquee apres " <<unite[getIndexUnit(x,y)]->getVie() << std::endl;
+
+                    std::cout << "Point de vie unite qui attaque avant " <<a->getVie() << std::endl;
+                    a->receiveDamage(calculDegat(unite[getIndexUnit(x,y)],a));  //contreattaque
+                    std::cout << "Point de vie unite qui attaque apres " <<a->getVie() << std::endl;
+
+                    a->setTurn(false);
+
+                    if(unite[getIndexUnit(x,y)]->getVie()<=0){
+                        delete unite[getIndexUnit(x,y)];
+                        unite.erase(unite.begin() + getIndexUnit(unite[getIndexUnit(x,y)]->getPosX(), unite[getIndexUnit(x,y)]->getPosY()));
+                        window->redraw();
+                    }
+                    for(Unite* set:unite){
+                        set->setAttackable(false);
+                        set->setFocused(false);
+                    }
+                    window->redraw();
+                    return;
+                }
+                else if(a->isFocused() && a->isTeam()==activeTurn){
+                    for(Unite* set:unite){
+                        set->setAttackable(false);
+                        set->setTurn(false);
+                        set->setFocused(false);
+                    }
+                    window->redraw();
+                }
+            }
+        }
+    }
+    else{
+        for(Unite* a: unite){
+            if(a->isAttackable()){
+                for(Unite* b: unite){
+                    b->setFocused(false);
+                }
+            }
+            a->setAttackable(false);
+        }
+    }
+}
 
 void Game::move(int x, int y)
 {
@@ -103,6 +159,41 @@ void Game::move(int x, int y)
         }
     }
     window->redraw();
+}
+
+void Game::selectUnits(int x, int y){
+    int IDmap = getmapId(x,y);
+
+    if (getIndexUnit(x,y) == -1){
+
+        if ( IDmap == 39 && activeTurn == true){
+            // Créatio unités terrestre orange
+            diaBuyTerreOS = new DialogBuyTerre(window);
+            diaBuyTerreOS->show();
+            diaBuyTerreOS->getInfo( x,y, true);
+        }
+
+        if ( IDmap == 40 && activeTurn == true){
+            // Création unités aériennes orange
+            diaBuyAirOS = new DialogBuyAir(window);
+            diaBuyAirOS->show();
+            diaBuyAirOS->getInfo( x,y, true);
+        }
+
+        if ( IDmap == 44 && activeTurn == false){
+            // Création unités terrestres bleues
+            diaBuyTerreBM = new DialogBuyTerre(window);
+            diaBuyTerreBM->show();
+            diaBuyTerreBM->getInfo( x,y, false);
+        }
+
+        if (IDmap == 45 && activeTurn == false){
+            // Création unités aériennes bleues
+            diaBuyAirBM = new DialogBuyAir(window);
+            diaBuyAirBM->show();
+            diaBuyAirBM->getInfo( x,y, false);
+        }
+    }
 }
 
 void Game::fusion(Unite* u1, Unite* u2){
@@ -160,40 +251,6 @@ void Game::createUnit(int x, int y, char type, bool team, int unitWanted){
     window->redraw();
 }
 
-void Game::selectUnits(int x, int y){
-    int IDmap = getmapId(x,y);
-
-    if (getIndexUnit(x,y) == -1){
-
-        if ( IDmap == 39 && activeTurn == true){
-            // Créatio unités terrestre orange
-            diaBuyTerreOS = new DialogBuyTerre(window);
-            diaBuyTerreOS->show();
-            diaBuyTerreOS->getInfo( x,y, true);
-        }
-
-        if ( IDmap == 40 && activeTurn == true){
-            // Création unités aériennes orange
-            diaBuyAirOS = new DialogBuyAir(window);
-            diaBuyAirOS->show();
-            diaBuyAirOS->getInfo( x,y, true);
-        }
-
-        if ( IDmap == 44 && activeTurn == false){
-            // Création unités terrestres bleues
-            diaBuyTerreBM = new DialogBuyTerre(window);
-            diaBuyTerreBM->show();
-            diaBuyTerreBM->getInfo( x,y, false);
-        }
-
-        if (IDmap == 45 && activeTurn == false){
-            // Création unités aériennes bleues
-            diaBuyAirBM = new DialogBuyAir(window);
-            diaBuyAirBM->show();
-            diaBuyAirBM->getInfo( x,y, false);
-        }
-    }
-}
 
 
 void Game::start(MainWindow &wind)
@@ -201,7 +258,6 @@ void Game::start(MainWindow &wind)
     window = &wind;
     window->setFixedSize(1400,865);
     window->createMapObjects();
-    m_gameType = window->getType();
 
     //Infantry *osinf = new Infantry( 13, 13, 300, true); unite.push_back(osinf);
     //Infantry *bminf = new Infantry( 12, 12, 200, false); unite.push_back(bminf);
@@ -223,8 +279,6 @@ void Game::giveBuildingsPtCapture(){
        }
     }
 }
-
-
 
 int Game::getIndexUnit(int x, int y)
 {
@@ -294,6 +348,11 @@ bool Game::isThereAnotherUnite(int x, int y, int indexUnitFoc)
     return false;
 }
 
+void Game::setgameType(int type)
+{
+    m_gameType=type;
+}
+
 void Game::setMapObjectfalse(){
     for (int i=0; i<21; i++){
         for (int j=0; j<17; j++){
@@ -320,6 +379,7 @@ void Game::setUnitefocusedfalse()
             D_TR=0;
         }
         std::cerr << (B * ( A_HP / 10 ) * ( ( 100 - D_TR * D_HP) / 100 ))/10 << std::endl;
+
         return  (B *( A_HP / 10 ) * ( ( 100 - D_TR * D_HP) / 100 ))/10 ;
     }
 
@@ -376,7 +436,6 @@ void Game::turnChange(){
         u->setFusionnable(false);
     }
     setMapObjectfalse();
-
     capture(activeTurn);
     cureUnit(activeTurn);
     activeTurn=!activeTurn;
@@ -797,59 +856,6 @@ int Game::attackChart(Unite* u, Unite* v)
     return 0;
 }
 
-void Game::attack(int x, int y)
-{
-    if(getIndexUnit(x,y)!=-1 && !unite[getIndexUnit(x,y)]->isFocused()){
-        if(unite[getIndexUnit(x,y)]->isAttackable()){
-
-            for(Unite* a: unite){
-                if (a->isFocused()){
-
-                    std::cout << "Point de vie unite attaquee avant " <<unite[getIndexUnit(x,y)]->getVie() << std::endl;
-                    unite[getIndexUnit(x,y)]->receiveDamage(calculDegat(a,unite[getIndexUnit(x,y)]));  //attaque
-                    std::cout << "Point de vie unite attaquee apres " <<unite[getIndexUnit(x,y)]->getVie() << std::endl;
-
-                    std::cout << "Point de vie unite qui attaque avant " <<a->getVie() << std::endl;
-                    a->receiveDamage(calculDegat(unite[getIndexUnit(x,y)],a));  //contreattaque
-                    std::cout << "Point de vie unite qui attaque apres " <<a->getVie() << std::endl;
-
-                    a->setTurn(false);
-
-                    if(unite[getIndexUnit(x,y)]->getVie()<=0){
-                        delete unite[getIndexUnit(x,y)];
-                        unite.erase(unite.begin() + getIndexUnit(unite[getIndexUnit(x,y)]->getPosX(), unite[getIndexUnit(x,y)]->getPosY()));
-                        window->redraw();
-                    }
-                    for(Unite* set:unite){
-                        set->setAttackable(false);
-                        set->setFocused(false);
-                    }
-                    window->redraw();
-                    return;
-                }
-                else if(a->isFocused() && a->isTeam()==activeTurn){
-                    for(Unite* set:unite){
-                        set->setAttackable(false);
-                        set->setTurn(false);
-                        set->setFocused(false);
-                    }
-                    window->redraw();
-                }
-            }
-        }
-    }
-    else{
-        for(Unite* a: unite){
-            if(a->isAttackable()){
-                for(Unite* b: unite){
-                    b->setFocused(false);
-                }
-            }
-            a->setAttackable(false);
-        }
-    }
-}
-
 void Game::checkEndGame(bool turn){
     bool endGame = true;
     for(int i=0 ;i<21;i++){
@@ -880,4 +886,3 @@ void Game::checkEndGame(bool turn){
         }
     }
 }
-

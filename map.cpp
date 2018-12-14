@@ -80,15 +80,16 @@ void Map::paintEvent(QPaintEvent *event)
 
 void Map::mousePressEvent(QMouseEvent *m)
 {
+    Game& game = Game::Instance();
 
     if(m->buttons() == Qt::LeftButton){
-        Game& game = Game::Instance();
-        int x=game.getXCoordinate(m);
-        int y=game.getYCoordinate(m);
-        game.mousePressed(x,y);
+        game.mouseLeftPressed(game.getXCoordinate(m),game.getYCoordinate(m));
+    }
+
+    if(m->buttons() == Qt::RightButton){
+        game.mouseRightPressed(game.getXCoordinate(m),game.getYCoordinate(m));
     }
 }
-
 
 void Map::setmapobject()
 {   // Game& game=Game::Instance();
@@ -111,7 +112,6 @@ void Map::setmapobject()
 {2,1,21,15,38,1,1,1,1,3,1,1,1,35,15,20,2,3,1,2,101},
 {29,3,1,1,1,3,1,3,1,1,34,15,15,20,1,2,1,1,1,34,101},
 {33,29,29,2,1,1,1,34,15,15,20,2,1,3,110,102,102,102,102,102,106}};
-
 
     for(int i=0; i<21; i++){
         for(int j=0; j<17; j++){
@@ -145,9 +145,7 @@ void Map::setmapobject()
                 case 36 : mapObject[i][j] = new Airport(i,j, bitse[j][i], 0); break; //Neutral
                 case 40 : mapObject[i][j] = new Airport(i,j, bitse[j][i], 0); break; // Orange
                 case 45 : mapObject[i][j] = new Airport(i,j, bitse[j][i], 0); break;  // Blue
-
             }
-;
         }
     }
 }
@@ -175,5 +173,3 @@ Map::~Map() {
             }
    }
 }
-
-

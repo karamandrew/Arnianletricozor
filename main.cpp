@@ -17,9 +17,9 @@ int main(int argc, char *argv[])
     intro.setWindow(&w);
 
 
-    Game& game=Game::Instance(); //
+    //Game& game=Game::Instance(); //
 
-    game.start(w);
+   // game.start(w);
 
     //w.show();
 

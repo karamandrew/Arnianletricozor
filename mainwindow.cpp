@@ -184,18 +184,7 @@ void MainWindow::updateTurn(bool activeTurn){
 }
 
 void MainWindow::setUp(int type){
-    m_gameType = type;
+    Game& game = Game::Instance();
+    game.start(*this);
+    game.setgameType(type);
 }
-
-int MainWindow::getType(){
-    return m_gameType;
-}
-
-
-
-
-
-
-
-
-

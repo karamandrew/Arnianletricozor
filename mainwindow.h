@@ -33,7 +33,6 @@ public:
     void updateTurn(bool turn);
 
     void setUp(int type);
-    int getType();
 
 private slots :
     void changeTurn();
@@ -67,8 +66,6 @@ private:
     QLabel* labelT4= nullptr;
     QLabel* labelDeviseT= nullptr;
     QLabel* labelDeviseF=nullptr;
-    int m_gameType = 1;
-
 };
 
 #endif // MAINWINDOW_H

@@ -16,7 +16,9 @@ public:
 
     int getXCoordinate(QMouseEvent *e);
     int getYCoordinate(QMouseEvent *e);
-    void mousePressed(int x,int y);
+    void mouseLeftPressed(int x,int y);
+    void mouseRightPressed(int x, int y);
+
     void move(int x, int y);
     void selectUnits(int x, int y);
     void attack(int x, int y);
@@ -29,6 +31,7 @@ public:
     Unite* getUnite(int x, int y);
     bool isThereAnotherUnite(int x, int y, int indexUnitFoc);
 
+    void setgameType(int type);
     void setMapObjectfalse();
     void setTurn();
     void setUnitefocusedfalse();
@@ -38,7 +41,6 @@ public:
     double calculDegat(Unite* u, Unite* v);
     bool Enemyclose(Unite* unit);
     void turnChange();
-
 
 
     void createUnit(int x, int y, char type, bool team, int unitWanted);
