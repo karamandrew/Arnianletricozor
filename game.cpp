@@ -1042,5 +1042,6 @@ void Game::checkEndGame(bool turn){
             diaWinBlue = new BlueMoonWin(window);
             diaWinBlue->show();
         }
+        window->showIntro();
     }
 }

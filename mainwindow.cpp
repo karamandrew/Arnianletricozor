@@ -6,6 +6,7 @@
 #include <iostream>
 #include "terrain.h"
 
+#include "introwindow.h"
 
 MainWindow::MainWindow(QWidget *parent) :
     QMainWindow(parent),
@@ -35,6 +36,10 @@ MainWindow::MainWindow(QWidget *parent) :
     languageButton = new QPushButton("Language", this);
         languageButton->setGeometry(145,700, 120, 50);
         QObject::connect(languageButton, SIGNAL(clicked()), this, SLOT(language()));
+
+    endGameButton = new QPushButton("End game !", this);
+        endGameButton->setGeometry(15, 600, 120, 50);
+        QObject::connect(endGameButton, SIGNAL(clicked()), this, SLOT(showIntro()));
 
      labelArnian = new QLabel("©(AR)NIANLETRICOZORProduction", this);
          labelArnian->setGeometry(1150,730, 200, 200);
@@ -209,4 +214,11 @@ void MainWindow::updateInfoPos(string terrainType, int PtDefense, int PtCapture,
         //labelViesOrange->setText("");
         //labelViesBlue->setText("Unit lives : " + QString::fromStdString(viesU));
     }
+}
+
+void MainWindow::showIntro(){
+    IntroWindow intro;
+    intro.setWindow(this);
+    //this->close();
+    intro.show();
 }

@@ -41,6 +41,10 @@ private slots :
     void showRules();
     void showCommands();
     void language();
+   // void showIntro();
+
+public slots :
+    void showIntro();
 
 private:
     Ui::MainWindow *ui;
@@ -54,6 +58,7 @@ private:
     QPushButton *showRulesButton= nullptr;
     QPushButton *showCommandsButton=nullptr;
     QPushButton *languageButton=nullptr;
+    QPushButton *endGameButton = nullptr;
     QLabel* labelArnian = nullptr;
     bool m_turn;
     QLabel* labelMoneyT = nullptr;
