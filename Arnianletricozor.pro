@@ -64,6 +64,8 @@ SOURCES += \
     dialogshowcommands.cpp \
     dialoglanguage.cpp \
     introwindow.cpp \
+    bluemoonwin.cpp \
+    orangestarwin.cpp
 
 HEADERS += \
         mainwindow.h \
@@ -104,6 +106,8 @@ HEADERS += \
     dialogshowcommands.h \
     dialoglanguage.h \
     introwindow.h \
+    bluemoonwin.h \
+    orangestarwin.h
 
 FORMS += \
         mainwindow.ui \
@@ -114,6 +118,8 @@ FORMS += \
     dialogshowcommands.ui \
     dialoglanguage.ui \
     introwindow.ui \
+    bluemoonwin.ui \
+    orangestarwin.ui
 
 # Default rules for deployment.
 qnx: target.path = /tmp/$${TARGET}/bin

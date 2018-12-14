@@ -45,3 +45,5 @@ void IntroWindow::on_pushButton_3_clicked()
     main->show();
     this->close();
 }
+
+

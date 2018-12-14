@@ -6,6 +6,9 @@
 #include "dialogbuyterre.h"
 #include "dialogbuyair.h"
 
+#include "bluemoonwin.h"
+#include "orangestarwin.h"
+
 
 class Game{
 public:
@@ -47,6 +50,8 @@ public:
 
     void fusion(Unite* u1, Unite* u2);
 
+    void checkEndGame(bool turn);
+
     ~Game();
 
 private:
@@ -70,6 +75,9 @@ private:
     DialogBuyAir *diaBuyAirOS = nullptr;
     DialogBuyTerre *diaBuyTerreBM = nullptr;
     DialogBuyAir *diaBuyAirBM = nullptr;
+
+    BlueMoonWin *diaWinBlue = nullptr;
+    OrangeStarWin *diaWinOrange = nullptr;
 
     int m_gameType = 1;
 

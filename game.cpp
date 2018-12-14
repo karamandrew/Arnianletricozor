@@ -24,6 +24,13 @@ Game::~Game(){
     for(Unite* u : unite) {
         delete u;
     }
+    delete diaBuyAirBM;
+    delete diaBuyAirOS;
+    delete diaBuyTerreBM;
+    delete diaBuyTerreOS;
+
+    delete diaWinBlue;
+    delete diaWinOrange;
 }
 
 Game &Game::Instance()
@@ -443,24 +450,24 @@ void Game::capture(bool turn){
                 if ( mapId == 34 || mapId == 35 || mapId == 36 ){
                     window->getMapObject(x,y).setPtCapture(-impact);
                     Ptrestant = window->getMapObject(x,y).getPtCapture();
-                    if ( Ptrestant <= 0 ) { window->getMapObject(x,y).setId(+4); window->getMapObject(x,y).setPtCapture(20); }
+                    if ( Ptrestant <= 0 ) { window->getMapObject(x,y).setId(+4); window->getMapObject(x,y).setPtCapture(20); checkEndGame(turn); }
                 }
                 if ( mapId == 43 || mapId == 44 || mapId == 45) {
                     window->getMapObject(x,y).setPtCapture(-impact);
                     Ptrestant = window->getMapObject(x,y).getPtCapture();
-                    if ( Ptrestant <= 0 ) { window->getMapObject(x,y).setId(-5); window->getMapObject(x,y).setPtCapture(20); }
+                    if ( Ptrestant <= 0 ) { window->getMapObject(x,y).setId(-5); window->getMapObject(x,y).setPtCapture(20); checkEndGame(turn); }
                 }
             }
             if (turn && !team) { // tour des bleus
                 if ( mapId == 34 || mapId == 35 || mapId == 36 ){
                      window->getMapObject(x,y).setPtCapture(-impact);
                      Ptrestant = window->getMapObject(x,y).getPtCapture();
-                     if ( Ptrestant <= 0 ) { window->getMapObject(x,y).setId(+9); window->getMapObject(x,y).setPtCapture(20);}
+                     if ( Ptrestant <= 0 ) { window->getMapObject(x,y).setId(+9); window->getMapObject(x,y).setPtCapture(20); checkEndGame(turn);}
                     }
                 if ( mapId == 38 || mapId == 39 || mapId == 40 ){
                      window->getMapObject(x,y).setPtCapture(-impact);
                      Ptrestant = window->getMapObject(x,y).getPtCapture();
-                     if ( Ptrestant <= 0 ) { window->getMapObject(x,y).setId(+5); window->getMapObject(x,y).setPtCapture(20); }
+                     if ( Ptrestant <= 0 ) { window->getMapObject(x,y).setId(+5); window->getMapObject(x,y).setPtCapture(20); checkEndGame(turn); }
                     }
            }
       }
@@ -830,4 +837,24 @@ void Game::attack(QMouseEvent *e)
     }
 }
 
-// This is the end of the world
+void Game::checkEndGame(bool turn){
+    bool endGame = true;
+    for(int i=0 ;i<21;i++){
+            for (int j=0; j<17; j++){
+                int mapId = getmapId(i,j);
+                if ( !turn ){ // Victoire des oranges
+                    if ( !(mapId ==  43 || mapId == 44 || mapId == 45)) {  // PAs de bati belu
+                        diaWinOrange = new OrangeStarWin(window);
+                        diaWinOrange->show();
+                    }
+                }
+                if ( turn ) { // Victoire des bleus
+                    if ( mapId == 38 || mapId == 39 || mapId == 40 ) {  // Pas de bati orange
+                        diaWinBlue = new BlueMoonWin(window);
+                        diaWinBlue->show();
+                    }
+                }
+            }
+    }
+}
+

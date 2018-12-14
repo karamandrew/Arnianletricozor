@@ -170,7 +170,11 @@ Terrain& Map::getmapObject(int i, int j)
 }
 
 Map::~Map() {
-    // TODO: delete les objets de la map
+    for(int i=0 ;i<21;i++){
+            for (int j=0; j<17; j++){
+                delete &getmapObject(i,j);
+            }
+   }
 }
 
 

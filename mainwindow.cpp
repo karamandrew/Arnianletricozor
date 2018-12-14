@@ -94,6 +94,31 @@ MainWindow::MainWindow(QWidget *parent) :
 MainWindow::~MainWindow()
 {
     delete ui;
+
+    delete map;
+
+    delete changeTurnButton;
+    delete showRulesButton;
+    delete showUnitPriceButton;
+    delete showCommandsButton;
+    delete languageButton;
+    delete labelArnian;
+    delete labelMoneyT;
+    delete labelMoneyF;
+    delete labelNameF;
+    delete labelNameT;
+    delete labelTurn;
+    delete labelT1;
+    delete labelT2;
+    delete labelT3;
+    delete labelT4;
+    delete labelDeviseF;
+    delete labelDeviseT;
+
+    delete priceDialog;
+    delete rulesDialog;
+    delete commandsDialog;
+    delete languageDialog;
 }
 
 void MainWindow::createMapObjects() {
