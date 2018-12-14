@@ -450,24 +450,24 @@ void Game::capture(bool turn){
                 if ( mapId == 34 || mapId == 35 || mapId == 36 ){
                     window->getMapObject(x,y).setPtCapture(-impact);
                     Ptrestant = window->getMapObject(x,y).getPtCapture();
-                    if ( Ptrestant <= 0 ) { window->getMapObject(x,y).setId(+4); window->getMapObject(x,y).setPtCapture(20); checkEndGame(turn); }
+                    if ( Ptrestant <= 0 ) { window->getMapObject(x,y).setId(+4); window->getMapObject(x,y).setPtCapture(20); } //checkEndGame(turn); }
                 }
                 if ( mapId == 43 || mapId == 44 || mapId == 45) {
                     window->getMapObject(x,y).setPtCapture(-impact);
                     Ptrestant = window->getMapObject(x,y).getPtCapture();
-                    if ( Ptrestant <= 0 ) { window->getMapObject(x,y).setId(-5); window->getMapObject(x,y).setPtCapture(20); checkEndGame(turn); }
+                    if ( Ptrestant <= 0 ) { window->getMapObject(x,y).setId(-5); window->getMapObject(x,y).setPtCapture(20); } //checkEndGame(turn); }
                 }
             }
             if (turn && !team) { // tour des bleus
                 if ( mapId == 34 || mapId == 35 || mapId == 36 ){
                      window->getMapObject(x,y).setPtCapture(-impact);
                      Ptrestant = window->getMapObject(x,y).getPtCapture();
-                     if ( Ptrestant <= 0 ) { window->getMapObject(x,y).setId(+9); window->getMapObject(x,y).setPtCapture(20); checkEndGame(turn);}
+                     if ( Ptrestant <= 0 ) { window->getMapObject(x,y).setId(+9); window->getMapObject(x,y).setPtCapture(20); } //checkEndGame(turn);}
                     }
                 if ( mapId == 38 || mapId == 39 || mapId == 40 ){
                      window->getMapObject(x,y).setPtCapture(-impact);
                      Ptrestant = window->getMapObject(x,y).getPtCapture();
-                     if ( Ptrestant <= 0 ) { window->getMapObject(x,y).setId(+5); window->getMapObject(x,y).setPtCapture(20); checkEndGame(turn); }
+                     if ( Ptrestant <= 0 ) { window->getMapObject(x,y).setId(+5); window->getMapObject(x,y).setPtCapture(20); } //checkEndGame(turn); }
                     }
            }
       }
