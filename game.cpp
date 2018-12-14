@@ -18,6 +18,8 @@
 #include <thread>
 #include <chrono>
 
+#include <QMetaObject>
+
 Game Game::gInstance;
 Game::Game(){
 }
@@ -61,7 +63,53 @@ void Game::mouseLeftPressed(int x, int y)
 
 void Game::mouseRightPressed(int x, int y)
 {
-    std::cout << "Clic droit en (" << x << ", " << y << ")" <<std::endl;
+    showInfo(x,y);
+}
+
+void Game::showInfo(int x, int y){
+    // Infos Terrains
+    int mapID = getmapId(x,y);
+    string terrainType;
+
+    switch(mapID){
+
+    case 1 :  terrainType = "Plain"; break;
+    case 2 :  terrainType = "Mountain"; break;
+    case 3 :  terrainType = " Wood";  break;
+    case 4 ... 14 : terrainType = " River"; break;
+    case 15 ... 25 :  terrainType = "Road" ; break;
+    case 26 ... 27 : terrainType = "Bridge" ; break;
+    case 28 :      terrainType = "Sea" ; break;
+    case 29 ... 32 :  terrainType  = "Shoal"; break;
+    case 33 : terrainType = "Reef" ; break;
+    case 101 ... 110 :  terrainType = "Pipe"; break;
+
+    // City
+    case 34 : terrainType = "Neutral city"; break; //Neutral
+    case 38 : terrainType = " Orange Star city"; break; // Orange
+    case 43 : terrainType = " Blue Moon city"; break; // Blue
+    // Base
+    case 35 : terrainType = " Neutral Base" ; break; //Neutral
+    case 39 : terrainType = "Orange Star Base"; break; // Orange
+    case 44 : terrainType = "Blue Moon Base"; break; // Blue
+    // Airport
+    case 36 : terrainType = "Neutral Airport"; break; //Neutral
+    case 40 : terrainType = "Orange Star Airport"; break; // Orange
+    case 45 : terrainType = "Blue Moon Airport"; break;  // Blu
+
+    }
+
+    int PtDefense = window->getMapObject(x,y).getDefense();
+    int PtCapture = window->getMapObject(x,y).getPtCapture();
+
+
+    // Infos unités
+
+    int indexUnit = getIndexUnit(x,y);
+    bool team = unite[indexUnit]->isTeam();
+    int viesUnit = unite[indexUnit]->getVie();
+
+    window->updateInfoPos(terrainType, PtDefense, PtCapture, team, viesUnit);
 }
 
 void Game::attack(int x, int y)

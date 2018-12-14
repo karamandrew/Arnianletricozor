@@ -60,6 +60,8 @@ public:
 
     void checkEndGame(bool turn);
 
+    void showInfo(int x, int y);
+
     ~Game();
 
 private:

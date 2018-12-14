@@ -188,3 +188,25 @@ void MainWindow::setUp(int type){
     game.start(*this);
     game.setgameType(type);
 }
+
+void MainWindow::updateInfoPos(string terrainType, int PtDefense, int PtCapture, bool team, int viesUnit){
+    std::string PtDef = std::to_string(PtDefense);
+    std::string PtCap = std::to_string(PtCapture);
+    std::string viesU = std::to_string(viesUnit);
+    //labelTerrainType->setText(" Terrain type :" + QString::fromStdString(terrainType));
+    //labelPtDef->setText(" Defense points :" + QString::fromStdString(PtDef));
+    if (PtCapture = 0){
+        //labelPtCap->setText(""); // N'affiche rien
+    }
+    if (PtCapture != 0){
+        //labelPtCap->setText("Capture points :" + QString::fromStdString(PtCap));
+    }
+    if (team) {
+        //labelViesOrange->setText("Unit lives : " + QString::fromStdString(viesU));
+        //labelViesBlue->setText("");
+    }
+    if (!team){
+        //labelViesOrange->setText("");
+        //labelViesBlue->setText("Unit lives : " + QString::fromStdString(viesU));
+    }
+}

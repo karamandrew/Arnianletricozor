@@ -114,5 +114,6 @@
         <file>Res/Animations/attackable.png</file>
         <file>Res/Animations/atta.jpeg</file>
         <file>Res/Animations/attack.png</file>
+        <file>Res/Animations/swords.png</file>
     </qresource>
 </RCC>
