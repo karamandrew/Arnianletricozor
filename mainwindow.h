@@ -32,6 +32,9 @@ public:
     void updateMoneyTeam(int teamT, int teamF);
     void updateTurn(bool turn);
 
+    void setUp(int type);
+    int getType();
+
 private slots :
     void changeTurn();
     void showPrice();
@@ -64,6 +67,7 @@ private:
     QLabel* labelT4= nullptr;
     QLabel* labelDeviseT= nullptr;
     QLabel* labelDeviseF=nullptr;
+    int m_gameType = 1;
 
 };
 

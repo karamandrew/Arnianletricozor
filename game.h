@@ -71,6 +71,8 @@ private:
     DialogBuyTerre *diaBuyTerreBM = nullptr;
     DialogBuyAir *diaBuyAirBM = nullptr;
 
+    int m_gameType = 1;
+
 
 
 };

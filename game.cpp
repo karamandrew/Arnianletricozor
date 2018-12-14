@@ -184,6 +184,7 @@ void Game::start(MainWindow &wind)
     window = &wind;
     window->setFixedSize(1400,865);
     window->createMapObjects();
+    m_gameType = window->getType();
 
     //Infantry *osinf = new Infantry( 13, 13, 300, true); unite.push_back(osinf);
     //Infantry *bminf = new Infantry( 12, 12, 200, false); unite.push_back(bminf);

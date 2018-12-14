@@ -158,6 +158,14 @@ void MainWindow::updateTurn(bool activeTurn){
     }
 }
 
+void MainWindow::setUp(int type){
+    m_gameType = type;
+}
+
+int MainWindow::getType(){
+    return m_gameType;
+}
+
 
 
 

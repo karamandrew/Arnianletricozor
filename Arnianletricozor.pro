@@ -62,7 +62,8 @@ SOURCES += \
     dialogbuyair.cpp \
     dialogshowrules.cpp \
     dialogshowcommands.cpp \
-    dialoglanguage.cpp
+    dialoglanguage.cpp \
+    introwindow.cpp \
 
 HEADERS += \
         mainwindow.h \
@@ -101,7 +102,8 @@ HEADERS += \
     dialogbuyair.h \
     dialogshowrules.h \
     dialogshowcommands.h \
-    dialoglanguage.h
+    dialoglanguage.h \
+    introwindow.h \
 
 FORMS += \
         mainwindow.ui \
@@ -110,7 +112,8 @@ FORMS += \
     dialogbuyair.ui \
     dialogshowrules.ui \
     dialogshowcommands.ui \
-    dialoglanguage.ui
+    dialoglanguage.ui \
+    introwindow.ui \
 
 # Default rules for deployment.
 qnx: target.path = /tmp/$${TARGET}/bin
@@ -119,4 +122,4 @@ else: unix:!android: target.path = /opt/$${TARGET}/bin
 
 RESOURCES += \
     resources.qrc \
-    resources.qrc
+
