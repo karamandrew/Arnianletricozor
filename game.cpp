@@ -59,12 +59,13 @@ void Game::move(QMouseEvent *e)
         unite[indexUnitFoc]->setTurn(false);
     }
 
-    if ( m>=0 && m < 21 && t >= 0 && t < 17
+    else if ( m>=0 && m < 21 && t >= 0 && t < 17
          && getIndexUnit(Xfoc,Yfoc) != -1
          && getIndexUnit(m,t) != -1
          && unite[getIndexUnit(m,t)]->isFusionnable() ) {
 
          fusion(unite[getIndexUnit(Xfoc,Yfoc)],unite[getIndexUnit(m,t)]);
+         unite[getIndexUnit(m,t)]->setFusionnable(false);
     }
 
     else if (getIndexUnit(m,t) != -1) {
@@ -84,21 +85,12 @@ void Game::move(QMouseEvent *e)
 
 void Game::fusion(Unite* u1, Unite* u2){
     int bonusLife = u1->getVie();
-    //if (newLife > 10) { newLife = 10; }
-    //int newPosX = u2->getPosX();
-    //int newPosY = u2->getPosY();
-    //bool newTeam = u1->isTeam();
-    //int newID = u1->getId();
 
     int indexu1 = getIndexUnit(u1->getPosX(),u1->getPosY());
     delete u1;
     unite.erase(unite.begin() + indexu1);
 
     u2->setVie(bonusLife);
-
-    //int indexu2 = getIndexUnit(u2->getPosX(),u2->getPosY());
-    //delete u2;
-    //unite.erase(unite.begin() + indexu2);
 
     window->redraw();
 
@@ -273,14 +265,11 @@ void Game::calculatePosAccessible(int currentX, int currentY, int indexUnit, int
 
 bool Game::isThereAnotherUnite(int x, int y, int indexUnitFoc)
 {
-
     for(Unite* u : unite) {
         if (u->getPosX()==x && u->getPosY()==y){
             if ( unite[indexUnitFoc]->getId() ==  u->getId() && unite[indexUnitFoc]->getVie() < 10 && u->getVie() < 10 ) {
                 u->setFusionnable(true);
-                std:cout << "set fusionnable mom" << std::endl;
             }
-            std::cout << " there is another unit fdp" << std::endl;
             return true;
         }
     }
@@ -299,6 +288,7 @@ void Game::setUnitefocusedfalse()
 {
     for(Unite* u : unite) {
         u->setFocused(false);
+        u->setFusionnable(false);
     }
 }
 
@@ -365,6 +355,7 @@ void Game::turnChange(){
     for(Unite* u: unite){
         u->setAttackable(false);
         u->setFocused(false);
+        u->setFusionnable(false);
     }
     setMapObjectfalse();
 
