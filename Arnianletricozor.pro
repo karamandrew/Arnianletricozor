@@ -65,7 +65,8 @@ SOURCES += \
     dialoglanguage.cpp \
     introwindow.cpp \
     bluemoonwin.cpp \
-    orangestarwin.cpp
+    orangestarwin.cpp \
+    pos.cpp
 
 HEADERS += \
         mainwindow.h \
@@ -107,7 +108,8 @@ HEADERS += \
     dialoglanguage.h \
     introwindow.h \
     bluemoonwin.h \
-    orangestarwin.h
+    orangestarwin.h \
+    pos.h
 
 FORMS += \
         mainwindow.ui \

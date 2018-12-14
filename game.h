@@ -43,6 +43,9 @@ public:
     void turnChange();
 
     void iA();
+    void iAcreateUnit();
+    void iAmoveUnit();
+    bool capturableIDbuilding(int x, int y);
     void createUnit(int x, int y, char type, bool team, int unitWanted);
     void updateMoneyTeam(bool team);
     void setMoney(bool team, int impact);

@@ -1,9 +1,11 @@
 #include <QPainter>
 #include "gameobject.h"
-
+#include "pos.h"
 
 Gameobject::Gameobject(int x, int y, int ID): m_posX(x), m_posY(y), m_ID(ID), focused(false), m_accessible(false)
 {
+  pos.setX(x);
+  pos.setY(y);
   setDirectory();
 }
 Gameobject::Gameobject()
@@ -35,6 +37,7 @@ void Gameobject::setPosX(int value)
     else {
         m_posX = value;
     }
+    pos.setX(m_posX);
 }
 
 void Gameobject::setPosY(int value)
@@ -48,6 +51,7 @@ void Gameobject::setPosY(int value)
     else {
         m_posY = value;
     }
+    pos.setY(m_posY);
 }
 
 int Gameobject::getId() const
@@ -156,6 +160,11 @@ void Gameobject::setDirectory(){
 
     default: std::cout << "Type inconnu, ID : "<< m_ID <<  std::endl; break;
     }
+}
+
+Pos Gameobject::getPos()
+{
+    return pos;
 }
 
 

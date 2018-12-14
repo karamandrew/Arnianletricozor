@@ -4,6 +4,7 @@
 #include <QPainter>
 #include <iostream>
 #include <string>
+#include <pos.h>
 using namespace std;
 
 class Gameobject
@@ -23,11 +24,13 @@ public:
     void setAccessible(bool value);
     string getDirectory() const;
     void setDirectory();
+    Pos getPos();
 
 private:
     int m_posX;
     int m_posY;
     int m_ID;
+    Pos pos;
     string m_directory;
     bool focused;
     QPixmap picture();
