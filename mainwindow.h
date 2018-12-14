@@ -72,6 +72,13 @@ private:
     QLabel* labelT4= nullptr;
     QLabel* labelDeviseT= nullptr;
     QLabel* labelDeviseF=nullptr;
+    QLabel* labelTerrainType=nullptr;
+    QLabel* labelPtCap=nullptr;
+    QLabel* labelViesOrange=nullptr;
+    QLabel* labelViesBlue=nullptr;
+    QLabel* labelPtDef=nullptr;
+
+
 };
 
 #endif // MAINWINDOW_H

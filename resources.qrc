@@ -115,5 +115,9 @@
         <file>Res/Animations/atta.jpeg</file>
         <file>Res/Animations/attack.png</file>
         <file>Res/Animations/swords.png</file>
+        <file>Res/Animations/troll.git</file>
+        <file>Res/Animations/troll2.git</file>
+        <file>Res/Animations/troll3.git</file>
+        <file>Res/Animations/troll4.git</file>
     </qresource>
 </RCC>
