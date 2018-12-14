@@ -83,10 +83,9 @@ void Map::mousePressEvent(QMouseEvent *m)
 
     if(m->buttons() == Qt::LeftButton){
         Game& game = Game::Instance();
-        game.attack(m);
-        game.move(m);
-        game.selectUnits(m);
-
+        int x=game.getXCoordinate(m);
+        int y=game.getYCoordinate(m);
+        game.mousePressed(x,y);
     }
 }
 

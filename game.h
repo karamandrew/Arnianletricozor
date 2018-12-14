@@ -14,9 +14,12 @@ class Game{
 public:
     static Game& Instance();
 
-    void move(QMouseEvent *e);
-    void selectUnits(QMouseEvent *e);
-    void attack(QMouseEvent *e);
+    int getXCoordinate(QMouseEvent *e);
+    int getYCoordinate(QMouseEvent *e);
+    void mousePressed(int x,int y);
+    void move(int x, int y);
+    void selectUnits(int x, int y);
+    void attack(int x, int y);
 
     void start(MainWindow &wind);
 

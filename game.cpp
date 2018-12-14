@@ -38,23 +38,38 @@ Game &Game::Instance()
     return gInstance;
 }
 
-void Game::move(QMouseEvent *e)
+int Game::getXCoordinate(QMouseEvent *e)
 {
     float x = floorf(e->x()/40);
+    return static_cast<int>(x-7);
+}
+
+int Game::getYCoordinate(QMouseEvent *e)
+{
     float y = floorf(e->y()/40);
-    int m = (int)x-7;
-    int t = (int)y-1;
+    return static_cast<int>(y-1);
+}
+
+void Game::mousePressed(int x, int y)
+{
+    attack(x,y);
+    move(x,y);
+    selectUnits(x,y);
+}
 
 
-    if ( m >= 0 && m < 21 && t >= 0 && t < 17
+
+void Game::move(int x, int y)
+{
+    if ( x >= 0 && x < 21 && y >= 0 && y < 17
          && getIndexUnit(Xfoc,Yfoc) != -1
          && unite[getIndexUnit(Xfoc,Yfoc)]->isFocused()
-         && window->getMapObject(m,t).isAccessible() )  {  // Unité selectionné
+         && window->getMapObject(x,y).isAccessible() )  {  // Unité selectionné
 
         unsigned int indexUnitFoc = (int)getIndexUnit(Xfoc,Yfoc);
 
-        unite[indexUnitFoc]->setPosX(m);
-        unite[indexUnitFoc]->setPosY(t);
+        unite[indexUnitFoc]->setPosX(x);
+        unite[indexUnitFoc]->setPosY(y);
 
         setMapObjectfalse();
         if (Enemyclose(unite[indexUnitFoc])){
@@ -66,25 +81,25 @@ void Game::move(QMouseEvent *e)
         unite[indexUnitFoc]->setTurn(false);
     }
 
-    else if ( m>=0 && m < 21 && t >= 0 && t < 17
+    else if ( x>=0 && x < 21 && y >= 0 && y < 17
          && getIndexUnit(Xfoc,Yfoc) != -1
-         && getIndexUnit(m,t) != -1
-         && unite[getIndexUnit(m,t)]->isFusionnable() ) {
+         && getIndexUnit(x,y) != -1
+         && unite[getIndexUnit(x,y)]->isFusionnable() ) {
 
-         fusion(unite[getIndexUnit(Xfoc,Yfoc)],unite[getIndexUnit(m,t)]);
-         unite[getIndexUnit(m,t)]->setFusionnable(false);
+         fusion(unite[getIndexUnit(Xfoc,Yfoc)],unite[getIndexUnit(x,y)]);
+         unite[getIndexUnit(x,y)]->setFusionnable(false);
     }
 
-    else if (getIndexUnit(m,t) != -1) {
+    else if (getIndexUnit(x,y) != -1) {
         setUnitefocusedfalse();
         setMapObjectfalse();
-        if(unite[getIndexUnit(m,t)]->isTurn()){
-            unite[getIndexUnit(m,t)]->setFocused(true);
+        if(unite[getIndexUnit(x,y)]->isTurn()){
+            unite[getIndexUnit(x,y)]->setFocused(true);
 
-            calculatePosAccessible( m, t, getIndexUnit(m,t), unite[getIndexUnit(m,t)]->getMP()+1);
+            calculatePosAccessible( x, y, getIndexUnit(x,y), unite[getIndexUnit(x,y)]->getMP()+1);
 
-            Xfoc = m;
-            Yfoc = t;
+            Xfoc = x;
+            Yfoc = y;
         }
     }
     window->redraw();
@@ -145,42 +160,37 @@ void Game::createUnit(int x, int y, char type, bool team, int unitWanted){
     window->redraw();
 }
 
-void Game::selectUnits(QMouseEvent *e){
+void Game::selectUnits(int x, int y){
+    int IDmap = getmapId(x,y);
 
-    float x = floorf(e->x()/40);
-    float y = floorf(e->y()/40);
-    int m = (int)x-7;
-    int t = (int)y-1;
-    int IDmap = getmapId(m, t);
-
-    if (getIndexUnit(m,t) == -1){
+    if (getIndexUnit(x,y) == -1){
 
         if ( IDmap == 39 && activeTurn == true){
             // Créatio unités terrestre orange
             diaBuyTerreOS = new DialogBuyTerre(window);
             diaBuyTerreOS->show();
-            diaBuyTerreOS->getInfo( m, t, true);
+            diaBuyTerreOS->getInfo( x,y, true);
         }
 
         if ( IDmap == 40 && activeTurn == true){
             // Création unités aériennes orange
             diaBuyAirOS = new DialogBuyAir(window);
             diaBuyAirOS->show();
-            diaBuyAirOS->getInfo( m, t, true);
+            diaBuyAirOS->getInfo( x,y, true);
         }
 
         if ( IDmap == 44 && activeTurn == false){
             // Création unités terrestres bleues
             diaBuyTerreBM = new DialogBuyTerre(window);
             diaBuyTerreBM->show();
-            diaBuyTerreBM->getInfo( m, t, false);
+            diaBuyTerreBM->getInfo( x,y, false);
         }
 
         if (IDmap == 45 && activeTurn == false){
             // Création unités aériennes bleues
             diaBuyAirBM = new DialogBuyAir(window);
             diaBuyAirBM->show();
-            diaBuyAirBM->getInfo( m, t, false);
+            diaBuyAirBM->getInfo( x,y, false);
         }
     }
 }
@@ -787,32 +797,27 @@ int Game::attackChart(Unite* u, Unite* v)
     return 0;
 }
 
-void Game::attack(QMouseEvent *e)
+void Game::attack(int x, int y)
 {
-    float x = floorf(e->x()/40);
-    float y = floorf(e->y()/40);
-    int m = (int)x-7;
-    int t = (int)y-1;
-
-    if(getIndexUnit(m,t)!=-1 && !unite[getIndexUnit(m,t)]->isFocused()){
-        if(unite[getIndexUnit(m,t)]->isAttackable()){
+    if(getIndexUnit(x,y)!=-1 && !unite[getIndexUnit(x,y)]->isFocused()){
+        if(unite[getIndexUnit(x,y)]->isAttackable()){
 
             for(Unite* a: unite){
                 if (a->isFocused()){
 
-                    std::cout << "Point de vie unite attaquee avant " <<unite[getIndexUnit(m,t)]->getVie() << std::endl;
-                    unite[getIndexUnit(m,t)]->receiveDamage(calculDegat(a,unite[getIndexUnit(m,t)]));  //attaque
-                    std::cout << "Point de vie unite attaquee apres " <<unite[getIndexUnit(m,t)]->getVie() << std::endl;
+                    std::cout << "Point de vie unite attaquee avant " <<unite[getIndexUnit(x,y)]->getVie() << std::endl;
+                    unite[getIndexUnit(x,y)]->receiveDamage(calculDegat(a,unite[getIndexUnit(x,y)]));  //attaque
+                    std::cout << "Point de vie unite attaquee apres " <<unite[getIndexUnit(x,y)]->getVie() << std::endl;
 
                     std::cout << "Point de vie unite qui attaque avant " <<a->getVie() << std::endl;
-                    a->receiveDamage(calculDegat(unite[getIndexUnit(m,t)],a));  //contreattaque
+                    a->receiveDamage(calculDegat(unite[getIndexUnit(x,y)],a));  //contreattaque
                     std::cout << "Point de vie unite qui attaque apres " <<a->getVie() << std::endl;
 
                     a->setTurn(false);
 
-                    if(unite[getIndexUnit(m,t)]->getVie()<=0){
-                        delete unite[getIndexUnit(m,t)];
-                        unite.erase(unite.begin() + getIndexUnit(unite[getIndexUnit(m,t)]->getPosX(), unite[getIndexUnit(m,t)]->getPosY()));
+                    if(unite[getIndexUnit(x,y)]->getVie()<=0){
+                        delete unite[getIndexUnit(x,y)];
+                        unite.erase(unite.begin() + getIndexUnit(unite[getIndexUnit(x,y)]->getPosX(), unite[getIndexUnit(x,y)]->getPosY()));
                         window->redraw();
                     }
                     for(Unite* set:unite){
