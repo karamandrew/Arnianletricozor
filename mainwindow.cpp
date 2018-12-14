@@ -36,8 +36,6 @@ MainWindow::MainWindow(QWidget *parent) :
         languageButton->setGeometry(145,700, 120, 50);
         QObject::connect(languageButton, SIGNAL(clicked()), this, SLOT(language()));
 
-
-
      labelArnian = new QLabel("©(AR)NIANLETRICOZORProduction", this);
          labelArnian->setGeometry(1150,730, 200, 200);
 
@@ -91,9 +89,6 @@ MainWindow::MainWindow(QWidget *parent) :
         labelDeviseT->setText("Diviser pour mieux reigner");
         labelDeviseT->setStyleSheet("QLabel{font: 12pt; color: orange}");
         labelDeviseT->setGeometry(15, 150, 300,100);
-
-
-
 }
 
 MainWindow::~MainWindow()
