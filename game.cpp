@@ -435,31 +435,62 @@ void Game::turnChange(){
         u->setFocused(false);
         u->setFusionnable(false);
     }
+
     setMapObjectfalse();
+
     capture(activeTurn);
     cureUnit(activeTurn);
     activeTurn=!activeTurn;
     updateMoneyTeam(activeTurn);
     window->updateTurn(activeTurn);
-    for(Unite* u : unite) {
-        if(activeTurn){
-            if(u->isTeam()){
-                u->setTurn(true);
+        for(Unite* u : unite) {
+            if(activeTurn){
+                if(u->isTeam()){
+                    u->setTurn(true);
+                }
+                else{
+                    u->setTurn(false);
+                }
             }
             else{
-                u->setTurn(false);
+                if(!u->isTeam()){
+                    u->setTurn(true);
+                }
+                else{
+                    u->setTurn(false);
+                }
             }
+            if(m_gameType==2){
+                if(activeTurn){
+
+                }
+                else{
+
+                }
+
+            }
+
+         }
+        if(m_gameType==2 && activeTurn){
+            iA();
         }
-        else{
-            if(!u->isTeam()){
-                u->setTurn(true);
+        window->redraw();
+}
+
+void Game::iA()
+{
+    while(moneyTeamF>=1000){
+    if(moneyTeamF>=1000){
+        for(int i=0 ;i<21;i++){
+            for (int j=0; j<17; j++){
+                int IDmap = getmapId(i,j);
+                    if (IDmap == 43 || IDmap == 44) {
+
+                }
             }
-            else{
-                u->setTurn(false);
-            }
-        }
+         }
     }
-    window->redraw();
+    }
 }
 
 void Game::cureUnit(bool turn){

@@ -42,7 +42,7 @@ public:
     bool Enemyclose(Unite* unit);
     void turnChange();
 
-
+    void iA();
     void createUnit(int x, int y, char type, bool team, int unitWanted);
     void updateMoneyTeam(bool team);
     void setMoney(bool team, int impact);
