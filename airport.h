@@ -6,7 +6,7 @@
 class Airport : public Building
 {
 public:
-    Airport(int x, int y, int Id, bool team);
+    Airport(int x, int y, int Id);
 };
 
 #endif // AIRPORT_H

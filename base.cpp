@@ -1,6 +1,6 @@
 #include "base.h"
 
-Base::Base(int x, int y, int Id, bool team):Building( x, y, Id, 1, team)
+Base::Base(int x, int y, int Id):Building( x, y, Id, 1)
 {
 
 }

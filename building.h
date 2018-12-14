@@ -7,12 +7,8 @@ class Building : public Terrain
 {
 
 public:
-    Building(int x, int y, int Id, int defense, bool team);
-    //void impact();
+    Building(int x, int y, int Id, int defense);
 
-private:
-    //int m_ptCapture=20;
-    int m_team;
 };
 
 #endif // BUILDING_H

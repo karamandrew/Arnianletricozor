@@ -6,7 +6,7 @@
 class Ville : public Building
 {
 public:
-    Ville(int x, int y, int id, bool team);
+    Ville(int x, int y, int id);
 };
 
 #endif // VILLE_H

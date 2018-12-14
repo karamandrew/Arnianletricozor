@@ -123,17 +123,17 @@ void Map::setmapobject()
              // Buildings
 
                 // City
-                case 34 : mapObject[i][j] = new Ville(i,j, bitse[j][i], 0); break; //Neutral
-                case 38 : mapObject[i][j] = new Ville(i,j, bitse[j][i], 0); break; // Orange
-                case 43 : mapObject[i][j] = new Ville(i,j, bitse[j][i], 0); break; // Blue
+                case 34 : mapObject[i][j] = new Ville(i,j, bitse[j][i]); break; //Neutral
+                case 38 : mapObject[i][j] = new Ville(i,j, bitse[j][i]); break; // Orange
+                case 43 : mapObject[i][j] = new Ville(i,j, bitse[j][i]); break; // Blue
                 // Base
-                case 35 : mapObject[i][j] = new Base(i,j, bitse[j][i], 0); break; //Neutral
-                case 39 : mapObject[i][j] = new Base(i,j, bitse[j][i], 0); break; // Orange
-                case 44 : mapObject[i][j] = new Base(i,j, bitse[j][i], 0); break; // Blue
+                case 35 : mapObject[i][j] = new Base(i,j, bitse[j][i]); break; //Neutral
+                case 39 : mapObject[i][j] = new Base(i,j, bitse[j][i]); break; // Orange
+                case 44 : mapObject[i][j] = new Base(i,j, bitse[j][i]); break; // Blue
                 // Airport
-                case 36 : mapObject[i][j] = new Airport(i,j, bitse[j][i], 0); break; //Neutral
-                case 40 : mapObject[i][j] = new Airport(i,j, bitse[j][i], 0); break; // Orange
-                case 45 : mapObject[i][j] = new Airport(i,j, bitse[j][i], 0); break;  // Blue
+                case 36 : mapObject[i][j] = new Airport(i,j, bitse[j][i]); break; //Neutral
+                case 40 : mapObject[i][j] = new Airport(i,j, bitse[j][i]); break; // Orange
+                case 45 : mapObject[i][j] = new Airport(i,j, bitse[j][i]); break;  // Blue
             }
         }
     }

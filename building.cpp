@@ -1,13 +1,7 @@
 #include "building.h"
 
 
-Building::Building(int x, int y, int Id, int defense, bool team): Terrain ( x, y, Id, defense)
+Building::Building(int x, int y, int Id, int defense): Terrain ( x, y, Id, defense)
 {
-    m_team = team;
 }
 
-/*
-void Building::impact(){
-    //do nothing
-}
-*/
