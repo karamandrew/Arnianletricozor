@@ -17,13 +17,17 @@ public:
     ~DialogBuyAir();
 
 private slots:
-    void on_spinBox_valueChanged(int arg1);
 
-    void on_spinBox_editingFinished();
+    void on_pushButton_2_clicked();
+
+    void on_pushButton_3_clicked();
+
+    void on_pushButton_4_clicked();
+
+    void on_pushButton_clicked();
 
 private:
     Ui::DialogBuyAir *ui;
-    int m_unitWanted = 0;
     int m_x;
     int m_y;
     char m_type = 'a';

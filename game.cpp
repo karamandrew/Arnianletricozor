@@ -105,19 +105,25 @@ void Game::showInfo(int x, int y){
     int PtDefense = window->getMapObject(x,y).getDefense();
     int PtCapture = window->getMapObject(x,y).getPtCapture();
 
-
     // Infos unités
 
     bool team = false;
     bool unit = false;
     int viesUnit = 0;
     int indexUnit = getIndexUnit(x,y);
+    int indexUnitFoc = getIndexUnit(Xfoc,Yfoc);
+    bool attackable = false;
+    int degats = 0;
     if (indexUnit != -1 ) {
         unit = true;
         team = unite[indexUnit]->isTeam();
         viesUnit = unite[indexUnit]->getVie();
+        if ( unite[indexUnit]->isAttackable() ){
+            attackable = true;
+            degats = unite[indexUnit]->arrondirDegat(calculDegat(unite[indexUnitFoc],unite[indexUnit]));
+        }
     }
-    window->updateInfoPos(terrainType, PtDefense, PtCapture, unit, team, viesUnit);
+    window->updateInfoPos(terrainType, PtDefense, PtCapture, unit, team, viesUnit, attackable, degats);
 }
 
 void Game::attack(int x, int y)

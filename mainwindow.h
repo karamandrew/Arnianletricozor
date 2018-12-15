@@ -35,7 +35,7 @@ public:
     void updateTurn(bool turn);
 
     void setUp(int type);
-    void updateInfoPos(string terrainType, int PtDefense, int PtCapture, bool unit, bool team, int viesUnit);
+    void updateInfoPos(string terrainType, int PtDefense, int PtCapture, bool unit, bool team, int viesUnit, bool attackable, int degats);
 
     Map* getMap();
 
@@ -84,6 +84,8 @@ private:
     QLabel* labelViesOrange=nullptr;
     QLabel* labelViesBlue=nullptr;
     QLabel* labelPtDef=nullptr;
+    QLabel* labelAttackableOrange = nullptr;
+    QLabel* labelAttackableBlue =  nullptr;
 
 
 };

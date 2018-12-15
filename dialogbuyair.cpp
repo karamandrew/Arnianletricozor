@@ -14,10 +14,6 @@ DialogBuyAir::~DialogBuyAir()
     delete ui;
 }
 
-void DialogBuyAir::on_spinBox_valueChanged(int arg1)
-{
-    m_unitWanted = arg1;
-}
 
 
 void DialogBuyAir::getInfo(int x, int y, bool value){
@@ -26,11 +22,31 @@ void DialogBuyAir::getInfo(int x, int y, bool value){
     m_value = value;
 }
 
-void DialogBuyAir::on_spinBox_editingFinished()
+void DialogBuyAir::on_pushButton_clicked()
+{
+    this->close();
+}
+
+
+void DialogBuyAir::on_pushButton_2_clicked()
 {
     Game& game = Game::Instance();
-    if (m_unitWanted != 0){
-        this->close();
-        game.createUnit( m_x, m_y, m_type, m_value, m_unitWanted);
-    }
+    game.createUnit( m_x, m_y, m_type, m_value, 1);
+    this->close();
 }
+
+void DialogBuyAir::on_pushButton_3_clicked()
+{
+    Game& game = Game::Instance();
+    game.createUnit( m_x, m_y, m_type, m_value, 2);
+    this->close();
+}
+
+void DialogBuyAir::on_pushButton_4_clicked()
+{
+    Game& game = Game::Instance();
+    game.createUnit( m_x, m_y, m_type, m_value, 3);
+    this->close();
+}
+
+

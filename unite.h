@@ -20,7 +20,7 @@ public:
 
     bool isFusionnable();
     void setFusionnable(bool set);
-
+    int arrondirDegat(double deg);
 
 
 

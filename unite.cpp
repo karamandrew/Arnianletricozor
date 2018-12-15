@@ -37,26 +37,7 @@ void Unite::setAttackable(bool set)
 
 void Unite::receiveDamage(double dmg)
 {
-    int domagearrondi=0;
-    if(dmg>1 && dmg<9.5){
-        while(dmg>1){
-            dmg-=1;
-            domagearrondi+=1;
-            if(dmg>=0.5 && dmg<1){
-                domagearrondi+=1;
-            }
-        }
-    }
-    else if(dmg<0.5){
-        domagearrondi=0;
-    }
-    else if(0.5<=dmg && dmg<=1){
-        domagearrondi=1;
-    }
-    else{
-        domagearrondi=10;
-    }
-    m_vie-=domagearrondi;
+    m_vie-=arrondirDegat(dmg);
     if(m_vie<0){
         m_vie=0;
     }
@@ -87,4 +68,27 @@ bool Unite::isFusionnable(){
 
 void Unite::setFusionnable(bool set){
     m_fusionnable = set;
+}
+
+int Unite::arrondirDegat(double dmg)
+{
+    int domagearrondi=0;
+    if(dmg>1 && dmg<9.5){
+        while(dmg>1){
+            dmg-=1;
+            domagearrondi+=1;
+            if(dmg>=0.5 && dmg<1){
+                domagearrondi+=1;
+            }
+        }
+    }
+    else if(dmg<0.5){
+        domagearrondi=0;
+    }
+    else if(0.5<=dmg && dmg<=1){
+        domagearrondi=1;
+    }
+    else{
+        domagearrondi=10;
+    }
 }
