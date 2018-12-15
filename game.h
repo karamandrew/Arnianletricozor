@@ -40,7 +40,7 @@ public:
 
     void calculatePosAccessible(int Xfoc, int Yfoc, int indexUnit, int mp);
     int attackChart(Unite* a, Unite* d);
-    double calculDegat(Unite* u, Unite* v);
+    int calculDegat(Unite* u, Unite* v);
     bool Enemyclose(Unite* unit);
     void turnChange();
 

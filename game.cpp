@@ -63,11 +63,11 @@ void Game::mouseLeftPressed(int x, int y)
 
 void Game::mouseRightPressed(int x, int y)
 {
-    std::cout << x << y << std::endl;
     showInfo(x,y);
 }
 
 void Game::showInfo(int x, int y){
+
     // Infos Terrains
     int mapID = getmapId(x,y);
     string terrainType;
@@ -76,7 +76,7 @@ void Game::showInfo(int x, int y){
 
     case 1 :  terrainType = "Plain"; break;
     case 2 :  terrainType = "Mountain"; break;
-    case 3 :  terrainType = " Wood";  break;
+    case 3 :  terrainType = "Wood";  break;
     case 4 ... 14 : terrainType = " River"; break;
     case 15 ... 25 :  terrainType = "Road" ; break;
     case 26 ... 27 : terrainType = "Bridge" ; break;
@@ -87,10 +87,10 @@ void Game::showInfo(int x, int y){
 
     // City
     case 34 : terrainType = "Neutral city"; break; //Neutral
-    case 38 : terrainType = " Orange Star city"; break; // Orange
-    case 43 : terrainType = " Blue Moon city"; break; // Blue
+    case 38 : terrainType = "Orange Star city"; break; // Orange
+    case 43 : terrainType =  "Blue Moon city"; break; // Blue
     // Base
-    case 35 : terrainType = " Neutral Base" ; break; //Neutral
+    case 35 : terrainType = "Neutral Base" ; break; //Neutral
     case 39 : terrainType = "Orange Star Base"; break; // Orange
     case 44 : terrainType = "Blue Moon Base"; break; // Blue
     // Airport
@@ -111,18 +111,31 @@ void Game::showInfo(int x, int y){
     bool unit = false;
     int viesUnit = 0;
     int indexUnit = getIndexUnit(x,y);
-    int indexUnitFoc = getIndexUnit(Xfoc,Yfoc);
+    int indexUnitFoc = -1;
+
+    for (Unite* u : unite){
+        if ( u->isFocused()){
+            indexUnitFoc = getIndexUnit(u->getPosX(),u->getPosY());
+        }
+    }
+
     bool attackable = false;
     int degats = 0;
+
     if (indexUnit != -1 ) {
+
         unit = true;
         team = unite[indexUnit]->isTeam();
         viesUnit = unite[indexUnit]->getVie();
-        if ( unite[indexUnit]->isAttackable() ){
+
+        if ( unite[indexUnit]->isAttackable() && indexUnitFoc != -1 ){
+
             attackable = true;
-            degats = unite[indexUnit]->arrondirDegat(calculDegat(unite[indexUnitFoc],unite[indexUnit]));
+            degats = calculDegat(unite[indexUnitFoc],unite[indexUnit]);
+
         }
     }
+
     window->updateInfoPos(terrainType, PtDefense, PtCapture, unit, team, viesUnit, attackable, degats);
 }
 
@@ -593,7 +606,7 @@ void Game::setUnitefocusedfalse()
     }
 }
 
-    double Game::calculDegat(Unite* u, Unite* v)
+int Game::calculDegat(Unite* u, Unite* v)
     {
         double B = attackChart(u,v);
         double A_HP = u->getVie();
@@ -602,10 +615,33 @@ void Game::setUnitefocusedfalse()
         if (v->getTypeMovement()=='a'){
             D_TR=0;
         }
-        std::cerr << (B * ( A_HP / 10 ) * ( ( 100 - D_TR * D_HP) / 100 ))/10 << std::endl;
+        double degats = (B *( A_HP / 10 ) * ( ( 100 - D_TR * D_HP) / 100 ))/10;
+        std::cout << "Degats (double) : " << degats << std::endl;
 
-        return  (B *( A_HP / 10 ) * ( ( 100 - D_TR * D_HP) / 100 ))/10 ;
-    }
+        int domagearrondi = 0;
+        if(degats > 1 && degats <9.5){
+            while(degats >1){
+                degats -= 1;
+                domagearrondi+=1;
+                if(degats >=0.5 && degats <1){
+                    domagearrondi+=1;
+                }
+            }
+        }
+        else if(degats <0.5){
+            domagearrondi=0;
+        }
+        else if(0.5 <= degats && degats <=1){
+            domagearrondi=1;
+        }
+        else{
+            domagearrondi=10;
+        }
+
+        std::cout << "Degats arrondis (int) : " << domagearrondi << std::endl;
+
+        return  domagearrondi ;
+}
 
 bool Game::Enemyclose(Unite* unit)
 {
