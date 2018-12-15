@@ -35,7 +35,7 @@ public:
     void updateTurn(bool turn);
 
     void setUp(int type);
-    void updateInfoPos(string terrainType, int PtDefense, int PtCapture, bool team, int viesUnit);
+    void updateInfoPos(string terrainType, int PtDefense, int PtCapture, bool unit, bool team, int viesUnit);
 
     Map* getMap();
 

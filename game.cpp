@@ -63,6 +63,7 @@ void Game::mouseLeftPressed(int x, int y)
 
 void Game::mouseRightPressed(int x, int y)
 {
+    //std::cout << x << y << std::endl;
     showInfo(x,y);
 }
 
@@ -97,6 +98,8 @@ void Game::showInfo(int x, int y){
     case 40 : terrainType = "Orange Star Airport"; break; // Orange
     case 45 : terrainType = "Blue Moon Airport"; break;  // Blu
 
+     default: std::cout << "Type inconnu, ID : "<< mapID <<  std::endl; break;
+
     }
 
     int PtDefense = window->getMapObject(x,y).getDefense();
@@ -105,11 +108,16 @@ void Game::showInfo(int x, int y){
 
     // Infos unités
 
+    bool team = false;
+    bool unit = false;
+    int viesUnit = 0;
     int indexUnit = getIndexUnit(x,y);
-    bool team = unite[indexUnit]->isTeam();
-    int viesUnit = unite[indexUnit]->getVie();
-
-    window->updateInfoPos(terrainType, PtDefense, PtCapture, team, viesUnit);
+    if (indexUnit != -1 ) {
+        unit = true;
+        team = unite[indexUnit]->isTeam();
+        viesUnit = unite[indexUnit]->getVie();
+    }
+    window->updateInfoPos(terrainType, PtDefense, PtCapture, unit, team, viesUnit);
 }
 
 void Game::attack(int x, int y)
@@ -1109,12 +1117,11 @@ void Game::checkEndGame(bool turn){
 
 void Game::endGame(){
 
-
+    int i = 0;
     for(Unite* u : unite) {
         delete u;
-    }
-    for (unsigned int i=0; unite.size(); i++){
         unite.erase(unite.begin() + i);
+        i++;
     }
     delete diaBuyAirBM;
     delete diaBuyAirOS;

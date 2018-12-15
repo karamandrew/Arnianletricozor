@@ -89,23 +89,23 @@ MainWindow::MainWindow(QWidget *parent) :
 
     labelTerrainType= new QLabel ("", this);
         labelTerrainType->setStyleSheet("QLabel { font: 15pt ; color:black}");
-        labelTerrainType->setGeometry(15, 225, 300, 20);
+        labelTerrainType->setGeometry(0,0, 200, 200);
 
     labelViesOrange= new QLabel ("", this);
         labelViesOrange->setStyleSheet("QLabel { font: 15pt ; color:black}");
-        labelViesOrange->setGeometry(15, 225, 300, 20);
+        labelViesOrange->setGeometry(15, 325, 300, 20);
 
     labelViesBlue= new QLabel ("", this);
         labelViesBlue->setStyleSheet("QLabel { font: 15pt ; color:black}");
-        labelViesBlue->setGeometry(15, 225, 300, 20);
+        labelViesBlue->setGeometry(1150, 325, 300, 20);
 
     labelPtCap=new QLabel ("", this);
         labelPtCap->setStyleSheet("QLabel { font: 15pt ; color:black}");
-        labelPtCap->setGeometry(15, 225, 300, 20);
+        labelPtCap->setGeometry(200, 0, 300, 20);
 
     labelPtDef=new QLabel ("", this);
         labelPtDef->setStyleSheet("QLabel { font: 15pt ; color:black}");
-        labelPtDef->setGeometry(15, 225, 300, 20);
+        labelPtDef->setGeometry(500, 0, 300, 20);
 
 }
 
@@ -213,31 +213,34 @@ void MainWindow::setUp(int type){
     game.setgameType(type);
 }
 
-void MainWindow::updateInfoPos(string terrainType, int PtDefense, int PtCapture, bool team, int viesUnit){
+void MainWindow::updateInfoPos(string terrainType, int PtDefense, int PtCapture, bool unit, bool team, int viesUnit){
+
     std::string PtDef = std::to_string(PtDefense);
     std::string PtCap = std::to_string(PtCapture);
     std::string viesU = std::to_string(viesUnit);
+
     labelTerrainType->setText(" Terrain type :" + QString::fromStdString(terrainType));
-    labelTerrainType->setStyleSheet("QLabel { font: 15pt ; color:black}");
-    labelTerrainType->setGeometry(15, 225, 300, 20);
-
     labelPtDef->setText(" Defense points :" + QString::fromStdString(PtDef));
-    if (PtCapture = 0){
-        labelPtCap->setText(""); // N'affiche rien
 
+    if (PtCapture == 0){
+        labelPtCap->setText(""); // N'affiche rien
     }
     if (PtCapture != 0){
         labelPtCap->setText("Capture points :" + QString::fromStdString(PtCap));
-
     }
-    if (team) {
-        labelViesOrange->setText("Unit lives : " + QString::fromStdString(viesU));
+    if (unit){
+        if (team) {
+            labelViesOrange->setText("Unit lives : " + QString::fromStdString(viesU));
+            labelViesBlue->setText("");
+        }
+        if (!team){
+            labelViesOrange->setText("");
+            labelViesBlue->setText("Unit lives : " + QString::fromStdString(viesU));
+        }
+    }
+    if (!unit){
         labelViesBlue->setText("");
-    }
-    if (!team){
         labelViesOrange->setText("");
-        labelViesBlue->setText("Unit lives : " + QString::fromStdString(viesU));
-
     }
 }
 
