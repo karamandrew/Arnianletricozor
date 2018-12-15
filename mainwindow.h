@@ -12,6 +12,8 @@
 #include "dialogshowcommands.h"
 #include "dialoglanguage.h"
 
+#include "dialognewgame.h"
+
 
 
 class Gameobject;
@@ -35,6 +37,8 @@ public:
     void setUp(int type);
     void updateInfoPos(string terrainType, int PtDefense, int PtCapture, bool team, int viesUnit);
 
+    Map& getMap();
+
 private slots :
     void changeTurn();
     void showPrice();
@@ -52,6 +56,9 @@ private:
     DialogShowRules *rulesDialog;
     DialogShowCommands *commandsDialog;
     DialogLanguage *languageDialog;
+
+    DialogNewGame *diaNewGame;
+
     Map *map;
     QPushButton *changeTurnButton = nullptr;
     QPushButton *showUnitPriceButton = nullptr;

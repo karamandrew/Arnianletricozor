@@ -66,7 +66,8 @@ SOURCES += \
     introwindow.cpp \
     bluemoonwin.cpp \
     orangestarwin.cpp \
-    pos.cpp
+    pos.cpp \
+    dialognewgame.cpp
 
 HEADERS += \
         mainwindow.h \
@@ -109,7 +110,8 @@ HEADERS += \
     introwindow.h \
     bluemoonwin.h \
     orangestarwin.h \
-    pos.h
+    pos.h \
+    dialognewgame.h
 
 FORMS += \
         mainwindow.ui \
@@ -121,7 +123,8 @@ FORMS += \
     dialoglanguage.ui \
     introwindow.ui \
     bluemoonwin.ui \
-    orangestarwin.ui
+    orangestarwin.ui \
+    dialognewgame.ui
 
 # Default rules for deployment.
 qnx: target.path = /tmp/$${TARGET}/bin

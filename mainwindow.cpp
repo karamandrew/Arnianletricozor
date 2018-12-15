@@ -242,8 +242,31 @@ void MainWindow::updateInfoPos(string terrainType, int PtDefense, int PtCapture,
 }
 
 void MainWindow::showIntro(){
+    Game& game = Game::Instance();
+    //game.~Game();
+    //diaNewGame = new DialogNewGame(this);
+    //diaNewGame->show();
+
+    game.endGame();
+
+
+     // SHOW NEW DIALOG choix : 1 2 ou 3 ou END
+
+    //if end --> Close
+
+
+
+    /*
+
+
     IntroWindow intro;
     intro.setWindow(this);
     //this->close();
     intro.show();
+
+    */
+}
+
+Map& MainWindow::getMap(){
+    return *map;
 }

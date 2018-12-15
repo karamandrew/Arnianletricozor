@@ -9,6 +9,8 @@
 #include "bluemoonwin.h"
 #include "orangestarwin.h"
 
+#include "dialognewgame.h"
+
 
 class Game{
 public:
@@ -62,6 +64,10 @@ public:
 
     void showInfo(int x, int y);
 
+    void endGame();
+
+    void restart(int gameType);
+
     ~Game();
 
 private:
@@ -88,6 +94,8 @@ private:
 
     BlueMoonWin *diaWinBlue = nullptr;
     OrangeStarWin *diaWinOrange = nullptr;
+
+    DialogNewGame *diaNewGame = nullptr;
 
     int m_gameType = 1;
 

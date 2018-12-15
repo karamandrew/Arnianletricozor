@@ -31,6 +31,7 @@ void Map::paintEvent(QPaintEvent *event)
     QPixmap accessible(":/Res/Animations/Misc.png");
     QPixmap focused(":/Res/Animations/Focused.png");
     QPixmap attackable(":/Res/Animations/swords.png");
+    QPixmap fusionnable(":/Res/Animations/coeur.svg");
 
     for(int i=0 ;i<21;i++){
         int m = i+7;
@@ -60,7 +61,7 @@ void Map::paintEvent(QPaintEvent *event)
                    painter.drawPixmap(m*40, t*40, 40, 40, attackable);
                }
                if (game.getUnite(i,j)->isFusionnable()){
-                   painter.drawPixmap(m*40, t*40, 40, 40, accessible);
+                   painter.drawPixmap(m*40, t*40, 40, 40, fusionnable);
                }
            }
         }

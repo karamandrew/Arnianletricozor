@@ -1015,23 +1015,23 @@ int Game::attackChart(Unite* u, Unite* v)
 }
 
 void Game::checkEndGame(bool turn){
-    bool endGame = true;
+    bool EndGame = true;
     for(int i=0 ;i<21;i++){
             for (int j=0; j<17; j++){
                 int mapId = getmapId(i,j);
                 if ( !turn ){ // Victoire des oranges
                     if ( mapId ==  43 || mapId == 44 || mapId == 45) { // Il y a un batiment bleu
-                        endGame = false;
+                        EndGame = false;
                     }
                 }
                 else if ( turn ) { // Victoire des bleus
                     if ( mapId == 38 || mapId == 39 || mapId == 40) {  // Il y a un batiment orange
-                        endGame = false;
+                        EndGame = false;
                     }
                 }
             }
     }
-    if (endGame){
+    if (EndGame){
         if ( !turn ) {
             std::cout << "Victoire des oranges" << std::endl;
             diaWinOrange = new OrangeStarWin(window);
@@ -1042,6 +1042,48 @@ void Game::checkEndGame(bool turn){
             diaWinBlue = new BlueMoonWin(window);
             diaWinBlue->show();
         }
-        window->showIntro();
+       endGame();
     }
+}
+
+void Game::endGame(){
+
+
+    for(Unite* u : unite) {
+        delete u;
+    }
+    delete diaBuyAirBM;
+    delete diaBuyAirOS;
+    delete diaBuyTerreBM;
+    delete diaBuyTerreOS;
+
+    delete diaWinBlue;
+    delete diaWinOrange;
+
+    window->getMap().~Map();
+
+    setMoney(true,-moneyTeamT);
+    setMoney(false,-moneyTeamF);
+
+    diaNewGame = new DialogNewGame(window);
+    diaNewGame->show();
+}
+
+void Game::restart(int gameType){
+
+    window->createMapObjects();
+
+    turnChange();
+    giveBuildingsPtCapture();
+    if (gameType == 4){
+        window->close();
+    }
+
+    m_gameType = gameType;
+
+
+    //window->redraw();
+
+
+
 }

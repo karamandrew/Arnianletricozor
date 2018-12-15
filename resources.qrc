@@ -119,5 +119,6 @@
         <file>Res/Animations/troll2.git</file>
         <file>Res/Animations/troll3.git</file>
         <file>Res/Animations/troll4.git</file>
+        <file>Res/Animations/coeur.svg</file>
     </qresource>
 </RCC>
