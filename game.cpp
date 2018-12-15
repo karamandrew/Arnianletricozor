@@ -261,79 +261,130 @@ void Game::iAcreateUnit()
     if(moneyTeamF>=1000){
         for(int x=0 ;x<21;x++){
             for (int y=0; y<17; y++){
-                    if (getmapId(x,y) == 44 && !isThereAnotherUnite(x,y,1)) { //Base
-                        if (moneyTeamF>=28000) { MegaTank *osmegatank = new MegaTank( x, y, 206, false); unite.push_back(osmegatank); setMoney(false, -28000);window->redraw();std::this_thread::sleep_for (std::chrono::microseconds(500000));}
-                        else if (moneyTeamF>=22000) { NeoTank *osneotank = new NeoTank( x, y, 207, false); unite.push_back(osneotank); setMoney(false, -22000);window->redraw();std::this_thread::sleep_for (std::chrono::microseconds(500000));}
-                        else if (moneyTeamF>=16000) { MdTank *osmdtank = new MdTank( x, y, 205, false); unite.push_back(osmdtank); setMoney(false, -16000);window->redraw();std::this_thread::sleep_for (std::chrono::microseconds(500000));}
-                        else if (moneyTeamF>=8000) { Antiair *osantiair = new Antiair( x, y, 203, false); unite.push_back(osantiair); setMoney(false, -8000);window->redraw();std::this_thread::sleep_for (std::chrono::microseconds(500000));}
-                        else if (moneyTeamF>=7000) { Tank *ostank = new Tank( x, y, 204, false); unite.push_back(ostank); setMoney(false, -7000);window->redraw();std::this_thread::sleep_for (std::chrono::microseconds(500000));}
-                        else if (moneyTeamF>=4000) { Recon *osrecon = new Recon( x, y, 202, false); unite.push_back(osrecon); setMoney(false, -4000);window->redraw();std::this_thread::sleep_for (std::chrono::microseconds(500000));}
-                       // else if (moneyTeamF>=3000) { Mech *osmech = new Mech( x, y, 201, false); unite.push_back(osmech); setMoney(false, -3000);window->redraw();std::this_thread::sleep_for (std::chrono::microseconds(500000));}
-                        else if (moneyTeamF>=1000) { Infantry *osinf = new Infantry( x, y, 200, false); unite.push_back(osinf); setMoney(false, -1000);window->redraw();std::this_thread::sleep_for (std::chrono::microseconds(500000));}
-                        else {return;}
-                    }
-                    if (getmapId(x,y) ==45 && !isThereAnotherUnite(x,y,1)) { //aéroport
-                        if (moneyTeamF>=22000) { Bomber *osbomber = new Bomber( x, y, 210, false); unite.push_back(osbomber); setMoney(false, -22000);window->redraw();std::this_thread::sleep_for (std::chrono::microseconds(500000));}
-                        else if (moneyTeamF>=20000) { Fighter *osfighter = new Fighter( x, y, 209, false); unite.push_back(osfighter); setMoney(false, -20000);window->redraw();std::this_thread::sleep_for (std::chrono::microseconds(500000));}
-                        else if (moneyTeamF>=9000 ) { BCopter *osbcopter = new BCopter( x, y, 208, false); unite.push_back(osbcopter); setMoney(false, -9000);window->redraw();std::this_thread::sleep_for (std::chrono::microseconds(500000));}
-                        else if (moneyTeamF<1000) {return;}
-                    }
+                if (getmapId(x,y) ==45 && !isThereAnotherUnite(x,y,1)) { //aéroport
+                    if (moneyTeamF>=22000) { Bomber *osbomber = new Bomber( x, y, 210, false); unite.push_back(osbomber); setMoney(false, -22000);window->redraw();std::this_thread::sleep_for (std::chrono::microseconds(500000));}
+                    else if (moneyTeamF>=20000) { Fighter *osfighter = new Fighter( x, y, 209, false); unite.push_back(osfighter); setMoney(false, -20000);window->redraw();std::this_thread::sleep_for (std::chrono::microseconds(500000));}
+                    else if (moneyTeamF>=9000 ) { BCopter *osbcopter = new BCopter( x, y, 208, false); unite.push_back(osbcopter); setMoney(false, -9000);window->redraw();std::this_thread::sleep_for (std::chrono::microseconds(500000));}
+                    else if (moneyTeamF<1000) {return;}
+                }
+                if (getmapId(x,y) == 44 && !isThereAnotherUnite(x,y,1)) { //Base
+                    if (moneyTeamF>=28000) { MegaTank *osmegatank = new MegaTank( x, y, 206, false); unite.push_back(osmegatank); setMoney(false, -28000);window->redraw();std::this_thread::sleep_for (std::chrono::microseconds(500000));}
+                    else if (moneyTeamF>=22000) { NeoTank *osneotank = new NeoTank( x, y, 207, false); unite.push_back(osneotank); setMoney(false, -22000);window->redraw();std::this_thread::sleep_for (std::chrono::microseconds(500000));}
+                    else if (moneyTeamF>=16000) { MdTank *osmdtank = new MdTank( x, y, 205, false); unite.push_back(osmdtank); setMoney(false, -16000);window->redraw();std::this_thread::sleep_for (std::chrono::microseconds(500000));}
+                    else if (moneyTeamF>=8000) { Antiair *osantiair = new Antiair( x, y, 203, false); unite.push_back(osantiair); setMoney(false, -8000);window->redraw();std::this_thread::sleep_for (std::chrono::microseconds(500000));}
+                    else if (moneyTeamF>=7000) { Tank *ostank = new Tank( x, y, 204, false); unite.push_back(ostank); setMoney(false, -7000);window->redraw();std::this_thread::sleep_for (std::chrono::microseconds(500000));}
+                    else if (moneyTeamF>=4000) { Recon *osrecon = new Recon( x, y, 202, false); unite.push_back(osrecon); setMoney(false, -4000);window->redraw();std::this_thread::sleep_for (std::chrono::microseconds(500000));}
+                   // else if (moneyTeamF>=3000) { Mech *osmech = new Mech( x, y, 201, false); unite.push_back(osmech); setMoney(false, -3000);window->redraw();std::this_thread::sleep_for (std::chrono::microseconds(500000));}
+                    else if (moneyTeamF>=1000) { Infantry *osinf = new Infantry( x, y, 200, false); unite.push_back(osinf); setMoney(false, -1000);window->redraw();std::this_thread::sleep_for (std::chrono::microseconds(500000));}
+                    else {return;}
                 }
             }
+        }
     }
 }
 
 void Game::iAmoveUnit()
 {
-    vector<Pos> coordinate;
+    vector<Pos> coordinateB;
     Pos capturablebuild;
     for(int x=0 ;x<21;x++){
         for (int y=0; y<17; y++){
             if(capturableIDbuilding(x,y)){
                 capturablebuild.setX(x);
                 capturablebuild.setY(y);
-                coordinate.push_back(capturablebuild);
+                coordinateB.push_back(capturablebuild);
             }
         }
     }
+
+    vector<Pos> coordinateE;
+    Pos ennemy;
+    for (Unite* u: unite){
+        if(u->isTeam()){
+            ennemy.setX(u->getPosX());
+            ennemy.setY(u->getPosY());
+            coordinateE.push_back(ennemy);
+        }
+    }
+
     for(Unite* u: unite){
         if(!u->isTeam() && u->isTurn()){
+
             Pos closest;
+            Pos posChosed;
+
             int dist=100;
             int i=-1;
-            std::cout<<closest.getX()<<" "<<closest.getY()<<std::endl;
 
-            for(Pos c: coordinate){
-                if(dist>u->getPos()-c){
-                        dist=u->getPos()-c;
-                        closest=c;
-                        std::cout<<closest.getX()<<", "<<closest.getY()<< " + " << dist <<std::endl;
-                }
-            }
-            for(Pos c: coordinate){
-                i++;
-                if(closest==c){
-                    break;
-                }
-            }
+            if(u->getId()==200 || u->getId()==201){
 
-            coordinate.erase(coordinate.begin()+i);
-            Pos posChosed;
-            move(u->getPosX(), u->getPosY());
-            std::this_thread::sleep_for (std::chrono::microseconds(300000));
-            for (int i=0; i<21; i++){
-                for (int j=0; j<17; j++){
-                    if(window->getMapObject(i,j).isAccessible()){
-                        if(window->getMapObject(i,j).getPos()-closest<dist){
-                            dist=window->getMapObject(i,j).getPos()-closest;
-                            posChosed=window->getMapObject(i,j).getPos();
+                std::cout<<closest.getX()<<" "<<closest.getY()<<std::endl;
+
+                for(Pos c: coordinateB){
+                    if(dist>u->getPos()-c){
+                            dist=u->getPos()-c;
+                            closest=c;
+                    }
+                }
+                for(Pos c: coordinateB){
+                    i++;
+                    if(closest==c){
+                        break;
+                    }
+                }
+
+                coordinateB.erase(coordinateB.begin()+i);
+                move(u->getPosX(), u->getPosY());
+                std::this_thread::sleep_for (std::chrono::microseconds(300000));
+                for (int i=0; i<21; i++){
+                    for (int j=0; j<17; j++){
+                        if(window->getMapObject(i,j).isAccessible()){
+                            if(window->getMapObject(i,j).getPos()-closest<dist){
+                                dist=window->getMapObject(i,j).getPos()-closest;
+                                posChosed=window->getMapObject(i,j).getPos();
+                            }
                         }
                     }
                 }
+                std::cout<<posChosed.getX()<<" "<<posChosed.getY()<<std::endl;
+                move(posChosed.getX(), posChosed.getY());
+                std::this_thread::sleep_for (std::chrono::microseconds(300000));
             }
-            std::cout<<posChosed.getX()<<" "<<posChosed.getY()<<std::endl;
-            move(posChosed.getX(), posChosed.getY());
-            std::this_thread::sleep_for (std::chrono::microseconds(300000));
+            else{
+                for (Pos e: coordinateE){
+                    if(e-u->getPos()<dist){
+                        dist=e-u->getPos();
+                        closest=e;
+                    }
+                }
+                move(u->getPosX(), u->getPosY());
+                std::this_thread::sleep_for (std::chrono::microseconds(300000));
+                for (int i=0; i<21; i++){
+                    for (int j=0; j<17; j++){
+                        if(window->getMapObject(i,j).isAccessible()){
+                            if(window->getMapObject(i,j).getPos()-closest<dist){
+                                dist=window->getMapObject(i,j).getPos()-closest;
+                                posChosed=window->getMapObject(i,j).getPos();
+                            }
+                        }
+                    }
+                }
+                move(posChosed.getX(), posChosed.getY());
+                std::this_thread::sleep_for (std::chrono::microseconds(500000));
+                if(Enemyclose(u)){
+                    attack(closest.getX(),closest.getY());
+                    if(!Enemyclose(u)){
+                        for(Pos e: coordinateE){
+                            i++;
+                            if(closest==e){
+                                break;
+                            }
+                        }
+                        coordinateE.erase(coordinateE.begin()+i);
+                    }
+                }
+                std::this_thread::sleep_for (std::chrono::microseconds(300000));
+            }
         }
     }
 }
