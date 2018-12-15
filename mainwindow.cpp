@@ -83,37 +83,37 @@ MainWindow::MainWindow(QWidget *parent) :
         labelDeviseF->setStyleSheet("QLabel{font: 12pt; color: blue}");
         labelDeviseF->setGeometry(1150, 150, 300,100);
 
-    labelDeviseT= new QLabel("Diviser pour mieux reigner", this);
+    labelDeviseT= new QLabel("Diviser pour mieux régner", this);
         labelDeviseT->setStyleSheet("QLabel{font: 12pt; color: orange}");
         labelDeviseT->setGeometry(15, 150, 300,100);
 
-    labelTerrainType= new QLabel ("", this);
-        labelTerrainType->setStyleSheet("QLabel { font: 15pt ; color:black}");
-        labelTerrainType->setGeometry(0,0, 200, 200);
+    labelTerrainType= new QLabel ("Terrain type :", this);
+        labelTerrainType->setStyleSheet("QLabel { font: 12pt ; color:black}");
+        labelTerrainType->setGeometry(280,740, 200, 30);
 
-    labelViesOrange= new QLabel ("", this);
-        labelViesOrange->setStyleSheet("QLabel { font: 15pt ; color:black}");
-        labelViesOrange->setGeometry(15, 325, 300, 20);
+    labelViesOrange= new QLabel ("Unit life : ", this);
+        labelViesOrange->setStyleSheet("QLabel { font: 15pt ; color:orange}");
+        labelViesOrange->setGeometry(15, 385, 300, 50);
 
-    labelViesBlue= new QLabel ("", this);
-        labelViesBlue->setStyleSheet("QLabel { font: 15pt ; color:black}");
-        labelViesBlue->setGeometry(1150, 325, 300, 20);
+    labelViesBlue= new QLabel ("Unit life : ", this);
+        labelViesBlue->setStyleSheet("QLabel { font: 15pt ; color:blue}");
+        labelViesBlue->setGeometry(1150, 385, 300, 50);
 
-    labelPtCap=new QLabel ("", this);
-        labelPtCap->setStyleSheet("QLabel { font: 15pt ; color:black}");
-        labelPtCap->setGeometry(200, 0, 300, 20);
+    labelPtCap=new QLabel ("Points de capture :", this);
+        labelPtCap->setStyleSheet("QLabel { font: 12pt ; color:black}");
+        labelPtCap->setGeometry(280, 760, 200, 30);
 
-    labelPtDef=new QLabel ("", this);
-        labelPtDef->setStyleSheet("QLabel { font: 15pt ; color:black}");
-        labelPtDef->setGeometry(500, 0, 300, 20);
+    labelPtDef=new QLabel ("Defense points :", this);
+        labelPtDef->setStyleSheet("QLabel { font: 12pt ; color:black}");
+        labelPtDef->setGeometry(280, 780, 300, 30);
 
-    labelAttackableOrange = new QLabel ("",this);
-        labelAttackableOrange->setStyleSheet("QLabel { font: 10pt ; color:black}");
-        labelAttackableOrange->setGeometry(0,880,500,200);
+    labelAttackableOrange = new QLabel ("Attackable! Dam : ",this);
+        labelAttackableOrange->setStyleSheet("QLabel { font: 15pt ; color:orange}");
+        labelAttackableOrange->setGeometry(15,430,300,50);
 
-    labelAttackableBlue = new QLabel ("",this);
-        labelAttackableBlue->setStyleSheet("QLabel { font: 10pt ; color:black}");
-        labelAttackableBlue->setGeometry(0,500,500,200);
+    labelAttackableBlue = new QLabel ("Attackable! Dam : ",this);
+        labelAttackableBlue->setStyleSheet("QLabel { font: 15pt ; color:blue}");
+        labelAttackableBlue->setGeometry(1150 ,430,300,50);
 
 }
 
@@ -243,7 +243,7 @@ void MainWindow::updateInfoPos(string terrainType, int PtDefense, int PtCapture,
             labelViesBlue->setText("");
             labelAttackableBlue->setText("");
             if (attackable){
-                labelAttackableOrange->setText( " Attackable ! Dammages : " + QString::fromStdString(deg));
+                labelAttackableOrange->setText( " Attackable! Dam : " + QString::fromStdString(deg));
             }
             if (!attackable){
                 labelAttackableOrange->setText("");
@@ -254,7 +254,7 @@ void MainWindow::updateInfoPos(string terrainType, int PtDefense, int PtCapture,
             labelViesBlue->setText("Unit lives : " + QString::fromStdString(viesU));
             labelAttackableOrange->setText("");
             if (attackable){
-                labelAttackableBlue->setText(" Attackable ! Dammages : " + QString::fromStdString(deg));
+                labelAttackableBlue->setText(" Attackable! Dam: " + QString::fromStdString(deg));
             }
             if (!attackable){
                 labelAttackableBlue->setText("");
