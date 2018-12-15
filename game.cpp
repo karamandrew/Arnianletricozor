@@ -1043,15 +1043,16 @@ void Game::checkEndGame(bool turn){
     if (EndGame){
         if ( !turn ) {
             std::cout << "Victoire des oranges" << std::endl;
+            endGame();
             diaWinOrange = new OrangeStarWin(window);
             diaWinOrange->show();
         }
         if ( turn) {
             std::cout << "Victoire des bleus" << std::endl;
+            endGame();
             diaWinBlue = new BlueMoonWin(window);
             diaWinBlue->show();
         }
-       endGame();
     }
 }
 
@@ -1061,6 +1062,9 @@ void Game::endGame(){
     for(Unite* u : unite) {
         delete u;
     }
+    for (unsigned int i=0; unite.size(); i++){
+        unite.erase(unite.begin() + i);
+    }
     delete diaBuyAirBM;
     delete diaBuyAirOS;
     delete diaBuyTerreBM;
@@ -1069,7 +1073,7 @@ void Game::endGame(){
     delete diaWinBlue;
     delete diaWinOrange;
 
-    window->getMap().~Map();
+   // window->getMap()->reload();
 
     setMoney(true,-moneyTeamT);
     setMoney(false,-moneyTeamF);

@@ -267,6 +267,6 @@ void MainWindow::showIntro(){
     */
 }
 
-Map& MainWindow::getMap(){
-    return *map;
+Map* MainWindow::getMap(){
+    return map;
 }

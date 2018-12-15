@@ -13,6 +13,7 @@ public:
     void setmapobject();
     void redraw();
     Terrain& getmapObject(int i, int j);
+    void reload();
     ~Map();
 private:
     Terrain  *mapObject[21][17];

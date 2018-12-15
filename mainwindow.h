@@ -37,7 +37,7 @@ public:
     void setUp(int type);
     void updateInfoPos(string terrainType, int PtDefense, int PtCapture, bool team, int viesUnit);
 
-    Map& getMap();
+    Map* getMap();
 
 private slots :
     void changeTurn();

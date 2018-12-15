@@ -156,10 +156,24 @@ Terrain& Map::getmapObject(int i, int j)
 
 }
 
+void Map::reload(){
+    for(int i=0 ;i<21;i++){
+            for (int j=0; j<17; j++){
+               //delete mapObject[i][j];
+               delete &getmapObject(i,j);
+
+            }
+   }
+
+
+}
+
 Map::~Map() {
     for(int i=0 ;i<21;i++){
             for (int j=0; j<17; j++){
-                delete &getmapObject(i,j);
+                //delete mapObject[i][j];
+               delete &getmapObject(i,j);
+
             }
    }
 }
