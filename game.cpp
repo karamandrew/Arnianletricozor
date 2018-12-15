@@ -64,7 +64,7 @@ void Game::mouseLeftPressed(int x, int y)
 void Game::mouseRightPressed(int x, int y)
 {
     //std::cout << x << y << std::endl;
-    showInfo(x,y);
+    //showInfo(x,y);
 }
 
 void Game::showInfo(int x, int y){
@@ -205,7 +205,6 @@ void Game::move(int x, int y)
          && getIndexUnit(Xfoc,Yfoc) != -1
          && getIndexUnit(x,y) != -1
          && unite[getIndexUnit(x,y)]->isFusionnable() ) {
-
          fusion(unite[getIndexUnit(Xfoc,Yfoc)],unite[getIndexUnit(x,y)]);
          unite[getIndexUnit(x,y)]->setFusionnable(false);
     }
@@ -220,6 +219,14 @@ void Game::move(int x, int y)
 
             Xfoc = x;
             Yfoc = y;
+        }
+    }
+    else {
+        setMapObjectfalse();
+        for(Unite* u: unite){
+            if(u->isFocused()){
+                u->setFocused(false);
+            }
         }
     }
     window->redraw();
