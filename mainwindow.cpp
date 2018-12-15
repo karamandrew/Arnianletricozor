@@ -87,7 +87,7 @@ MainWindow::MainWindow(QWidget *parent) :
         labelDeviseT->setStyleSheet("QLabel{font: 12pt; color: orange}");
         labelDeviseT->setGeometry(15, 150, 300,100);
 
-    labelTerrainType= new QLabel ("Terrain type :", this);
+    labelTerrainType= new QLabel ("Terrain type : ", this);
         labelTerrainType->setStyleSheet("QLabel { font: 12pt ; color:black}");
         labelTerrainType->setGeometry(280,740, 200, 30);
 
@@ -99,19 +99,19 @@ MainWindow::MainWindow(QWidget *parent) :
         labelViesBlue->setStyleSheet("QLabel { font: 15pt ; color:blue}");
         labelViesBlue->setGeometry(1150, 385, 300, 50);
 
-    labelPtCap=new QLabel ("Points de capture :", this);
+    labelPtCap=new QLabel ("Capture points : ", this);
         labelPtCap->setStyleSheet("QLabel { font: 12pt ; color:black}");
-        labelPtCap->setGeometry(280, 760, 200, 30);
+        labelPtCap->setGeometry(280, 780, 300, 30);
 
     labelPtDef=new QLabel ("Defense points :", this);
         labelPtDef->setStyleSheet("QLabel { font: 12pt ; color:black}");
-        labelPtDef->setGeometry(280, 780, 300, 30);
+        labelPtDef->setGeometry(280, 760, 300, 30);
 
-    labelAttackableOrange = new QLabel ("Attackable! Dam : ",this);
+    labelAttackableOrange = new QLabel ("",this);
         labelAttackableOrange->setStyleSheet("QLabel { font: 15pt ; color:orange}");
         labelAttackableOrange->setGeometry(15,430,300,50);
 
-    labelAttackableBlue = new QLabel ("Attackable! Dam : ",this);
+    labelAttackableBlue = new QLabel ("",this);
         labelAttackableBlue->setStyleSheet("QLabel { font: 15pt ; color:blue}");
         labelAttackableBlue->setGeometry(1150 ,430,300,50);
 
@@ -151,6 +151,10 @@ MainWindow::~MainWindow()
     delete rulesDialog;
     delete commandsDialog;
     delete languageDialog;
+
+    delete labelAttackableBlue;
+    delete labelAttackableOrange;
+
 }
 
 void MainWindow::createMapObjects() {
@@ -228,19 +232,19 @@ void MainWindow::updateInfoPos(string terrainType, int PtDefense, int PtCapture,
     std::string viesU = std::to_string(viesUnit);
     std::string deg = std::to_string(degats);
 
-    labelTerrainType->setText(" Terrain type :" + QString::fromStdString(terrainType));
-    labelPtDef->setText(" Defense points :" + QString::fromStdString(PtDef));
+    labelTerrainType->setText("Terrain type : " + QString::fromStdString(terrainType));
+    labelPtDef->setText("Defense points : " + QString::fromStdString(PtDef));
 
     if (PtCapture == 0){
-        labelPtCap->setText(""); // N'affiche rien
+        labelPtCap->setText("Capture points : "); // N'affiche rien
     }
     if (PtCapture != 0){
-        labelPtCap->setText("Capture points :" + QString::fromStdString(PtCap));
+        labelPtCap->setText("Capture points : " + QString::fromStdString(PtCap));
     }
     if (unit){
         if (team) {
             labelViesOrange->setText("Unit lives : " + QString::fromStdString(viesU));
-            labelViesBlue->setText("");
+            labelViesBlue->setText("Unit life : ");
             labelAttackableBlue->setText("");
             if (attackable){
                 labelAttackableOrange->setText( " Attackable! Dam : " + QString::fromStdString(deg));
@@ -250,8 +254,8 @@ void MainWindow::updateInfoPos(string terrainType, int PtDefense, int PtCapture,
             }
         }
         if (!team){
-            labelViesOrange->setText("");
-            labelViesBlue->setText("Unit lives : " + QString::fromStdString(viesU));
+            labelViesOrange->setText("Unit life : ");
+            labelViesBlue->setText("Unit life : " + QString::fromStdString(viesU));
             labelAttackableOrange->setText("");
             if (attackable){
                 labelAttackableBlue->setText(" Attackable! Dam: " + QString::fromStdString(deg));
@@ -262,8 +266,8 @@ void MainWindow::updateInfoPos(string terrainType, int PtDefense, int PtCapture,
         }
     }
     if (!unit){
-        labelViesBlue->setText("");
-        labelViesOrange->setText("");
+        labelViesBlue->setText("Unit life : ");
+        labelViesOrange->setText("Unit life : ");
     }
 }
 

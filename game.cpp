@@ -63,8 +63,8 @@ void Game::mouseLeftPressed(int x, int y)
 
 void Game::mouseRightPressed(int x, int y)
 {
-    //std::cout << x << y << std::endl;
-    //showInfo(x,y);
+    std::cout << x << y << std::endl;
+    showInfo(x,y);
 }
 
 void Game::showInfo(int x, int y){
