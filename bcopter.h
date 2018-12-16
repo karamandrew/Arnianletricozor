@@ -2,7 +2,6 @@
 #define BCOPTER_H
 #include"unite.h"
 
-
 class BCopter : public Unite
 {
 public:

@@ -35,7 +35,7 @@ void Unite::setAttackable(bool set)
     m_attackable=set;
 }
 
-void Unite::receiveDamage(double dmg)
+void Unite::receiveDamage(int dmg)
 {
     m_vie-= dmg;
     if(m_vie<0){

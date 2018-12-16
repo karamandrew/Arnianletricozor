@@ -2,7 +2,6 @@
 #define ANTIAIR_H
 #include"unite.h"
 
-
 class Antiair : public Unite
 {
 public:

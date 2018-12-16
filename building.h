@@ -2,7 +2,6 @@
 #define BUILDING_H
 #include"terrain.h"
 
-
 class Building : public Terrain
 {
 

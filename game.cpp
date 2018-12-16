@@ -18,29 +18,20 @@
 #include <thread>
 #include <chrono>
 
-#include <QMetaObject>
-
 Game Game::gInstance;
+
 Game::Game(){
 }
 
-Game::~Game(){
-    for(Unite* u : unite) {
-        delete u;
-    }
-    delete diaBuyAirBM;
-    delete diaBuyAirOS;
-    delete diaBuyTerreBM;
-    delete diaBuyTerreOS;
 
-    delete diaWinBlue;
-    delete diaWinOrange;
-}
 
 Game &Game::Instance()
 {
     return gInstance;
 }
+
+
+// MOUSE ACTIVATION
 
 int Game::getXCoordinate(QMouseEvent *e)
 {
@@ -56,15 +47,58 @@ int Game::getYCoordinate(QMouseEvent *e)
 
 void Game::mouseLeftPressed(int x, int y)
 {
-        attack(x,y);
-        move(x,y);
-        selectUnits(x,y);
+    attack(x,y);
+    move(x,y);
+    selectUnits(x,y);
 }
 
 void Game::mouseRightPressed(int x, int y)
 {
     showInfo(x,y);
 }
+
+void Game::attack(int x, int y)
+{
+    int indexUnit = getIndexUnit(x,y);
+    int indexUnitFoc = -1;
+
+    if( indexUnit != -1 && !unite[indexUnit]->isFocused()){    // TEST FOCUSED PAS NECESSAIRE
+        if(unite[indexUnit]->isAttackable()){
+
+            for(Unite* a: unite){
+                if (a->isFocused()){
+                    indexUnitFoc = getIndexUnit(a->getPosX(),a->getPosY());
+                 }
+            }
+
+            if (indexUnitFoc != -1){  // COMBAT
+
+                unite[indexUnit]->receiveDamage(calculDegat(unite[indexUnitFoc],unite[indexUnit])); // Attaque
+                unite[indexUnitFoc]->receiveDamage(calculDegat(unite[indexUnit],unite[indexUnitFoc])); // Contre-attaque
+                unite[indexUnitFoc]->setTurn(false);
+
+                if(unite[indexUnit]->getVie()<=0){
+                    delete unite[indexUnit];
+                    unite.erase(unite.begin() + getIndexUnit(unite[indexUnit]->getPosX(), unite[indexUnit]->getPosY()));
+                }
+
+                if(unite[indexUnitFoc]->getVie()<=0){
+                    delete unite[indexUnitFoc];
+                    unite.erase(unite.begin() + getIndexUnit(unite[indexUnitFoc]->getPosX(), unite[indexUnitFoc]->getPosY()));
+                 }
+
+                 setUnitefalse();
+            }
+        }
+
+        window->redraw();
+    }
+}
+
+
+
+
+
 
 void Game::showInfo(int x, int y){
 
@@ -139,58 +173,7 @@ void Game::showInfo(int x, int y){
     window->updateInfoPos(terrainType, PtDefense, PtCapture, unit, team, viesUnit, attackable, degats);
 }
 
-void Game::attack(int x, int y)
-{
-    if(getIndexUnit(x,y)!=-1 && !unite[getIndexUnit(x,y)]->isFocused()){
-        if(unite[getIndexUnit(x,y)]->isAttackable()){
 
-            for(Unite* a: unite){
-                if (a->isFocused()){
-
-                    std::cout << "Point de vie unite attaquee avant " <<unite[getIndexUnit(x,y)]->getVie() << std::endl;
-                    unite[getIndexUnit(x,y)]->receiveDamage(calculDegat(a,unite[getIndexUnit(x,y)]));  //attaque
-                    std::cout << "Point de vie unite attaquee apres " <<unite[getIndexUnit(x,y)]->getVie() << std::endl;
-
-                    std::cout << "Point de vie unite qui attaque avant " <<a->getVie() << std::endl;
-                    a->receiveDamage(calculDegat(unite[getIndexUnit(x,y)],a));  //contreattaque
-                    std::cout << "Point de vie unite qui attaque apres " <<a->getVie() << std::endl;
-
-                    a->setTurn(false);
-
-                    if(unite[getIndexUnit(x,y)]->getVie()<=0){
-                        delete unite[getIndexUnit(x,y)];
-                        unite.erase(unite.begin() + getIndexUnit(unite[getIndexUnit(x,y)]->getPosX(), unite[getIndexUnit(x,y)]->getPosY()));
-                        window->redraw();
-                    }
-                    for(Unite* set:unite){
-                        set->setAttackable(false);
-                        set->setFocused(false);
-                    }
-                    window->redraw();
-                    return;
-                }
-                else if(a->isFocused() && a->isTeam()==activeTurn){
-                    for(Unite* set:unite){
-                        set->setAttackable(false);
-                        set->setTurn(false);
-                        set->setFocused(false);
-                    }
-                    window->redraw();
-                }
-            }
-        }
-    }
-    else{
-        for(Unite* a: unite){
-            if(a->isAttackable()){
-                for(Unite* b: unite){
-                    b->setFocused(false);
-                }
-            }
-            a->setAttackable(false);
-        }
-    }
-}
 
 void Game::move(int x, int y)
 {
@@ -223,7 +206,7 @@ void Game::move(int x, int y)
     }
 
     else if (getIndexUnit(x,y) != -1) {
-        setUnitefocusedfalse();
+        setUnitefalse();
         setMapObjectfalse();
         if(unite[getIndexUnit(x,y)]->isTurn()){
             unite[getIndexUnit(x,y)]->setFocused(true);
@@ -598,11 +581,12 @@ void Game::setMapObjectfalse(){
     }
 }
 
-void Game::setUnitefocusedfalse()
+void Game::setUnitefalse()
 {
     for(Unite* u : unite) {
         u->setFocused(false);
         u->setFusionnable(false);
+        u->setAttackable(false);
     }
 }
 
@@ -616,7 +600,6 @@ int Game::calculDegat(Unite* u, Unite* v)
             D_TR=0;
         }
         double degats = (B *( A_HP / 10 ) * ( ( 100 - D_TR * D_HP) / 100 ))/10;
-        std::cout << "Degats (double) : " << degats << std::endl;
 
         int domagearrondi = 0;
         if(degats > 1 && degats <9.5){
@@ -637,8 +620,6 @@ int Game::calculDegat(Unite* u, Unite* v)
         else{
             domagearrondi=10;
         }
-
-        std::cout << "Degats arrondis (int) : " << domagearrondi << std::endl;
 
         return  domagearrondi ;
 }
@@ -742,7 +723,6 @@ void Game::cureUnit(bool turn){
         int x = u->getPosX();
         int y = u->getPosY();
         int unitLife = u->getVie();
-        std::cout << "Life unit : " << unitLife << std::endl; ;
         int mapId = getmapId(x,y);
         char typeMove = u->getTypeMovement();
         bool team = u->isTeam();
@@ -1198,12 +1178,25 @@ void Game::restart(int gameType){
     if (gameType == 4){
         window->close();
     }
+    setgameType(gameType);
 
-    m_gameType = gameType;
 
 
     //window->redraw();
 
 
 
+}
+
+Game::~Game(){
+    for(Unite* u : unite) {
+        delete u;
+    }
+    delete diaBuyAirBM;
+    delete diaBuyAirOS;
+    delete diaBuyTerreBM;
+    delete diaBuyTerreOS;
+
+    delete diaWinBlue;
+    delete diaWinOrange;
 }

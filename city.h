@@ -2,7 +2,6 @@
 #define VILLE_H
 #include "building.h"
 
-
 class Ville : public Building
 {
 public:

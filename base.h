@@ -2,7 +2,6 @@
 #define BASE_H
 #include"building.h"
 
-
 class Base : public Building
 {
 public:
