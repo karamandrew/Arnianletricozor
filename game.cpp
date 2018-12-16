@@ -278,6 +278,7 @@ void Game::iA(bool team)
         iAcreateUnit(team);
         iAmoveUnit(team);
         }
+        turnChange();
     }
     else{
         while(moneyTeamT>=1000){
@@ -285,7 +286,6 @@ void Game::iA(bool team)
         iAmoveUnit(team);
         }
     }
-    turnChange();
 }
 
 void Game::iAcreateUnit(bool team)
