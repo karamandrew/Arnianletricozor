@@ -223,9 +223,7 @@ void Game::showInfo(int x, int y){
     // Airport
     case 36 : terrainType = "Neutral Airport"; break; //Neutral
     case 40 : terrainType = "Orange Star Airport"; break; // Orange
-    case 45 : terrainType = "Blue Moon Airport"; break;  // Blu
-
-     default: std::cout << "Type inconnu, ID : "<< mapID <<  std::endl; break;
+    case 45 : terrainType = "Blue Moon Airport"; break;  // Blue
 
     }
 

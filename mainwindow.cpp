@@ -128,7 +128,6 @@ MainWindow::MainWindow(QWidget *parent) :
         rulesDialog = new DialogShowRules(this);
         commandsDialog = new DialogShowCommands(this);
         languageDialog = new DialogLanguage(this);
-
 }
 
 
@@ -195,26 +194,19 @@ void MainWindow::changeTurn()
 }
 
 void MainWindow::showPrice(){
-
     priceDialog->show();
 }
 
 void MainWindow::showRules(){
-
     rulesDialog->show();
-
 }
 
 void MainWindow::showCommands(){
-
     commandsDialog->show();
-
 }
 
 void MainWindow::language(){
-
     languageDialog->show();
-
 }
 
 void MainWindow::updateMoneyTeam(int moneyTeamT, int moneyTeamF) {
@@ -303,6 +295,6 @@ void MainWindow::showIntro(){
     game.endGame();
 }
 
-Map* MainWindow::getMap(){
-    return map;
+Map& MainWindow::getMap(){
+    return *map;
 }

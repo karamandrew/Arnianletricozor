@@ -1,11 +1,9 @@
 #include "introwindow.h"
 #include "ui_introwindow.h"
 #include "mainwindow.h"
-//#include"Gameobject.h"
-//#include "game.h"
 #include <QApplication>
 #include <QHBoxLayout>
-//#include "player.h"
+
 IntroWindow::IntroWindow(QWidget *parent) :
     QMainWindow(parent),
     ui(new Ui::IntroWindow)
@@ -22,8 +20,6 @@ void IntroWindow::setWindow(MainWindow *window)
 {
     main = window;
 }
-
-
 
 void IntroWindow::on_pushButton_clicked()
 {
@@ -45,8 +41,6 @@ void IntroWindow::on_pushButton_3_clicked()
     main->show();
     this->close();
 }
-
-
 
 void IntroWindow::on_pushButton_4_clicked()
 {

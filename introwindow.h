@@ -15,10 +15,7 @@ public:
     explicit IntroWindow(QWidget *parent = nullptr);
     ~IntroWindow();
 
-
-    //MainWindow *getWindow() const;
     void setWindow(MainWindow *value);
-
 
 private slots:
     void on_pushButton_clicked();

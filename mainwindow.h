@@ -11,10 +11,7 @@
 #include "dialogshowrules.h"
 #include "dialogshowcommands.h"
 #include "dialoglanguage.h"
-
 #include "dialognewgame.h"
-
-
 
 class Gameobject;
 namespace Ui {
@@ -28,16 +25,16 @@ class MainWindow : public QMainWindow
 public:
     explicit MainWindow(QWidget *parent = nullptr);
     ~MainWindow();
+
     void redraw();
     void createMapObjects();
-    Terrain& getMapObject(int i, int j);
     void updateMoneyTeam(int teamT, int teamF);
     void updateTurn(bool turn);
-
     void setUp(int type);
     void updateInfoPos(string terrainType, int PtDefense, int PtCapture, bool unit, bool team, int viesUnit, bool attackable, int degats, bool update);
 
-    Map* getMap();
+    Terrain& getMapObject(int i, int j);
+    Map& getMap();
 
 private slots :
     void changeTurn();
@@ -45,7 +42,6 @@ private slots :
     void showRules();
     void showCommands();
     void language();
-   // void showIntro();
 
 public slots :
     void showIntro();
@@ -90,8 +86,6 @@ private:
     QLabel* labelAttackableBlue =  nullptr;
     QLabel* labelAttackableO = nullptr;
     QLabel* labelAttackableB = nullptr;
-
-
 };
 
 #endif // MAINWINDOW_H
