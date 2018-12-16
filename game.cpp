@@ -367,6 +367,8 @@ void Game::iAmoveUnit()
                     }
                 }
 
+                //if ( closest.getX() != u->getPosX() && closest.getY() != u->getPosY()) {
+
                 coordinateB.erase(coordinateB.begin()+i);
                 move(u->getPosX(), u->getPosY());
                 std::this_thread::sleep_for (std::chrono::microseconds(300000));
@@ -383,6 +385,9 @@ void Game::iAmoveUnit()
                 std::cout<<posChosed.getX()<<" "<<posChosed.getY()<<std::endl;
                 move(posChosed.getX(), posChosed.getY());
                 std::this_thread::sleep_for (std::chrono::microseconds(300000));
+
+                //}
+
             }
             else{
                 for (Pos e: coordinateE){
@@ -418,6 +423,8 @@ void Game::iAmoveUnit()
                     }
                 }
                 std::this_thread::sleep_for (std::chrono::microseconds(300000));
+
+                // + if fussionnable -> fusion + chaud montrer que y a fusion !
             }
         }
     }
