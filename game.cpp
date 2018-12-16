@@ -861,7 +861,7 @@ int Game::getMalusMove(char moveType, int terrainID){
             case 34 ... 36 : return 1 ;
             case 43 ... 45 : return 1 ;
             case 38 ... 40 : return 1 ;
-            default: std::cout << "Type inconnu (f) " <<  std::endl; break;
+            default: break;
         }
     }
 
@@ -881,7 +881,7 @@ int Game::getMalusMove(char moveType, int terrainID){
             case 34 ... 36 : return 1 ;
             case 43 ... 45 : return 1 ;
             case 38 ... 40 : return 1 ;
-            default: std::cout << "Type inconnu (f) " <<  std::endl; break;
+            default: break;
         }
     }
 
@@ -901,7 +901,7 @@ int Game::getMalusMove(char moveType, int terrainID){
             case 34 ... 36 : return 1 ;
             case 43 ... 45 : return 1 ;
             case 38 ... 40 : return 1 ;
-            default: std::cout << "Type inconnu (f) " <<  std::endl; break;
+            default: break;
         }
     }
 
@@ -922,7 +922,7 @@ int Game::getMalusMove(char moveType, int terrainID){
             case 34 ... 36 : return 1 ;
             case 43 ... 45 : return 1 ;
             case 38 ... 40 : return 1 ;
-            default: std::cout << "Type inconnu (t) " <<  std::endl; break;
+            default: break;
         }
     }
     else if (moveType == 'a'){
@@ -941,7 +941,7 @@ int Game::getMalusMove(char moveType, int terrainID){
             case 34 ... 36 : return 1 ;
             case 43 ... 45 : return 1 ;
             case 38 ... 40 : return 1 ;
-            default: std::cout << "Type inconnu (a) " <<  std::endl; break;
+            default: break;
         }
     }
     return 0;
@@ -1164,23 +1164,23 @@ void Game::endGame(){
         unite.erase(unite.begin() + i);
         i++;
     }
-    //window->getMap()->reload();
-    delete diaBuyAirBM;
+    /*delete diaBuyAirBM;
     delete diaBuyAirOS;
     delete diaBuyTerreBM;
     delete diaBuyTerreOS;
     delete diaWinBlue;
-    delete diaWinOrange;
+    delete diaWinOrange;*/
 
-    setMoney(true,-moneyTeamT);
-    setMoney(false,-moneyTeamF);
-    window->updateInfoPos("",0,0,false,false,0,false,0,true);
+    //setMoney(true,-moneyTeamT);
+    //setMoney(false,-moneyTeamF);
+    //window->updateInfoPos("",0,0,false,false,0,false,0,true);
 
     diaNewGame = new DialogNewGame(window);
     diaNewGame->show();
 }
 
 void Game::restart(int gameType){
+
 
     delete diaNewGame;
 
@@ -1199,11 +1199,4 @@ Game::~Game(){
     for(Unite* u : unite) {
         delete u;
     }
-    delete diaBuyAirBM;
-    delete diaBuyAirOS;
-    delete diaBuyTerreBM;
-    delete diaBuyTerreOS;
-    delete diaWinBlue;
-    delete diaWinOrange;
-    delete diaNewGame;
 }

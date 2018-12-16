@@ -19,14 +19,14 @@ void DialogNewGame::on_pushButton_clicked()
 {
     Game& game = Game::Instance();
     game.restart(1);
-    this->close();
+    //this->close();
 }
 
 void DialogNewGame::on_pushButton_2_clicked()
 {
     Game& game = Game::Instance();
     game.restart(2);
-    this->close();
+    //this->close();
 }
 
 void DialogNewGame::on_pushButton_3_clicked()
@@ -40,12 +40,12 @@ void DialogNewGame::on_pushButton_4_clicked()
 {
     Game& game = Game::Instance();
     game.restart(5);
-    this->close();
+    //this->close();
 }
 
 void DialogNewGame::on_pushButton_5_clicked()
 {
     Game& game = Game::Instance();
     game.restart(4);
-    this->close();
+   // this->close();
 }
