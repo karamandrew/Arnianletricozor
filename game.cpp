@@ -96,18 +96,102 @@ void Game::attack(int x, int y)
 }
 
 
+void Game::move(int x, int y)
+{
+    int indexUnitFoc = getIndexUnit(Xfoc,Yfoc);
+    if ( x >= 0 && x < 21 && y >= 0 && y < 17
+         &&  indexUnitFoc != -1
+         && unite[indexUnitFoc]->isFocused()
+         && window->getMapObject(x,y).isAccessible() )  {  // Unité selectionné
 
+        unite[indexUnitFoc]->setPosX(x);
+        unite[indexUnitFoc]->setPosY(y);
 
+        setMapObjectfalse();
+
+        if (Enemyclose(unite[indexUnitFoc])){
+            window->redraw();
+            unite[indexUnitFoc]->setTurn(false);
+            return;
+        }
+
+        unite[indexUnitFoc]->setFocused(false);
+        unite[indexUnitFoc]->setTurn(false);
+    }
+
+    else if ( x>=0 && x < 21 && y >= 0 && y < 17
+         && indexUnitFoc != -1
+         && getIndexUnit(x,y) != -1
+         && unite[getIndexUnit(x,y)]->isFusionnable()) {
+
+         fusion(unite[indexUnitFoc],unite[getIndexUnit(x,y)]);
+         unite[getIndexUnit(x,y)]->setFusionnable(false);
+    }
+
+    else if (getIndexUnit(x,y) != -1) {
+        setUnitefalse();
+        setMapObjectfalse();
+        if(unite[getIndexUnit(x,y)]->isTurn()){
+            unite[getIndexUnit(x,y)]->setFocused(true);
+
+            calculatePosAccessible( x, y, getIndexUnit(x,y), unite[getIndexUnit(x,y)]->getMP()+1);
+
+            Xfoc = x;
+            Yfoc = y;
+        }
+    }
+    else {
+        setMapObjectfalse();
+        setUnitefalse();
+    }
+    window->redraw();
+}
+
+void Game::selectUnits(int x, int y){
+    int IDmap = getmapId(x,y);
+
+    if (getIndexUnit(x,y) == -1){
+
+        if ( IDmap == 39 && activeTurn == true){
+            // Créatio unités terrestre orange
+            diaBuyTerreOS = new DialogBuyTerre(window);
+            diaBuyTerreOS->show();
+            diaBuyTerreOS->getInfo( x,y, true);
+        }
+
+        if ( IDmap == 40 && activeTurn == true){
+            // Création unités aériennes orange
+            diaBuyAirOS = new DialogBuyAir(window);
+            diaBuyAirOS->show();
+            diaBuyAirOS->getInfo( x,y, true);
+        }
+
+        if ( IDmap == 44 && activeTurn == false){
+            // Création unités terrestres bleues
+            diaBuyTerreBM = new DialogBuyTerre(window);
+            diaBuyTerreBM->show();
+            diaBuyTerreBM->getInfo( x,y, false);
+        }
+
+        if (IDmap == 45 && activeTurn == false){
+            // Création unités aériennes bleues
+            diaBuyAirBM = new DialogBuyAir(window);
+            diaBuyAirBM->show();
+            diaBuyAirBM->getInfo( x,y, false);
+        }
+    }
+}
 
 
 void Game::showInfo(int x, int y){
 
-    // Infos Terrains
+    // INFOS TERRAINS
     int mapID = getmapId(x,y);
     string terrainType;
 
     switch(mapID){
 
+    // Terrains
     case 1 :  terrainType = "Plain"; break;
     case 2 :  terrainType = "Mountain"; break;
     case 3 :  terrainType = "Wood";  break;
@@ -170,98 +254,16 @@ void Game::showInfo(int x, int y){
         }
     }
 
-    window->updateInfoPos(terrainType, PtDefense, PtCapture, unit, team, viesUnit, attackable, degats);
+    bool update = false;
+
+    window->updateInfoPos(terrainType, PtDefense, PtCapture, unit, team, viesUnit, attackable, degats, update);
 }
 
 
 
-void Game::move(int x, int y)
-{
-    if ( x >= 0 && x < 21 && y >= 0 && y < 17
-         && getIndexUnit(Xfoc,Yfoc) != -1
-         && unite[getIndexUnit(Xfoc,Yfoc)]->isFocused()
-         && window->getMapObject(x,y).isAccessible() )  {  // Unité selectionné
 
-        unsigned int indexUnitFoc = (int)getIndexUnit(Xfoc,Yfoc);
 
-        unite[indexUnitFoc]->setPosX(x);
-        unite[indexUnitFoc]->setPosY(y);
 
-        setMapObjectfalse();
-        if (Enemyclose(unite[indexUnitFoc])){
-            window->redraw();
-            unite[indexUnitFoc]->setTurn(false);
-            return;
-        };
-        unite[indexUnitFoc]->setFocused(false);
-        unite[indexUnitFoc]->setTurn(false);
-    }
-
-    else if ( x>=0 && x < 21 && y >= 0 && y < 17
-         && getIndexUnit(Xfoc,Yfoc) != -1
-         && getIndexUnit(x,y) != -1
-         && unite[getIndexUnit(x,y)]->isFusionnable() ) {
-         fusion(unite[getIndexUnit(Xfoc,Yfoc)],unite[getIndexUnit(x,y)]);
-         unite[getIndexUnit(x,y)]->setFusionnable(false);
-    }
-
-    else if (getIndexUnit(x,y) != -1) {
-        setUnitefalse();
-        setMapObjectfalse();
-        if(unite[getIndexUnit(x,y)]->isTurn()){
-            unite[getIndexUnit(x,y)]->setFocused(true);
-
-            calculatePosAccessible( x, y, getIndexUnit(x,y), unite[getIndexUnit(x,y)]->getMP()+1);
-
-            Xfoc = x;
-            Yfoc = y;
-        }
-    }
-    else {
-        setMapObjectfalse();
-        for(Unite* u: unite){
-            if(u->isFocused()){
-                u->setFocused(false);
-            }
-        }
-    }
-    window->redraw();
-}
-
-void Game::selectUnits(int x, int y){
-    int IDmap = getmapId(x,y);
-
-    if (getIndexUnit(x,y) == -1){
-
-        if ( IDmap == 39 && activeTurn == true){
-            // Créatio unités terrestre orange
-            diaBuyTerreOS = new DialogBuyTerre(window);
-            diaBuyTerreOS->show();
-            diaBuyTerreOS->getInfo( x,y, true);
-        }
-
-        if ( IDmap == 40 && activeTurn == true){
-            // Création unités aériennes orange
-            diaBuyAirOS = new DialogBuyAir(window);
-            diaBuyAirOS->show();
-            diaBuyAirOS->getInfo( x,y, true);
-        }
-
-        if ( IDmap == 44 && activeTurn == false){
-            // Création unités terrestres bleues
-            diaBuyTerreBM = new DialogBuyTerre(window);
-            diaBuyTerreBM->show();
-            diaBuyTerreBM->getInfo( x,y, false);
-        }
-
-        if (IDmap == 45 && activeTurn == false){
-            // Création unités aériennes bleues
-            diaBuyAirBM = new DialogBuyAir(window);
-            diaBuyAirBM->show();
-            diaBuyAirBM->getInfo( x,y, false);
-        }
-    }
-}
 
 void Game::iA()
 {
@@ -1165,6 +1167,8 @@ void Game::endGame(){
     setMoney(true,-moneyTeamT);
     setMoney(false,-moneyTeamF);
 
+    window->updateInfoPos("",0,0,false,false,0,false,0,true);
+
     diaNewGame = new DialogNewGame(window);
     diaNewGame->show();
 }
@@ -1179,12 +1183,6 @@ void Game::restart(int gameType){
         window->close();
     }
     setgameType(gameType);
-
-
-
-    //window->redraw();
-
-
 
 }
 

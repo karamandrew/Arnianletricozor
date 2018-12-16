@@ -225,7 +225,7 @@ void MainWindow::setUp(int type){
     game.setgameType(type);
 }
 
-void MainWindow::updateInfoPos(string terrainType, int PtDefense, int PtCapture, bool unit, bool team, int viesUnit, bool attackable, int degats){
+void MainWindow::updateInfoPos(string terrainType, int PtDefense, int PtCapture, bool unit, bool team, int viesUnit, bool attackable, int degats, bool update){
 
     std::string PtDef = std::to_string(PtDefense);
     std::string PtCap = std::to_string(PtCapture);
@@ -270,6 +270,17 @@ void MainWindow::updateInfoPos(string terrainType, int PtDefense, int PtCapture,
         labelViesOrange->setText("Unit life : ");
         labelAttackableOrange->setText("Attackable ?");
         labelAttackableBlue->setText("Attackable ?");
+    }
+
+    if (update){
+        labelTerrainType->setText("Terrain type :");
+        labelPtDef->setText("Defense points :");
+        labelPtCap->setText("Caputre points :");
+        labelViesBlue->setText("Unit life :");
+        labelViesOrange->setText("Unit Life :");
+        labelViesBlue->setText("Unit life :");
+        labelAttackableBlue->setText("Attackable ? ");
+        labelAttackableOrange->setText("Attackable ? ");
     }
 }
 
