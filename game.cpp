@@ -23,8 +23,6 @@ Game Game::gInstance;
 Game::Game(){
 }
 
-
-
 Game &Game::Instance()
 {
     return gInstance;
@@ -1165,19 +1163,16 @@ void Game::endGame(){
         unite.erase(unite.begin() + i);
         i++;
     }
+    //window->getMap()->reload();
     delete diaBuyAirBM;
     delete diaBuyAirOS;
     delete diaBuyTerreBM;
     delete diaBuyTerreOS;
-
     delete diaWinBlue;
     delete diaWinOrange;
 
-    window->getMap()->reload();
-
     setMoney(true,-moneyTeamT);
     setMoney(false,-moneyTeamF);
-
     window->updateInfoPos("",0,0,false,false,0,false,0,true);
 
     diaNewGame = new DialogNewGame(window);
@@ -1207,7 +1202,7 @@ Game::~Game(){
     delete diaBuyAirOS;
     delete diaBuyTerreBM;
     delete diaBuyTerreOS;
-
     delete diaWinBlue;
     delete diaWinOrange;
+    delete diaNewGame;
 }
