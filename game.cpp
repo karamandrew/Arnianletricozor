@@ -30,8 +30,19 @@ Game &Game::Instance()
     return gInstance;
 }
 
+void Game::start(MainWindow &wind)
+{
+    window = &wind;
+    window->setFixedSize(1400,865);
+    window->createMapObjects();
+    giveBuildingsPtCapture();
 
-// MOUSE ACTIVATION
+    turnChange();
+
+}
+
+
+///////////////////////////////////////// MOUSE ACTIVATION
 
 int Game::getXCoordinate(QMouseEvent *e)
 {
@@ -260,7 +271,7 @@ void Game::showInfo(int x, int y){
 }
 
 
-
+///////////////////////////////////   IA
 
 
 
@@ -277,26 +288,30 @@ void Game::iA()
 
 void Game::iAcreateUnit()
 {
-    if(moneyTeamF>=1000){
-        for(int x=0 ;x<21;x++){
-            for (int y=0; y<17; y++){
-                if (getmapId(x,y) ==45 && !isThereAnotherUnite(x,y,1)) { //aéroport
-                    if (moneyTeamF>=22000) { Bomber *osbomber = new Bomber( x, y, 210, false); unite.push_back(osbomber); setMoney(false, -22000);window->redraw();std::this_thread::sleep_for (std::chrono::microseconds(500000));}
-                    else if (moneyTeamF>=20000) { Fighter *osfighter = new Fighter( x, y, 209, false); unite.push_back(osfighter); setMoney(false, -20000);window->redraw();std::this_thread::sleep_for (std::chrono::microseconds(500000));}
-                    else if (moneyTeamF>=9000 ) { BCopter *osbcopter = new BCopter( x, y, 208, false); unite.push_back(osbcopter); setMoney(false, -9000);window->redraw();std::this_thread::sleep_for (std::chrono::microseconds(500000));}
-                    else if (moneyTeamF<1000) {return;}
-                }
-                if (getmapId(x,y) == 44 && !isThereAnotherUnite(x,y,1)) { //Base
-                    if (moneyTeamF>=28000) { MegaTank *osmegatank = new MegaTank( x, y, 206, false); unite.push_back(osmegatank); setMoney(false, -28000);window->redraw();std::this_thread::sleep_for (std::chrono::microseconds(500000));}
-                    else if (moneyTeamF>=22000) { NeoTank *osneotank = new NeoTank( x, y, 207, false); unite.push_back(osneotank); setMoney(false, -22000);window->redraw();std::this_thread::sleep_for (std::chrono::microseconds(500000));}
-                    else if (moneyTeamF>=16000) { MdTank *osmdtank = new MdTank( x, y, 205, false); unite.push_back(osmdtank); setMoney(false, -16000);window->redraw();std::this_thread::sleep_for (std::chrono::microseconds(500000));}
-                    else if (moneyTeamF>=8000) { Antiair *osantiair = new Antiair( x, y, 203, false); unite.push_back(osantiair); setMoney(false, -8000);window->redraw();std::this_thread::sleep_for (std::chrono::microseconds(500000));}
-                    else if (moneyTeamF>=7000) { Tank *ostank = new Tank( x, y, 204, false); unite.push_back(ostank); setMoney(false, -7000);window->redraw();std::this_thread::sleep_for (std::chrono::microseconds(500000));}
-                    else if (moneyTeamF>=4000) { Recon *osrecon = new Recon( x, y, 202, false); unite.push_back(osrecon); setMoney(false, -4000);window->redraw();std::this_thread::sleep_for (std::chrono::microseconds(500000));}
-                   // else if (moneyTeamF>=3000) { Mech *osmech = new Mech( x, y, 201, false); unite.push_back(osmech); setMoney(false, -3000);window->redraw();std::this_thread::sleep_for (std::chrono::microseconds(500000));}
-                    else if (moneyTeamF>=1000) { Infantry *osinf = new Infantry( x, y, 200, false); unite.push_back(osinf); setMoney(false, -1000);window->redraw();std::this_thread::sleep_for (std::chrono::microseconds(500000));}
-                    else {return;}
-                }
+    bool adversaires = false;
+    for (Unite* u : unite){
+        if (u->isTeam()){
+            adversaires = true;
+        }
+    }
+    for(int x=0 ;x<21;x++){
+        for (int y=0; y<17; y++){
+            if (getmapId(x,y) ==45 && !isThereAnotherUnite(x,y,-1)) { //aéroport
+                if (moneyTeamF>=22000 && adversaires) { Bomber *osbomber = new Bomber( x, y, 210, false); unite.push_back(osbomber); setMoney(false, -22000);window->redraw();std::this_thread::sleep_for (std::chrono::microseconds(500000));}
+                else if (moneyTeamF>=20000 && adversaires) { Fighter *osfighter = new Fighter( x, y, 209, false); unite.push_back(osfighter); setMoney(false, -20000);window->redraw();std::this_thread::sleep_for (std::chrono::microseconds(500000));}
+                else if (moneyTeamF>=9000 && adversaires ) { BCopter *osbcopter = new BCopter( x, y, 208, false); unite.push_back(osbcopter); setMoney(false, -9000);window->redraw();std::this_thread::sleep_for (std::chrono::microseconds(500000));}
+                else {return;}
+            }
+            if (getmapId(x,y) == 44 && !isThereAnotherUnite(x,y,-1)) { //Base
+                if (moneyTeamF>=28000 && adversaires) { MegaTank *osmegatank = new MegaTank( x, y, 206, false); unite.push_back(osmegatank); setMoney(false, -28000);window->redraw();std::this_thread::sleep_for (std::chrono::microseconds(500000));}
+                else if (moneyTeamF>=22000 && adversaires) { NeoTank *osneotank = new NeoTank( x, y, 207, false); unite.push_back(osneotank); setMoney(false, -22000);window->redraw();std::this_thread::sleep_for (std::chrono::microseconds(500000));}
+                else if (moneyTeamF>=16000 && adversaires) { MdTank *osmdtank = new MdTank( x, y, 205, false); unite.push_back(osmdtank); setMoney(false, -16000);window->redraw();std::this_thread::sleep_for (std::chrono::microseconds(500000));}
+                else if (moneyTeamF>=8000 && adversaires) { Antiair *osantiair = new Antiair( x, y, 203, false); unite.push_back(osantiair); setMoney(false, -8000);window->redraw();std::this_thread::sleep_for (std::chrono::microseconds(500000));}
+                else if (moneyTeamF>=7000 && adversaires) { Tank *ostank = new Tank( x, y, 204, false); unite.push_back(ostank); setMoney(false, -7000);window->redraw();std::this_thread::sleep_for (std::chrono::microseconds(500000));}
+                else if (moneyTeamF>=4000 && adversaires) { Recon *osrecon = new Recon( x, y, 202, false); unite.push_back(osrecon); setMoney(false, -4000);window->redraw();std::this_thread::sleep_for (std::chrono::microseconds(500000));}
+                else if (moneyTeamF>=3000) { Mech *osmech = new Mech( x, y, 201, false); unite.push_back(osmech); setMoney(false, -3000);window->redraw();std::this_thread::sleep_for (std::chrono::microseconds(500000));}
+                else if (moneyTeamF>=1000) { Infantry *osinf = new Infantry( x, y, 200, false); unite.push_back(osinf); setMoney(false, -1000);window->redraw();std::this_thread::sleep_for (std::chrono::microseconds(500000));}
+                else {return;}
             }
         }
     }
@@ -417,6 +432,9 @@ bool Game::capturableIDbuilding(int x, int y)
 }
 
 
+/////////////////////// FONCTIONNALITES JEU
+
+
 void Game::fusion(Unite* u1, Unite* u2){
     int bonusLife = u1->getVie();
     int indexu1 = getIndexUnit(u1->getPosX(),u1->getPosY());
@@ -471,23 +489,6 @@ void Game::createUnit(int x, int y, char type, bool team, int unitWanted){
     window->redraw();
 }
 
-
-
-void Game::start(MainWindow &wind)
-{
-    window = &wind;
-    window->setFixedSize(1400,865);
-    window->createMapObjects();
-
-    //Infantry *osinf = new Infantry( 13, 13, 300, true); unite.push_back(osinf);
-    //Infantry *bminf = new Infantry( 12, 12, 200, false); unite.push_back(bminf);
-    turnChange();  // NE PAS ENLEVER PERMET DE SET UP LA MONEY DES TEAM
-
-    giveBuildingsPtCapture();
-
-
-    window->redraw();
-}
 
 void Game::giveBuildingsPtCapture(){
     for(int i=0 ;i<21;i++){
@@ -559,7 +560,7 @@ bool Game::isThereAnotherUnite(int x, int y, int indexUnitFoc)
 {
     for(Unite* u : unite) {
         if (u->getPosX()==x && u->getPosY()==y){
-            if ( unite[indexUnitFoc]->getId() ==  u->getId() && unite[indexUnitFoc]->getVie() < 10 && u->getVie() < 10 ) {
+            if ( indexUnitFoc != -1 && unite[indexUnitFoc]->getId() ==  u->getId() && unite[indexUnitFoc]->getVie() < 10 && u->getVie() < 10 ) {
                 if(u->getPosX()!=unite[indexUnitFoc]->getPosX() && u->getPosY()!=unite[indexUnitFoc]->getPosY()){
                     u->setFusionnable(true);
                 }
@@ -662,7 +663,7 @@ bool Game::Enemyclose(Unite* unit)
 int Game::getmapId(int x, int y){
 
     if (!(0 <= x && x < 21 && 0 <= y && y < 17)){
-        //std::cerr << "getMapId out of the map" << std::endl;
+       // std::cerr << "getMapId out of the map" << std::endl;
         return -1;
     }
     else {
@@ -672,13 +673,8 @@ int Game::getmapId(int x, int y){
 }
 
 void Game::turnChange(){
-    //RESET TOUTES LES UNITES SELECTIONEE ET LES DALLES SELECTIONNEEs
-    for(Unite* u: unite){
-        u->setAttackable(false);
-        u->setFocused(false);
-        u->setFusionnable(false);
-    }
 
+    setUnitefalse();
     setMapObjectfalse();
 
     capture(activeTurn);
@@ -686,38 +682,28 @@ void Game::turnChange(){
     activeTurn=!activeTurn;
     updateMoneyTeam(activeTurn);
     window->updateTurn(activeTurn);
-        for(Unite* u : unite) {
-            if(activeTurn){
-                if(u->isTeam()){
-                    u->setTurn(true);
-                }
-                else{
-                    u->setTurn(false);
-                }
+    for(Unite* u : unite) {
+        if(activeTurn){
+            if(u->isTeam()){
+                u->setTurn(true);
             }
             else{
-                if(!u->isTeam()){
-                    u->setTurn(true);
-                }
-                else{
-                    u->setTurn(false);
-                }
+                u->setTurn(false);
             }
-            if(m_gameType==2){
-                if(activeTurn){
-
-                }
-                else{
-
-                }
-
-            }
-
-         }
-        if(m_gameType==2 && !activeTurn){
-            iA();
         }
-        window->redraw();
+        else{
+            if(!u->isTeam()){
+                u->setTurn(true);
+            }
+            else{
+                u->setTurn(false);
+            }
+        }
+    }
+    if(m_gameType==2 && !activeTurn){
+        iA();
+    }
+    window->redraw();
 }
 
 void Game::cureUnit(bool turn){
@@ -844,7 +830,7 @@ void Game::setMoney(bool team, int impact){
 Unite* Game::getUnite(int x, int y){
     int a = getIndexUnit(x,y);
     if(a == -1)
-        throw invalid_argument("la fin des haricots");
+        throw invalid_argument("Erro : getUnite");
     return unite[a];
 }
 
@@ -1113,6 +1099,10 @@ int Game::attackChart(Unite* u, Unite* v)
     return 0;
 }
 
+
+
+//////////////// FIN DU JEU
+
 void Game::checkEndGame(bool turn){
     bool EndGame = true;
     for(int i=0 ;i<21;i++){
@@ -1132,13 +1122,11 @@ void Game::checkEndGame(bool turn){
     }
     if (EndGame){
         if ( !turn ) {
-            std::cout << "Victoire des oranges" << std::endl;
             endGame();
             diaWinOrange = new OrangeStarWin(window);
             diaWinOrange->show();
         }
         if ( turn) {
-            std::cout << "Victoire des bleus" << std::endl;
             endGame();
             diaWinBlue = new BlueMoonWin(window);
             diaWinBlue->show();
