@@ -58,6 +58,11 @@ int Game::getYCoordinate(QMouseEvent *e)
     return static_cast<int>(y-1);
 }
 
+bool Game::isActiveturn()
+{
+    return activeTurn;
+}
+
 void Game::mouseLeftPressed(int x, int y)
 {
     attack(x,y);

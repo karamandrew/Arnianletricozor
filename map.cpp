@@ -28,10 +28,19 @@ void Map::paintEvent(QPaintEvent *event)
     Game& game = Game::Instance();
     QPainter painter(this);
 
+    QPixmap turnblue(":/Res/Terrains/blueturn.png");
+    QPixmap turnorange(":/Res/Terrains/orangeturn.png");
     QPixmap accessible(":/Res/Animations/Misc.png");
     QPixmap focused(":/Res/Animations/Focused.png");
     QPixmap attackable(":/Res/Animations/swords.png");
     QPixmap fusionnable(":/Res/Animations/coeur.svg");
+
+    if(game.isActiveturn()){
+        painter.drawPixmap(0,0,1400,865,turnorange);
+    }
+    else{
+        painter.drawPixmap(0,0,1400,865,turnblue);
+    }
 
     for(int i=0 ;i<21;i++){
         int m = i+7;

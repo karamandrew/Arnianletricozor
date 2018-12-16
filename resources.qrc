@@ -120,5 +120,7 @@
         <file>Res/Animations/troll3.git</file>
         <file>Res/Animations/troll4.git</file>
         <file>Res/Animations/coeur.svg</file>
+        <file>Res/Terrains/blueturn.png</file>
+        <file>Res/Terrains/orangeturn.png</file>
     </qresource>
 </RCC>
