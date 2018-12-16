@@ -47,3 +47,10 @@ void IntroWindow::on_pushButton_3_clicked()
 }
 
 
+
+void IntroWindow::on_pushButton_4_clicked()
+{
+    main->setUp(4);
+    main->show();
+    this->close();
+}
