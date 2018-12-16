@@ -20,15 +20,15 @@ MainWindow::MainWindow(QWidget *parent) :
           changeTurnButton->setGeometry(620,760, 160, 60);
         QObject::connect(changeTurnButton, SIGNAL(clicked()), this, SLOT(changeTurn()));
 
-    showRulesButton = new QPushButton("Show Rules",this);
+    showRulesButton = new QPushButton("Rules",this);
         showRulesButton->setGeometry(145,760, 120,50);
         QObject::connect(showRulesButton, SIGNAL(clicked()), this, SLOT(showRules()));
 
-    showUnitPriceButton = new QPushButton("Show Units Prices", this);
+    showUnitPriceButton = new QPushButton("Units Prices", this);
         showUnitPriceButton->setGeometry(15,760, 120, 50);
         QObject::connect(showUnitPriceButton, SIGNAL(clicked()), this, SLOT(showPrice()));
 
-    showCommandsButton = new QPushButton("Show commands", this);
+    showCommandsButton = new QPushButton("Commands", this);
         showCommandsButton->setGeometry(15,700, 120, 50);
         QObject::connect(showCommandsButton, SIGNAL(clicked()), this, SLOT(showCommands()));
 
@@ -40,8 +40,9 @@ MainWindow::MainWindow(QWidget *parent) :
         endGameButton->setGeometry(15, 600, 120, 50);
         QObject::connect(endGameButton, SIGNAL(clicked()), this, SLOT(showIntro()));
 
-     labelArnian = new QLabel("©(AR)NIANLETRICOZORProduction", this);
-         labelArnian->setGeometry(1150,730, 200, 200);
+     labelArnian = new QLabel("©ARNIANLETRICOZORProduction", this);
+         labelArnian->setGeometry(1100,760, 300, 100);
+         labelArnian->setStyleSheet("QLabel { font : 8pt; color : white;}");
 
      labelMoneyT = new QLabel("lol", this);
          labelMoneyT->setGeometry(15,340, 200, 50);
@@ -52,7 +53,7 @@ MainWindow::MainWindow(QWidget *parent) :
          labelMoneyF->setStyleSheet("QLabel {  font: 15pt ; color : white; }");
 
      labelNameT= new QLabel ("Orange Star", this);
-        labelNameT->setGeometry(15, 50, 200, 200);
+        labelNameT->setGeometry(15, 50, 210, 200);
         labelNameT->setStyleSheet("QLabel { font: 20pt ; color : white; }");
 
      labelNameF= new QLabel ("Blue Moon", this);
@@ -64,19 +65,19 @@ MainWindow::MainWindow(QWidget *parent) :
         labelTurn->setStyleSheet("QLabel {font: 15pt ; color : white; }");
 
 
-      labelT1= new QLabel("------------------", this);
+      labelT1= new QLabel("----------------", this);
         labelT1->setStyleSheet("QLabel { font: 20pt ; color:white;}");
-        labelT1->setGeometry(15, 100, 300, 20);
+        labelT1->setGeometry(15, 100, 200, 20);
 
-      labelT2= new QLabel("------------------", this);
+      labelT2= new QLabel("----------------", this);
           labelT2->setStyleSheet("QLabel { font: 20pt ; color: white;}");
-          labelT2->setGeometry(15, 225, 300, 20);
+          labelT2->setGeometry(15, 225, 200, 20);
 
-       labelT3= new QLabel("------------------", this);
+       labelT3= new QLabel("----------------", this);
           labelT3->setStyleSheet("QLabel { font: 20pt ; color:white;}");
           labelT3->setGeometry(1150, 100, 300, 20);
 
-       labelT4= new QLabel("------------------", this);
+       labelT4= new QLabel("----------------", this);
           labelT4->setStyleSheet("QLabel { font: 20pt ; color:white;}");
           labelT4->setGeometry(1150, 225, 300, 20);
 
@@ -86,11 +87,11 @@ MainWindow::MainWindow(QWidget *parent) :
 
     labelDeviseT= new QLabel("Diviser pour mieux régner", this);
         labelDeviseT->setStyleSheet("QLabel{font: 9pt; color: white;}");
-        labelDeviseT->setGeometry(15, 150, 300,100);
+        labelDeviseT->setGeometry(15, 150, 210,100);
 
     labelTerrainType= new QLabel ("Terrain type : ", this);
         labelTerrainType->setStyleSheet("QLabel { font: 12pt ; color: white}");
-        labelTerrainType->setGeometry(280,740, 300, 30);
+        labelTerrainType->setGeometry(280,745, 300, 30);
 
     labelViesOrange= new QLabel ("Unit life : ", this);
         labelViesOrange->setStyleSheet("QLabel { font: 15pt ; color: white;}");
@@ -102,26 +103,26 @@ MainWindow::MainWindow(QWidget *parent) :
 
     labelPtCap = new QLabel ("Capture points : ", this);
         labelPtCap->setStyleSheet("QLabel { font: 12pt ; color:white;}");
-        labelPtCap->setGeometry(280, 780, 300, 30);
+        labelPtCap->setGeometry(280, 785, 300, 30);
 
     labelPtDef=new QLabel ("Defense points :", this);
         labelPtDef->setStyleSheet("QLabel { font: 12pt ; color:white;}");
-        labelPtDef->setGeometry(280, 760, 300, 30);
+        labelPtDef->setGeometry(280, 765, 300, 30);
 
     labelAttackableO = new QLabel ("Attackable ?",this);
-        labelAttackableO->setStyleSheet("QLabel { font: 12pt ; color:white;}");
+        labelAttackableO->setStyleSheet("QLabel { font: 11pt ; color:white;}");
         labelAttackableO->setGeometry(15,430,200,50);
 
     labelAttackableOrange = new QLabel ("",this);
-        labelAttackableOrange->setStyleSheet("QLabel { font: 12pt ; color:white;}");
+        labelAttackableOrange->setStyleSheet("QLabel { font: 11pt ; color:white;}");
         labelAttackableOrange->setGeometry(15,470,200,50);
 
     labelAttackableB = new QLabel ("Attackable ?",this);
-        labelAttackableB->setStyleSheet("QLabel { font: 12pt ; color:white;}");
+        labelAttackableB->setStyleSheet("QLabel { font: 11pt ; color:white;}");
         labelAttackableB->setGeometry(1150 ,430,300,50);
 
     labelAttackableBlue = new QLabel ("",this);
-        labelAttackableBlue->setStyleSheet("QLabel { font: 12pt ; color:white}");
+        labelAttackableBlue->setStyleSheet("QLabel { font: 11pt ; color:white}");
         labelAttackableBlue->setGeometry(1150 ,470,300,50);
 
         priceDialog = new  DialogUnitPrice(this);

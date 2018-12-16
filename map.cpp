@@ -28,8 +28,8 @@ void Map::paintEvent(QPaintEvent *event)
     Game& game = Game::Instance();
     QPainter painter(this);
 
-    QPixmap turnblue(":/Res/Terrains/blueturn.png");
-    QPixmap turnorange(":/Res/Terrains/orangeturn.png");
+    QPixmap turnblue(":/Res/Terrains/blueturn.jpg");
+    QPixmap turnorange(":/Res/Terrains/orangeturn.jpg");
     QPixmap accessible(":/Res/Animations/Misc.png");
     QPixmap focused(":/Res/Animations/Focused.png");
     QPixmap attackable(":/Res/Animations/swords.png");

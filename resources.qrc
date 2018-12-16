@@ -122,5 +122,7 @@
         <file>Res/Animations/coeur.svg</file>
         <file>Res/Terrains/blueturn.png</file>
         <file>Res/Terrains/orangeturn.png</file>
+        <file>Res/Terrains/blueturn.jpg</file>
+        <file>Res/Terrains/orangeturn.jpg</file>
     </qresource>
 </RCC>

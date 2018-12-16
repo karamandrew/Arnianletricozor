@@ -44,9 +44,9 @@ private:
     void setMapObjectfalse();
     void setUnitefalse();
     void calculatePosAccessible(int Xfoc, int Yfoc, int indexUnit, int mp);
-    void iA();
-    void iAcreateUnit();
-    void iAmoveUnit();
+    void iA(bool team);
+    void iAcreateUnit(bool team);
+    void iAmoveUnit(bool team);
     void updateMoneyTeam(bool team);
     void setMoney(bool team, int impact);
     void capture(bool turn);
@@ -65,7 +65,7 @@ private:
 
     bool isThereAnotherUnite(int x, int y, int indexUnitFoc);
     bool Enemyclose(Unite* unit);
-    bool capturableIDbuilding(int x, int y);
+    bool capturableIDbuilding(int x, int y, bool team);
 
     static Game gInstance;
     MainWindow *window;
