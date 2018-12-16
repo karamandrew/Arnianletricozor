@@ -52,8 +52,10 @@ private:
     void giveBuildingsPtCapture();
     void cureUnit(bool turn);
     void fusion(Unite* u1, Unite* u2);
-    void checkEndGame(bool turn);
+    void checkEndGame();
     void showInfo(int x, int y);
+    void victoireBleu();
+    void victoireOrange();
 
     int getMalusMove(char moveType, int terrainID);
     int getmapId(int x, int y);

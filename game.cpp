@@ -97,7 +97,7 @@ void Game::attack(int x, int y)
                     delete unite[indexUnitFoc];
                     unite.erase(unite.begin() + getIndexUnit(unite[indexUnitFoc]->getPosX(), unite[indexUnitFoc]->getPosY()));
                  }
-
+                 checkEndGame();
                  setUnitefalse();
             }
         }
@@ -771,14 +771,14 @@ void Game::capture(bool turn){
                     Ptrestant = window->getMapObject(x,y).getPtCapture();
                     if ( Ptrestant <= 0 ) { window->getMapObject(x,y).setId(+4);
                                             window->getMapObject(x,y).setPtCapture(20);
-                                            checkEndGame(turn); }
+                                            checkEndGame(); }
                 }
                 if ( mapId == 43 || mapId == 44 || mapId == 45) {
                     window->getMapObject(x,y).setPtCapture(-impact);
                     Ptrestant = window->getMapObject(x,y).getPtCapture();
                     if ( Ptrestant <= 0 ) { window->getMapObject(x,y).setId(-5);
                                             window->getMapObject(x,y).setPtCapture(20);
-                                            checkEndGame(turn); }
+                                            checkEndGame(); }
                 }
             }
             if (turn && !team) { // tour des bleus
@@ -787,14 +787,14 @@ void Game::capture(bool turn){
                      Ptrestant = window->getMapObject(x,y).getPtCapture();
                      if ( Ptrestant <= 0 ) { window->getMapObject(x,y).setId(+9);
                                              window->getMapObject(x,y).setPtCapture(20);
-                                             checkEndGame(turn);}
+                                             checkEndGame();}
                     }
                 if ( mapId == 38 || mapId == 39 || mapId == 40 ){
                      window->getMapObject(x,y).setPtCapture(-impact);
                      Ptrestant = window->getMapObject(x,y).getPtCapture();
                      if ( Ptrestant <= 0 ) { window->getMapObject(x,y).setId(+5);
                                              window->getMapObject(x,y).setPtCapture(20);
-                                             checkEndGame(turn); }
+                                             checkEndGame(); }
                     }
            }
       }
@@ -1110,35 +1110,50 @@ int Game::attackChart(Unite* u, Unite* v)
 
 //////////////// FIN DU JEU
 
-void Game::checkEndGame(bool turn){
-    bool EndGame = true;
+void Game::checkEndGame(){  // TRUE ORANGE // FALSE BLUE
+
+
+    bool noBuildingBlue = true;
+    bool noUnitBlue = true;
+
+    bool noBuildingOrange = true;
+    bool noUnitOrange = true;
+
     for(int i=0 ;i<21;i++){
             for (int j=0; j<17; j++){
                 int mapId = getmapId(i,j);
-                if ( !turn ){ // Victoire des oranges
-                    if ( mapId ==  43 || mapId == 44 || mapId == 45) { // Il y a un batiment bleu
-                        EndGame = false;
-                    }
+                if ( mapId ==  43 || mapId == 44 || mapId == 45) { // Il y a un batiment bleu
+                    noBuildingBlue = false;
                 }
-                else if ( turn ) { // Victoire des bleus
-                    if ( mapId == 38 || mapId == 39 || mapId == 40) {  // Il y a un batiment orange
-                        EndGame = false;
-                    }
+                if ( mapId == 38 || mapId == 39 || mapId == 40) {  // Il y a un batiment orange
+                    noBuildingOrange = false;
                 }
             }
     }
-    if (EndGame){
-        if ( !turn ) {
-            endGame();
-            diaWinOrange = new OrangeStarWin(window);
-            diaWinOrange->show();
+
+    for (Unite* u : unite){
+        if ( u->isTeam()){
+            noUnitOrange = false;
         }
-        if ( turn) {
-            endGame();
-            diaWinBlue = new BlueMoonWin(window);
-            diaWinBlue->show();
+        if ( !u->isTeam()){
+            noUnitBlue = false;
         }
     }
+
+   if ( noBuildingOrange && noUnitOrange ) { victoireBleu(); }
+   if (  noBuildingBlue && noUnitBlue) { victoireOrange(); }
+}
+
+void Game::victoireOrange(){
+    //endGame();
+    diaWinOrange = new OrangeStarWin(window);
+    diaWinOrange->show();
+}
+
+void Game::victoireBleu(){
+    //endGame();
+    diaWinBlue = new BlueMoonWin(window);
+    diaWinBlue->show();
 }
 
 void Game::endGame(){
