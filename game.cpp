@@ -17,8 +17,6 @@
 #include "pos.h"
 #include <thread>
 #include <chrono>
-#include <cstdlib>
-#include <ctime>
 
 Game Game::gInstance;
 
@@ -56,11 +54,6 @@ int Game::getYCoordinate(QMouseEvent *e)
 {
     float y = floorf(e->y()/40);
     return static_cast<int>(y-1);
-}
-
-bool Game::isActiveturn()
-{
-    return activeTurn;
 }
 
 void Game::mouseLeftPressed(int x, int y)
@@ -113,13 +106,14 @@ void Game::attack(int x, int y)
     }
 }
 
+
 void Game::move(int x, int y)
 {
     int indexUnitFoc = getIndexUnit(Xfoc,Yfoc);
     if ( x >= 0 && x < 21 && y >= 0 && y < 17
          &&  indexUnitFoc != -1
          && unite[indexUnitFoc]->isFocused()
-         && window->getMapObject(x,y).isAccessible() )  {  // Unité selectionné
+         && window->getMapObject(x,y).isAccessible() )  {
 
         unite[indexUnitFoc]->setPosX(x);
         unite[indexUnitFoc]->setPosY(y);
@@ -280,8 +274,11 @@ void Game::showInfo(int x, int y){
 ///////////////////////////////////   IA
 
 
+
+
 void Game::iA()
 {
+
     while(moneyTeamF>=1000){
     iAcreateUnit();
     iAmoveUnit();
@@ -291,7 +288,6 @@ void Game::iA()
 
 void Game::iAcreateUnit()
 {
-    srand(time(NULL));
     bool adversaires = false;
     for (Unite* u : unite){
         if (u->isTeam()){
@@ -307,14 +303,13 @@ void Game::iAcreateUnit()
                 else {return;}
             }
             if (getmapId(x,y) == 44 && !isThereAnotherUnite(x,y,-1)) { //Base
-                int randNum = (rand() % 3) + 1;
                 if (moneyTeamF>=28000 && adversaires) { MegaTank *osmegatank = new MegaTank( x, y, 206, false); unite.push_back(osmegatank); setMoney(false, -28000);window->redraw();std::this_thread::sleep_for (std::chrono::microseconds(500000));}
                 else if (moneyTeamF>=22000 && adversaires) { NeoTank *osneotank = new NeoTank( x, y, 207, false); unite.push_back(osneotank); setMoney(false, -22000);window->redraw();std::this_thread::sleep_for (std::chrono::microseconds(500000));}
                 else if (moneyTeamF>=16000 && adversaires) { MdTank *osmdtank = new MdTank( x, y, 205, false); unite.push_back(osmdtank); setMoney(false, -16000);window->redraw();std::this_thread::sleep_for (std::chrono::microseconds(500000));}
                 else if (moneyTeamF>=8000 && adversaires) { Antiair *osantiair = new Antiair( x, y, 203, false); unite.push_back(osantiair); setMoney(false, -8000);window->redraw();std::this_thread::sleep_for (std::chrono::microseconds(500000));}
                 else if (moneyTeamF>=7000 && adversaires) { Tank *ostank = new Tank( x, y, 204, false); unite.push_back(ostank); setMoney(false, -7000);window->redraw();std::this_thread::sleep_for (std::chrono::microseconds(500000));}
                 else if (moneyTeamF>=4000 && adversaires) { Recon *osrecon = new Recon( x, y, 202, false); unite.push_back(osrecon); setMoney(false, -4000);window->redraw();std::this_thread::sleep_for (std::chrono::microseconds(500000));}
-                else if (moneyTeamF>=3000 && randNum==3) { Mech *osmech = new Mech( x, y, 201, false); unite.push_back(osmech); setMoney(false, -3000);window->redraw();std::this_thread::sleep_for (std::chrono::microseconds(500000));}
+                else if (moneyTeamF>=3000) { Mech *osmech = new Mech( x, y, 201, false); unite.push_back(osmech); setMoney(false, -3000);window->redraw();std::this_thread::sleep_for (std::chrono::microseconds(500000));}
                 else if (moneyTeamF>=1000) { Infantry *osinf = new Infantry( x, y, 200, false); unite.push_back(osinf); setMoney(false, -1000);window->redraw();std::this_thread::sleep_for (std::chrono::microseconds(500000));}
                 else {return;}
             }
@@ -336,6 +331,16 @@ void Game::iAmoveUnit()
         }
     }
 
+    vector<Pos> coordinateE;
+    Pos ennemy;
+    for (Unite* u: unite){
+        if(u->isTeam()){
+            ennemy.setX(u->getPosX());
+            ennemy.setY(u->getPosY());
+            coordinateE.push_back(ennemy);
+        }
+    }
+
     for(Unite* u: unite){
         if(!u->isTeam() && u->isTurn()){
 
@@ -347,7 +352,7 @@ void Game::iAmoveUnit()
 
             if(u->getId()==200 || u->getId()==201){
 
-                //std::cout<<closest.getX()<<" "<<closest.getY()<<std::endl;
+                std::cout<<closest.getX()<<" "<<closest.getY()<<std::endl;
 
                 for(Pos c: coordinateB){
                     if(dist>u->getPos()-c){
@@ -377,7 +382,7 @@ void Game::iAmoveUnit()
                         }
                     }
                 }
-                //std::cout<<posChosed.getX()<<" "<<posChosed.getY()<<std::endl;
+                std::cout<<posChosed.getX()<<" "<<posChosed.getY()<<std::endl;
                 move(posChosed.getX(), posChosed.getY());
                 std::this_thread::sleep_for (std::chrono::microseconds(300000));
 
@@ -385,29 +390,20 @@ void Game::iAmoveUnit()
 
             }
             else{
+                for (Pos e: coordinateE){
+                    if(e-u->getPos()<dist){
+                        dist=e-u->getPos();
+                        closest=e;
+                    }
+                }
                 move(u->getPosX(), u->getPosY());
                 std::this_thread::sleep_for (std::chrono::microseconds(300000));
                 for (int i=0; i<21; i++){
                     for (int j=0; j<17; j++){
                         if(window->getMapObject(i,j).isAccessible()){
-                            for (Unite* e: unite){
-                                if(e->isTeam()){
-                                if(e->getPos() - window->getMapObject(i,j).getPos() < dist){
-
-                                    dist = e->getPos() - window->getMapObject(i,j).getPos();
-                                    closest=e->getPos();
-                                    std::cout<<closest.getX()<<" "<<closest.getY()<<std::endl;
-                                }
-                                else if(e->getPos()-window->getMapObject(i,j).getPos()==1){
-                                    if(calculDegat(u,e)>calculDegat(u,unite[getIndexUnit(closest.getX(),closest.getY())])){
-                                        closest=e->getPos();
-                                    }
-                            }
-                            if(window->getMapObject(i,j).getPos()-closest<=dist){
+                            if(window->getMapObject(i,j).getPos()-closest<dist){
                                 dist=window->getMapObject(i,j).getPos()-closest;
                                 posChosed=window->getMapObject(i,j).getPos();
-                            }
-                            }
                             }
                         }
                     }
@@ -415,13 +411,20 @@ void Game::iAmoveUnit()
                 move(posChosed.getX(), posChosed.getY());
                 std::this_thread::sleep_for (std::chrono::microseconds(500000));
                 if(Enemyclose(u)){
-                    u->setFocused(true);
                     attack(closest.getX(),closest.getY());
-                    std::this_thread::sleep_for (std::chrono::microseconds(2000000));
+                    if(!Enemyclose(u)){
+                        for(Pos e: coordinateE){
+                            i++;
+                            if(closest==e){
+                                break;
+                            }
+                        }
+                        coordinateE.erase(coordinateE.begin()+i);
+                    }
                 }
                 std::this_thread::sleep_for (std::chrono::microseconds(300000));
-                // + if fussionnable -> fusion + chaud montrer que y a fusion !
 
+                // + if fussionnable -> fusion + chaud montrer que y a fusion !
             }
         }
     }
@@ -667,7 +670,6 @@ bool Game::Enemyclose(Unite* unit)
 int Game::getmapId(int x, int y){
 
     if (!(0 <= x && x < 21 && 0 <= y && y < 17)){
-       // std::cerr << "getMapId out of the map" << std::endl;
         return -1;
     }
     else {
@@ -834,8 +836,13 @@ void Game::setMoney(bool team, int impact){
 Unite* Game::getUnite(int x, int y){
     int a = getIndexUnit(x,y);
     if(a == -1)
-        throw invalid_argument("Erro : getUnite");
+        throw invalid_argument("Error : getUnite");
     return unite[a];
+}
+
+bool Game::isActiveturn()
+{
+    return activeTurn;
 }
 
 int Game::getMalusMove(char moveType, int terrainID){
@@ -855,7 +862,7 @@ int Game::getMalusMove(char moveType, int terrainID){
             case 34 ... 36 : return 1 ;
             case 43 ... 45 : return 1 ;
             case 38 ... 40 : return 1 ;
-            //default: std::cout << "Type inconnu (f) " <<  std::endl; break;
+            default: std::cout << "Type inconnu (f) " <<  std::endl; break;
         }
     }
 
@@ -875,7 +882,7 @@ int Game::getMalusMove(char moveType, int terrainID){
             case 34 ... 36 : return 1 ;
             case 43 ... 45 : return 1 ;
             case 38 ... 40 : return 1 ;
-            //default: std::cout << "Type inconnu (f) " <<  std::endl; break;
+            default: std::cout << "Type inconnu (f) " <<  std::endl; break;
         }
     }
 
@@ -895,7 +902,7 @@ int Game::getMalusMove(char moveType, int terrainID){
             case 34 ... 36 : return 1 ;
             case 43 ... 45 : return 1 ;
             case 38 ... 40 : return 1 ;
-            //default: std::cout << "Type inconnu (f) " <<  std::endl; break;
+            default: std::cout << "Type inconnu (f) " <<  std::endl; break;
         }
     }
 
@@ -916,7 +923,7 @@ int Game::getMalusMove(char moveType, int terrainID){
             case 34 ... 36 : return 1 ;
             case 43 ... 45 : return 1 ;
             case 38 ... 40 : return 1 ;
-            //default: std::cout << "Type inconnu (t) " <<  std::endl; break;
+            default: std::cout << "Type inconnu (t) " <<  std::endl; break;
         }
     }
     else if (moveType == 'a'){
@@ -935,11 +942,9 @@ int Game::getMalusMove(char moveType, int terrainID){
             case 34 ... 36 : return 1 ;
             case 43 ... 45 : return 1 ;
             case 38 ... 40 : return 1 ;
-            //default: std::cout << "Type inconnu (a) " <<  std::endl; break;
+            default: std::cout << "Type inconnu (a) " <<  std::endl; break;
         }
     }
-
-    //std::cerr << "Error : getMalusMove : wrong MoveType" << std::endl;
     return 0;
 }
 
@@ -955,18 +960,18 @@ int Game::attackChart(Unite* u, Unite* v)
     }
 
     switch (a) {
-    case (200): switch (d){
-        case (200) : return 55;
-        case (201) : return 45;
-        case (202) : return 12;
-        case (203) : return 5;
-        case (204) : return 5;
-        case (205) : return 1;
-        case (206) : return 1;
-        case (207) : return 1;
-        case (208) : return 7;
-        case (209) : return 0;
-        case (210) : return 0;
+    case (200): switch (d){ //inf
+        case (200) : return 55; //inf
+        case (201) : return 45; //mech
+        case (202) : return 12; //recon
+        case (203) : return 5; //antiair
+        case (204) : return 5; //tank
+        case (205) : return 1; //mdtank
+        case (206) : return 1; //megatank
+        case (207) : return 1; //neotank
+        case (208) : return 7; //helico
+        case (209) : return 0; //fighter
+        case (210) : return 0; //bomber
         }
     case (201): switch (d){ //mech
         case (200) : return 65; //inf
@@ -1107,8 +1112,7 @@ int Game::attackChart(Unite* u, Unite* v)
 
 //////////////// FIN DU JEU
 
-void Game::checkEndGame(){  // TRUE ORANGE // FALSE BLUE
-
+void Game::checkEndGame(){
 
     bool noBuildingBlue = true;
     bool noUnitBlue = true;
@@ -1169,7 +1173,7 @@ void Game::endGame(){
     delete diaWinBlue;
     delete diaWinOrange;
 
-   // window->getMap()->reload();
+    window->getMap()->reload();
 
     setMoney(true,-moneyTeamT);
     setMoney(false,-moneyTeamF);
@@ -1182,11 +1186,13 @@ void Game::endGame(){
 
 void Game::restart(int gameType){
 
+    delete diaNewGame;
+
     window->createMapObjects();
 
     turnChange();
     giveBuildingsPtCapture();
-    if (gameType == 4){
+    if (gameType == 5){
         window->close();
     }
     setgameType(gameType);

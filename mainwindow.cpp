@@ -45,75 +45,89 @@ MainWindow::MainWindow(QWidget *parent) :
 
      labelMoneyT = new QLabel("lol", this);
          labelMoneyT->setGeometry(15,340, 200, 50);
-         labelMoneyT->setStyleSheet("QLabel { font: 15pt ; color : orange; }");
+         labelMoneyT->setStyleSheet("QLabel { font: 15pt ; color : white; }");
 
      labelMoneyF = new QLabel("",this);
          labelMoneyF->setGeometry(1150,340, 200, 50);
-         labelMoneyF->setStyleSheet("QLabel {  font: 15pt ; color : blue; }");
+         labelMoneyF->setStyleSheet("QLabel {  font: 15pt ; color : white; }");
 
      labelNameT= new QLabel ("Orange Star", this);
         labelNameT->setGeometry(15, 50, 200, 200);
-        labelNameT->setStyleSheet("QLabel { font: 20pt ; color : orange; }");
+        labelNameT->setStyleSheet("QLabel { font: 20pt ; color : white; }");
 
      labelNameF= new QLabel ("Blue Moon", this);
-        labelNameF->setStyleSheet("QLabel {  font: 20pt ;color : blue; }");
+        labelNameF->setStyleSheet("QLabel {  font: 20pt ;color : white; }");
         labelNameF->setGeometry(1150, 50, 200, 200);
 
      labelTurn= new QLabel("",this);
         labelTurn->setGeometry(800 ,685,400,200);
+        labelTurn->setStyleSheet("QLabel {font: 15pt ; color : white; }");
 
-      labelT1= new QLabel("---------------------", this);
-        labelT1->setStyleSheet("QLabel { font: 20pt ; color:orange}");
+
+      labelT1= new QLabel("------------------", this);
+        labelT1->setStyleSheet("QLabel { font: 20pt ; color:white;}");
         labelT1->setGeometry(15, 100, 300, 20);
 
-      labelT2= new QLabel("---------------------", this);
-          labelT2->setStyleSheet("QLabel { font: 20pt ; color:orange}");
+      labelT2= new QLabel("------------------", this);
+          labelT2->setStyleSheet("QLabel { font: 20pt ; color: white;}");
           labelT2->setGeometry(15, 225, 300, 20);
 
-       labelT3= new QLabel("---------------------", this);
-
-          labelT3->setStyleSheet("QLabel { font: 20pt ; color:blue}");
+       labelT3= new QLabel("------------------", this);
+          labelT3->setStyleSheet("QLabel { font: 20pt ; color:white;}");
           labelT3->setGeometry(1150, 100, 300, 20);
 
-       labelT4= new QLabel("---------------------", this);
-          labelT4->setStyleSheet("QLabel { font: 20pt ; color:blue}");
+       labelT4= new QLabel("------------------", this);
+          labelT4->setStyleSheet("QLabel { font: 20pt ; color:white;}");
           labelT4->setGeometry(1150, 225, 300, 20);
 
     labelDeviseF= new QLabel("Make America great again", this);
-        labelDeviseF->setStyleSheet("QLabel{font: 9pt; color: blue}");
+        labelDeviseF->setStyleSheet("QLabel{font: 9pt; color: white;}");
         labelDeviseF->setGeometry(1150, 150, 300,100);
 
     labelDeviseT= new QLabel("Diviser pour mieux régner", this);
-        labelDeviseT->setStyleSheet("QLabel{font: 9pt; color: orange}");
+        labelDeviseT->setStyleSheet("QLabel{font: 9pt; color: white;}");
         labelDeviseT->setGeometry(15, 150, 300,100);
 
     labelTerrainType= new QLabel ("Terrain type : ", this);
-        labelTerrainType->setStyleSheet("QLabel { font: 12pt ; color:black}");
+        labelTerrainType->setStyleSheet("QLabel { font: 12pt ; color: white}");
         labelTerrainType->setGeometry(280,740, 300, 30);
 
     labelViesOrange= new QLabel ("Unit life : ", this);
-        labelViesOrange->setStyleSheet("QLabel { font: 15pt ; color:orange}");
+        labelViesOrange->setStyleSheet("QLabel { font: 15pt ; color: white;}");
         labelViesOrange->setGeometry(15, 385, 200, 50);
 
     labelViesBlue= new QLabel ("Unit life : ", this);
-        labelViesBlue->setStyleSheet("QLabel { font: 15pt ; color:blue}");
+        labelViesBlue->setStyleSheet("QLabel { font: 15pt ; color: white;}");
         labelViesBlue->setGeometry(1150, 385, 300, 50);
 
     labelPtCap = new QLabel ("Capture points : ", this);
-        labelPtCap->setStyleSheet("QLabel { font: 12pt ; color:black}");
+        labelPtCap->setStyleSheet("QLabel { font: 12pt ; color:white;}");
         labelPtCap->setGeometry(280, 780, 300, 30);
 
     labelPtDef=new QLabel ("Defense points :", this);
-        labelPtDef->setStyleSheet("QLabel { font: 12pt ; color:black}");
+        labelPtDef->setStyleSheet("QLabel { font: 12pt ; color:white;}");
         labelPtDef->setGeometry(280, 760, 300, 30);
 
-    labelAttackableOrange = new QLabel ("Attackable ?",this);
-        labelAttackableOrange->setStyleSheet("QLabel { font: 10pt ; color:orange}");
-        labelAttackableOrange->setGeometry(15,430,200,50);
+    labelAttackableO = new QLabel ("Attackable ?",this);
+        labelAttackableO->setStyleSheet("QLabel { font: 12pt ; color:white;}");
+        labelAttackableO->setGeometry(15,430,200,50);
 
-    labelAttackableBlue = new QLabel ("Attackable ?",this);
-        labelAttackableBlue->setStyleSheet("QLabel { font: 10pt ; color:blue}");
-        labelAttackableBlue->setGeometry(1150 ,430,300,50);
+    labelAttackableOrange = new QLabel ("",this);
+        labelAttackableOrange->setStyleSheet("QLabel { font: 12pt ; color:white;}");
+        labelAttackableOrange->setGeometry(15,470,200,50);
+
+    labelAttackableB = new QLabel ("Attackable ?",this);
+        labelAttackableB->setStyleSheet("QLabel { font: 12pt ; color:white;}");
+        labelAttackableB->setGeometry(1150 ,430,300,50);
+
+    labelAttackableBlue = new QLabel ("",this);
+        labelAttackableBlue->setStyleSheet("QLabel { font: 12pt ; color:white}");
+        labelAttackableBlue->setGeometry(1150 ,470,300,50);
+
+        priceDialog = new  DialogUnitPrice(this);
+        rulesDialog = new DialogShowRules(this);
+        commandsDialog = new DialogShowCommands(this);
+        languageDialog = new DialogLanguage(this);
 
 }
 
@@ -129,6 +143,8 @@ MainWindow::~MainWindow()
     delete showUnitPriceButton;
     delete showCommandsButton;
     delete languageButton;
+    delete endGameButton;
+
     delete labelArnian;
     delete labelMoneyT;
     delete labelMoneyF;
@@ -146,14 +162,15 @@ MainWindow::~MainWindow()
     delete labelViesOrange;
     delete labelViesBlue;
     delete labelTerrainType;
+    delete labelAttackableBlue;
+    delete labelAttackableOrange;
+    delete labelAttackableB;
+    delete labelAttackableO;
 
     delete priceDialog;
     delete rulesDialog;
     delete commandsDialog;
     delete languageDialog;
-
-    delete labelAttackableBlue;
-    delete labelAttackableOrange;
 
 }
 
@@ -178,24 +195,24 @@ void MainWindow::changeTurn()
 }
 
 void MainWindow::showPrice(){
-    priceDialog = new  DialogUnitPrice(this);
+
     priceDialog->show();
 }
 
 void MainWindow::showRules(){
-    rulesDialog = new DialogShowRules(this);
+
     rulesDialog->show();
 
 }
 
 void MainWindow::showCommands(){
-    commandsDialog = new DialogShowCommands(this);
+
     commandsDialog->show();
 
 }
 
 void MainWindow::language(){
-    languageDialog = new DialogLanguage(this);
+
     languageDialog->show();
 
 }
@@ -208,14 +225,11 @@ void MainWindow::updateMoneyTeam(int moneyTeamT, int moneyTeamF) {
 }
 
 void MainWindow::updateTurn(bool activeTurn){
-    m_turn = activeTurn;
-    if (m_turn){
+    if (activeTurn){
         labelTurn->setText("Orange Star, à vous de jouer!");
-        labelTurn->setStyleSheet("QLabel {font: 15pt ; color : orange; }");
     }
     else {
         labelTurn->setText("Blue Moon, à vous de jouer!");
-        labelTurn->setStyleSheet(" QLabel {font: 15pt ;color : blue; }");
     }
 }
 
@@ -245,31 +259,31 @@ void MainWindow::updateInfoPos(string terrainType, int PtDefense, int PtCapture,
         if (team) {
             labelViesOrange->setText("Unit life : " + QString::fromStdString(viesU));
             labelViesBlue->setText("Unit life : ");
-            labelAttackableBlue->setText("Attackable ?");
+            labelAttackableBlue->setText("");
             if (attackable){
-                labelAttackableOrange->setText( "Attackable ? Yes! Dammage : " + QString::fromStdString(deg));
+                labelAttackableOrange->setText( "Yes! Dammage : " + QString::fromStdString(deg));
             }
             if (!attackable){
-                labelAttackableOrange->setText("Attackable ? No ! ");
+                labelAttackableOrange->setText("No ! ");
             }
         }
         if (!team){
             labelViesOrange->setText("Unit life : ");
             labelViesBlue->setText("Unit life : " + QString::fromStdString(viesU));
-            labelAttackableOrange->setText("Attackable ?");
+            labelAttackableOrange->setText("");
             if (attackable){
-                labelAttackableBlue->setText("Attackable ? Yes! Dammage : " + QString::fromStdString(deg));
+                labelAttackableBlue->setText("Yes! Dammage : " + QString::fromStdString(deg));
             }
             if (!attackable){
-                labelAttackableBlue->setText("Attackable ? No! ");
+                labelAttackableBlue->setText("No! ");
             }
         }
     }
     if (!unit){
         labelViesBlue->setText("Unit life : ");
         labelViesOrange->setText("Unit life : ");
-        labelAttackableOrange->setText("Attackable ?");
-        labelAttackableBlue->setText("Attackable ?");
+        labelAttackableOrange->setText("");
+        labelAttackableBlue->setText("");
     }
 
     if (update){
@@ -279,8 +293,8 @@ void MainWindow::updateInfoPos(string terrainType, int PtDefense, int PtCapture,
         labelViesBlue->setText("Unit life :");
         labelViesOrange->setText("Unit Life :");
         labelViesBlue->setText("Unit life :");
-        labelAttackableBlue->setText("Attackable ? ");
-        labelAttackableOrange->setText("Attackable ? ");
+        labelAttackableBlue->setText("");
+        labelAttackableOrange->setText("");
     }
 }
 

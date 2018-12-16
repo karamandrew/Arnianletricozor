@@ -26,9 +26,10 @@ public:
 
     int getXCoordinate(QMouseEvent *e);
     int getYCoordinate(QMouseEvent *e);
+    int getIndexUnit(int x, int y);
 
     bool isActiveturn();
-    int getIndexUnit(int x, int y);
+
     Unite* getUnite(int x, int y);
 
     ~Game();

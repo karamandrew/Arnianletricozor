@@ -51,15 +51,17 @@ public slots :
     void showIntro();
 
 private:
+
     Ui::MainWindow *ui;
+
+    Map *map;
+
     DialogUnitPrice *priceDialog;
     DialogShowRules *rulesDialog;
     DialogShowCommands *commandsDialog;
     DialogLanguage *languageDialog;
-
     DialogNewGame *diaNewGame;
 
-    Map *map;
     QPushButton *changeTurnButton = nullptr;
     QPushButton *showUnitPriceButton = nullptr;
     QPushButton *showRulesButton= nullptr;
@@ -67,7 +69,7 @@ private:
     QPushButton *languageButton=nullptr;
     QPushButton *endGameButton = nullptr;
     QLabel* labelArnian = nullptr;
-    bool m_turn;
+
     QLabel* labelMoneyT = nullptr;
     QLabel* labelMoneyF = nullptr;
     QLabel* labelNameT= nullptr;
@@ -86,6 +88,8 @@ private:
     QLabel* labelPtDef=nullptr;
     QLabel* labelAttackableOrange = nullptr;
     QLabel* labelAttackableBlue =  nullptr;
+    QLabel* labelAttackableO = nullptr;
+    QLabel* labelAttackableB = nullptr;
 
 
 };
